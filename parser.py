@@ -24,33 +24,74 @@ class Parser:
     def parse(self, string, term, index=0):
         if index >= len(string):
             return Parser.FAIL
-        elif term == "opt_space":
-            return self.__parse_opt_space(string, index)
-        # elif term == "add_sub_operator":
-            # return self.__parse_add_sub_operator(string, index)
-        elif term == "integer":
-            return self.__parse_integer(string, index)
         elif term == "add_sub_expression":
             return self.__parse_add_sub_expression(string, index)
+        elif term == "mul_div_expression":
+            return self.__parse_mul_div_expression(string, index)
         elif term == "operand":
             return self.__parse_operand(string, index)
         elif term == "parentheses":
             return self.__parse_parentheses(string, index)
+        elif term == "integer":
+            return self.__parse_integer(string, index)
+        elif term == "opt_space":
+            return self.__parse_opt_space(string, index)
         else:
             raise AssertionError("Unexpected term", term)
 
-    """def __parse_add_sub_operator(self, string, index):
-        if string[index] == "+":
-            return Parse(0, index + 1)  # FIXME: how do you tell parent if + or -?
-        # elif string[index] == "-":
-            # return None
-        else:
-            return Parser.FAIL"""
+    def __parse_add_sub_expression(self, string, index):
+        parse = self.parse(string, "opt_space", index)
+        parse = self.parse(string, "mul_div_expression", parse.index)
+        if parse == Parser.FAIL:
+            return Parser.FAIL
+        result = parse.value
+        index = parse.index
+        while parse.index < len(string) and parse != Parser.FAIL:
+            parse = self.parse(string, "opt_space", parse.index)
+            if string[parse.index] == "+":
+                add = True
+            elif string[parse.index] == "-":
+                add = False
+            else:
+                break
+            parse = self.parse(string, "opt_space", parse.index + 1)
+            parse = self.parse(string, "mul_div_expression", parse.index)
+            if parse != Parser.FAIL:
+                if add:
+                    result += parse.value
+                elif not add:
+                    result -= parse.value
+                if parse.index < len(string):
+                    parse = self.parse(string, "opt_space", parse.index)
+                index = parse.index
+        return Parse(result, index)
 
-    def __parse_opt_space(self, string, index):
-        while index < len(string) and string[index] == " ":
-            index += 1
-        return Parse(0, index)
+    def __parse_mul_div_expression(self, string, index):
+        parse = self.parse(string, "opt_space", index)
+        parse = self.parse(string, "operand", parse.index)
+        if parse == Parser.FAIL:
+            return Parser.FAIL
+        result = parse.value
+        index = parse.index
+        while parse.index < len(string) and parse != Parser.FAIL:
+            parse = self.parse(string, "opt_space", parse.index)
+            if string[parse.index] == "*":
+                mul = True
+            elif string[parse.index] == "/":
+                mul = False
+            else:
+                break
+            parse = self.parse(string, "opt_space", parse.index + 1)
+            parse = self.parse(string, "operand", parse.index)
+            if parse != Parser.FAIL:
+                if mul:
+                    result *= parse.value
+                else:
+                    result //= parse.value
+                if parse.index < len(string):
+                    parse = self.parse(string, "opt_space", parse.index)
+                index = parse.index
+        return Parse(result, index)
 
     def __parse_operand(self, string, index):
         parse = self.parse(string, "integer", index)
@@ -71,33 +112,6 @@ class Parser:
             return Parser.FAIL
         return Parse(parse.value, parse.index + 1)
 
-    def __parse_add_sub_expression(self, string, index):
-        parse = self.parse(string, "opt_space", index)
-        parse = self.parse(string, "operand", parse.index)
-        if parse == Parser.FAIL:
-            return Parser.FAIL
-        result = parse.value
-        index = parse.index
-        while parse.index < len(string) and parse != Parser.FAIL:
-            parse = self.parse(string, "opt_space", parse.index)
-            if string[parse.index] == "+":
-                add = True
-            elif string[parse.index] == "-":
-                add = False
-            else:
-                break
-            parse = self.parse(string, "opt_space", parse.index + 1)
-            parse = self.parse(string, "operand", parse.index)  # find int or paren after + sign
-            if parse != Parser.FAIL:
-                if add:
-                    result += parse.value
-                elif not add:
-                    result -= parse.value
-                if parse.index < len(string):
-                    parse = self.parse(string, "opt_space", parse.index)
-                index = parse.index
-        return Parse(result, index)
-
     def __parse_integer(self, string, index):
         parsed = ""
         while index < len(string) and string[index].isdigit():
@@ -107,6 +121,11 @@ class Parser:
         if not parsed:
             return Parser.FAIL
         return Parse(int(parsed), index)
+
+    def __parse_opt_space(self, string, index):
+        while index < len(string) and string[index] == " ":
+            index += 1
+        return Parse(0, index)
 
 
 def test_parse(parser, string, term, expected):
@@ -167,9 +186,32 @@ def test():
     test_parse(parser, "0-3", "add_sub_expression", Parse(-3, 3))
     test_parse(parser, "0-0-0-0", "add_sub_expression", Parse(0, 7))
     test_parse(parser, "100-56-4", "add_sub_expression", Parse(40, 8))
-    # end-to-end test
+    # end-to-end tests
     test_parse(parser, "(3+4)-((2+3)+0-(1-2+3))+9", "add_sub_expression", Parse(13, 25))
     test_parse(parser, "( 3+ 4) - ( (2+3)+0 -(1 - 2+3))+ 9", "add_sub_expression", Parse(13, 34))
+    # multiplication tests
+    test_parse(parser, "", "mul_div_expression", Parser.FAIL)
+    test_parse(parser, "3*", "mul_div_expression", Parse(3, 1))
+    test_parse(parser, "3*4", "mul_div_expression", Parse(12, 3))
+    test_parse(parser, "3*4 * 5*0", "mul_div_expression", Parse(0, 9))
+    test_parse(parser, "12 * 25 * 1", "mul_div_expression", Parse(300, 11))
+    # division tests
+    test_parse(parser, "", "mul_div_expression", Parser.FAIL)
+    test_parse(parser, "3/", "mul_div_expression", Parse(3, 1))
+    test_parse(parser, "22/5", "mul_div_expression", Parse(4, 4))
+    test_parse(parser, "2/2", "mul_div_expression", Parse(1, 3))
+    test_parse(parser, "3 / 5", "mul_div_expression", Parse(0, 5))
+    test_parse(parser, "3/1/5/1", "mul_div_expression", Parse(0, 7))
+    test_parse(parser, "12 / 3/2", "mul_div_expression", Parse(2, 8))
+    # mixed expression tests
+    test_parse(parser, "3+4*2", "add_sub_expression", Parse(11, 5))
+    test_parse(parser, "(3+4 ) * 2", "add_sub_expression", Parse(14, 10))
+    test_parse(parser, "1-5/2", "add_sub_expression", Parse(-1, 5))
+    test_parse(parser, "(1 -5)/ 2", "add_sub_expression", Parse(-2, 9))
+    test_parse(parser, "3+4*2+1-5/2", "add_sub_expression", Parse(10, 11))
+    test_parse(parser, "( (3+4 )* 2+ 1-5 )/ 2 +1", "add_sub_expression", Parse(6, 24))
+    test_parse(parser, "(19- (5+ 2 *0) / 9+ (3/1))", "parentheses", Parse(22, 26))
+    test_parse(parser, "11 / (8/ 4*(7-5))", "mul_div_expression", Parse(2, 17))
 
 
 def main():
