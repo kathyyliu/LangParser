@@ -6,7 +6,8 @@ class Interpreter:
 
     def execute(self, node):
         try:
-            exec(node)
+            self.exec(node)
+            return self.output
         except RuntimeError:
             pass
 
@@ -23,7 +24,7 @@ class Interpreter:
             self.eval(node)
 
     def __exec_print(self, node):
-        self.output = eval(node.children[0])
+        self.output += str(self.eval(node.children[0]))
 
     def __exec_sequence(self, node):
         pass
@@ -43,26 +44,25 @@ class Interpreter:
             return self.__eval_mult(node)
         elif node.name == "/":
             return self.__eval_div(node)
-        elif node.name == "int":
+        elif node.name.isdigit():
             return self.__eval_int(node)
         else:
             raise AssertionError("Unexpected term", node.name)
 
     def __eval_plus(self, node):
-        return eval(node.children[0]) + eval(node.children[1])
+        return self.eval(node.children[0]) + self.eval(node.children[1])
 
     def __eval_minus(self, node):
-        return eval(node.children[0]) - eval(node.children[1])
+        return self.eval(node.children[0]) - self.eval(node.children[1])
 
     def __eval_mult(self, node):
-        return eval(node.children[0]) * eval(node.children[1])
+        return self.eval(node.children[0]) * self.eval(node.children[1])
 
     def __eval_div(self, node):
-        divisor = eval(node.children[1])
-        if divisor != 0:
-            return eval(node.children[0]) / divisor
-        else:
+        divisor = self.eval(node.children[1])
+        if divisor == 0:
             raise RuntimeError("divide by zero")
+        return self.eval(node.children[0]) / divisor
 
     def __eval_int(self, node):
         return node.value

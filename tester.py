@@ -1,4 +1,5 @@
 import parser as parser
+import interpreter as interpreter
 
 def test_parse(parser, string, term, expected):
     actual = parser.parse(string, term)
@@ -17,28 +18,48 @@ def test_parse_tree(test_cases):
             case[0], expected, actual
             )
 
+def test_interpreter(test_cases):
+    my_parser = parser.Parser()
+    my_interpreter = interpreter.Interpreter()
+    for case in test_cases:
+        my_interpreter.output = ''
+        node = my_parser.parse(case[0], "program")
+        actual = my_interpreter.execute(node)
+        expected = case[1]
+        assert actual is not None, 'Got None when interpreting "{}"'.format(case[0])
+        assert actual == expected, 'Interpretation for "{}"; expected {} but got {}'.format(
+            case[0], expected, actual
+        )
+
 
 def test():
-
     tests = []
+
+    ##### parser tests #####
     # math tests
-    tests.append(("3", "(3)"))
-    tests.append(("1+2", "(+ 1 2)"))
-    tests.append(("1*2", "(* 1 2)"))
-    tests.append((" 1 * 2 ", "(* 1 2)"))
-    tests.append((" 1 * 2 + 1", "(+ (* 1 2) 1)"))
-    tests.append(("2 - 3 * 4", "(- 2 (* 3 4))"))
-    tests.append(("2 - 3 * 4 - 5", "(- (- 2 (* 3 4)) 5)"))
-    tests.append(("1 + 2 - 3 * 4 - 5", "(- (- (+ 1 2) (* 3 4)) 5)"))
-    tests.append(("( 1 + 2 ) * 4", "(* (+ 1 2) 4)"))
-    tests.append(("(( 1 + 2 ) - 3 )* (4 - 5)", "(* (- (+ 1 2) 3) (- 4 5))"))
+    # tests.append(("3", "(3)"))
+    # tests.append(("1+2", "(+ 1 2)"))
+    # tests.append(("1*2", "(* 1 2)"))
+    # tests.append((" 1 * 2 ", "(* 1 2)"))
+    # tests.append((" 1 * 2 + 1", "(+ (* 1 2) 1)"))
+    # tests.append(("2 - 3 * 4", "(- 2 (* 3 4))"))
+    # tests.append(("2 - 3 * 4 - 5", "(- (- 2 (* 3 4)) 5)"))
+    # tests.append(("1 + 2 - 3 * 4 - 5", "(- (- (+ 1 2) (* 3 4)) 5)"))
+    # tests.append(("( 1 + 2 ) * 4", "(* (+ 1 2) 4)"))
+    # tests.append(("(( 1 + 2 ) - 3 )* (4 - 5)", "(* (- (+ 1 2) 3) (- 4 5))"))
     # print tests
-    tests.append(("print 1;", "(print 1)"))
-    tests.append(("print 1 + 2;", "(print (+ 1 2))"))
-    tests.append(("print 1 * (( 1 + 2 ) - 3 )* (4 - 5);", "(print (* (* 1 (- (+ 1 2) 3)) (- 4 5)))"))
+    # tests.append(("print 1;", "(print 1)"))
+    # tests.append(("print 1 + 2;", "(print (+ 1 2))"))
+    # tests.append(("print 1 * (( 1 + 2 ) - 3 )* (4 - 5);", "(print (* (* 1 (- (+ 1 2) 3)) (- 4 5)))"))
+    # test_parse_tree(tests)
 
+    ##### interpreter tests ####
+    tests.append(("print 1;", "1"))
+    tests.append(("print 1 + 2;", "3"))
+    tests.append(("print 1 * (( 1 + 2 ) - 3 )* (4 - 5);", "0"))
 
-    test_parse_tree(tests)
+    test_interpreter(tests)
+
 
 
 #     parser = Parser()
