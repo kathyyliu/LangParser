@@ -46,9 +46,6 @@ class IntegerParse(Parse):
     # def __str__(self):
     #     return 'Parse(value={}, index{})'.format(self.value, self.index)
 
-    def get_value(self):
-        return self.value
-
 
 class StatementParse(Parse):
 
@@ -68,11 +65,4 @@ class StatementParse(Parse):
 
     def add_child(self, parse):
         self.children.append(parse)
-
-    # returns right-most descendant of node, returns itself if no children
-    def get_last_descendant(self, node):
-        last = node
-        while last.chilren:
-            last = last.children[-1]
-        return last
-
+        self.index = parse.index

@@ -18,6 +18,7 @@ def test_parse_tree(test_cases):
             case[0], expected, actual
             )
 
+
 def test_interpreter(test_cases):
     my_parser = parser.Parser()
     my_interpreter = interpreter.Interpreter()
@@ -35,30 +36,44 @@ def test_interpreter(test_cases):
 def test():
     tests = []
 
-    ##### parser tests #####
+    ########## parser tests #########
+
     # math tests
-    # tests.append(("3", "(3)"))
-    # tests.append(("1+2", "(+ 1 2)"))
-    # tests.append(("1*2", "(* 1 2)"))
-    # tests.append((" 1 * 2 ", "(* 1 2)"))
-    # tests.append((" 1 * 2 + 1", "(+ (* 1 2) 1)"))
-    # tests.append(("2 - 3 * 4", "(- 2 (* 3 4))"))
-    # tests.append(("2 - 3 * 4 - 5", "(- (- 2 (* 3 4)) 5)"))
-    # tests.append(("1 + 2 - 3 * 4 - 5", "(- (- (+ 1 2) (* 3 4)) 5)"))
-    # tests.append(("( 1 + 2 ) * 4", "(* (+ 1 2) 4)"))
-    # tests.append(("(( 1 + 2 ) - 3 )* (4 - 5)", "(* (- (+ 1 2) 3) (- 4 5))"))
+    tests.append(("3;", "(sequence 3)"))
+    tests.append(("1+2;", "(sequence (+ 1 2))"))
+    tests.append(("1*2;", "(sequence (* 1 2))"))
+    tests.append((" 1 * 2 ;", "(sequence (* 1 2))"))
+    tests.append((" 1 * 2 + 1;", "(sequence (+ (* 1 2) 1))"))
+    tests.append(("2 - 3 * 4;", "(sequence (- 2 (* 3 4)))"))
+    tests.append(("2 - 3 * 4 - 5;", "(sequence (- (- 2 (* 3 4)) 5))"))
+    tests.append(("1 + 2 - 3 * 4 - 5;", "(sequence (- (- (+ 1 2) (* 3 4)) 5))"))
+    tests.append(("( 1 + 2 ) * 4;", "(sequence (* (+ 1 2) 4))"))
+    tests.append(("(( 1 + 2 ) - 3 )* (4 - 5);", "(sequence (* (- (+ 1 2) 3) (- 4 5)))"))
     # print tests
-    # tests.append(("print 1;", "(print 1)"))
-    # tests.append(("print 1 + 2;", "(print (+ 1 2))"))
-    # tests.append(("print 1 * (( 1 + 2 ) - 3 )* (4 - 5);", "(print (* (* 1 (- (+ 1 2) 3)) (- 4 5)))"))
-    # test_parse_tree(tests)
+    tests.append(("print 1;", "(sequence (print 1))"))
+    tests.append(("print 1 + 2;", "(sequence (print (+ 1 2)))"))
+    tests.append(("print 1 * (( 1 + 2 ) - 3 )* (4 - 5);", "(sequence (print (* (* 1 (- (+ 1 2) 3)) (- 4 5))))"))
+    # variable tests
+    tests.append(("x = 1;", "(sequence (assign (varloc x) 1))"))
+    tests.append(("num1 = 144;", "(sequence (assign (varloc num1) 144))"))
+    tests.append(("var num1 = 144;", "(sequence (declare num1 144))"))
+    tests.append(("x+1;", "(sequence (+ (lookup x) 1))"))
+    tests.append(("x+1; 2;", "(sequence (+ (lookup x) 1) 2)"))
+    tests.append(("var x = 0; x = 1;", "(sequence (declare x 0) (assign (varloc x) 1))"))
+    tests.append(("var x = 0; # comment  \n x = 1;", "(sequence (declare x 0) (assign (varloc x) 1))"))
+    tests.append(("var x = 3*1;\nx = x + 1;", "(sequence (declare x (* 3 1)) (assign (varloc x) (+ (lookup x) 1)))"))
+    tests.append(("var _wh33= 90; print _wh33;", "(sequence (declare _wh33 90) (print (lookup _wh33)))"))
 
-    ##### interpreter tests ####
-    tests.append(("print 1;", "1"))
-    tests.append(("print 1 + 2;", "3"))
-    tests.append(("print 1 * (( 1 + 2 ) - 3 )* (4 - 5);", "0"))
 
-    test_interpreter(tests)
+    test_parse_tree(tests)
+
+    ############ interpreter tests #############
+
+    # tests.append(("print 1;", "1"))
+    # tests.append(("print 1 + 2;", "3"))
+    # tests.append(("print 1 * (( 1 + 2 ) - 3 )* (4 - 5);", "0"))
+
+    # test_interpreter(tests)
 
 
 

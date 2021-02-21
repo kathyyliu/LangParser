@@ -14,8 +14,16 @@ class Parser:
             return self.__parse_program(string, index)
         elif term == "statement":
             return self.__parse_statement(string, index)
+        elif term == "declaration_statement":
+            return self.__parse_declaration_statement(string, index)
+        elif term == "assignment_statement":
+            return self.__parse_assignment_statement(string, index)
+        elif term == "location":
+            return self.__parse_location(string, index)
         elif term == "print_statement":
             return self.__parse_print_statement(string, index)
+        elif term == "expression_statement":
+            return self.__parse_expression_statement(string, index)
         elif term == "expression":
             return self.__parse_expression(string, index)
         elif term == "add_sub_expression":
@@ -30,6 +38,12 @@ class Parser:
             return self.__parse_operand(string, index)
         elif term == "parentheses":
             return self.__parse_parentheses(string, index)
+        elif term == "identifier":
+            return self.__parse_identifier(string, index)
+        elif term == "identifier_first_char":
+            return self.__parse_identifier_first_char(string, index)
+        elif term == "identifier_char":
+            return self.__parse_identifier_char(string, index)
         elif term == "integer":
             return self.__parse_integer(string, index)
         elif term == "opt_space":
@@ -46,28 +60,75 @@ class Parser:
     # = opt_space ( statement opt_space )*
     def __parse_program(self, string, index):
         this_parse = self.parse(string, "opt_space", index)
-        curr_index = this_parse.index
-        while curr_index < len(string) and this_parse != Parser.FAIL:
-            this_parse = self.parse(string, "statement", curr_index)
-            curr_index = self.__get_last_descendant(this_parse).index
-            if curr_index < len(string) and this_parse != Parser.FAIL:
-                curr_index = self.parse(string, "opt_space", curr_index).index
-                self.__get_last_descendant(this_parse).index = curr_index
+        parent = parse.StatementParse("sequence", this_parse.index)
+        while this_parse.index < len(string) and this_parse != Parser.FAIL:
+            this_parse = self.parse(string, "statement", this_parse.index)
+            if this_parse.index <= len(string) and this_parse != Parser.FAIL:
+                this_parse.index = self.parse(string, "opt_space", this_parse.index).index
+            parent.add_child(this_parse)
         # did not parse whole program
-        if curr_index < len(string):
+        if this_parse.index < len(string):
             return None
-        return this_parse
+        parent.index = this_parse.index
+        return parent
 
-    # = print_statement | expression
+    # = declaration_statement | assignment_statement | print_statement | expression_statement
     def __parse_statement(self, string, index):
-        parse = self.parse(string, "print_statement", index)
-        if parse != Parser.FAIL:
-            return parse
-        parse = self.parse(string, "expression", index)
-        if parse != Parser.FAIL:
-            return parse
-        else:
+        for statement in ("declaration_statement", "assignment_statement", "print_statement", "expression_statement"):
+            parse = self.parse(string, statement, index)
+            if parse != Parser.FAIL:
+                return parse
+        return Parser.FAIL
+
+    # = "var" req_space assignment_statement
+    def __parse_declaration_statement(self, string, index):
+        # index out of bounds protection; shortest possible len(var x=0;) = 8
+        if len(string[index:]) < 8:
             return Parser.FAIL
+        for i in range(3):
+            if string[index + i] != "var"[i]:
+                return Parser.FAIL
+        parent = parse.StatementParse("declare", index + 3)
+        this_parse = self.parse(string, "req_space", parent.index)
+        if this_parse == Parser.FAIL:
+            return Parser.FAIL
+        this_parse = self.parse(string, "assignment_statement", this_parse.index)
+        if this_parse == Parser.FAIL:
+            return Parser.FAIL
+        # turn appropriate children of assign to children of declare node
+        parent.add_child(this_parse.children[0].children[0])    # child[0] is (varloc x), want x
+        parent.add_child(this_parse.children[1])
+        parent.index = parent.children[1].index
+        return parent
+
+    # = location opt_space "=" opt_space expression opt_space ";"
+    def __parse_assignment_statement(self, string, index):
+        left = self.parse(string, "location", index)
+        if left == Parser.FAIL:
+            return Parser.FAIL
+        left.name = "varloc"
+        left.index = self.parse(string, "opt_space", left.children[0].index).index
+        if left.index <= len(string):
+            if string[left.index] == '=':
+                left.index += 1
+                left.index = self.parse(string, "opt_space", left.index).index
+                right = self.parse(string, "expression", left.index)
+                if right == Parser.FAIL:
+                    return Parser.FAIL
+                right.index = self.parse(string, "opt_space", right.index).index
+                if right.index <= len(string):
+                    if string[right.index] == ";":
+                        right.index += 1
+                        parent = parse.StatementParse("assign", right.index)
+                        parent.add_child(left)
+                        parent.add_child(right)
+                        return parent
+        return Parser.FAIL
+
+    # = identifier
+    def __parse_location(self, string, index):
+        this_parse = self.parse(string, "identifier", index)
+        return this_parse
 
     # = "print" req_space expression opt_space ";"
     def __parse_print_statement(self, string, index):
@@ -75,15 +136,30 @@ class Parser:
             if string[index + i] != "print"[i]:
                 return Parser.FAIL
         parent = parse.StatementParse("print", index + 5)
-        parent.index = self.parse(string, "req_space", parent.index).index
-        child = self.parse(string, "expression", parent.index)
+        this_parse = self.parse(string, "req_space", parent.index)
+        if this_parse == Parser.FAIL:
+            return Parser.FAIL
+        child = self.parse(string, "expression", this_parse.index)
         if child == Parser.FAIL:
             return Parser.FAIL
-        if string[self.__get_last_descendant(child).index] != ";":
-            raise SyntaxError
-        self.__get_last_descendant(child).index += 1
-        parent.add_child(child)
-        return parent
+        if child.index <= len(string):
+            if string[child.index] == ";":
+                child.index += 1
+                parent.add_child(child)
+                return parent
+        return Parser.FAIL
+
+    # = expression opt_space ";"
+    def __parse_expression_statement(self, string, index):
+        this_parse = self.parse(string, "expression", index)
+        if this_parse == Parser.FAIL:
+            return Parser.FAIL
+        this_parse.index = self.parse(string, "opt_space", this_parse.index).index
+        if this_parse.index <= len(string):
+            if string[this_parse.index] == ";":
+                this_parse.index += 1
+                return this_parse
+        return Parser.FAIL
 
     # = add_sub_expression
     def __parse_expression(self, string, index):
@@ -95,22 +171,20 @@ class Parser:
         left = self.parse(string, "mul_div_expression", left.index)
         if left == Parser.FAIL:
             return Parser.FAIL
-        # sets index to right-most child if available
-        left.index = self.parse(string, "opt_space", self.__get_last_descendant(left).index).index
-        curr_index = left.index
-        while curr_index < len(string) and left != Parser.FAIL:
-            curr_index = self.parse(string, "opt_space", curr_index).index
-            parent = self.parse(string, "add_sub_operator", curr_index)
+        left.index = self.parse(string, "opt_space", left.index).index
+        while left.index < len(string) and left != Parser.FAIL:
+            left.index = self.parse(string, "opt_space", left.index).index
+            parent = self.parse(string, "add_sub_operator", left.index)
             if parent != Parser.FAIL:
                 parent.index = self.parse(string, "opt_space", parent.index).index
                 right = self.parse(string, "mul_div_expression", parent.index)
                 if right != Parser.FAIL:
                     parent.add_child(left)
                     parent.add_child(right)
-                    left = parent
                     if right.index < len(string):
-                        right.index = self.parse(string, "opt_space", self.__get_last_descendant(right).index).index
-                    curr_index = right.index
+                        right.index = self.parse(string, "opt_space", right.index).index
+                    parent.index = right.index
+                    left = parent
             else:
                 break
         return left
@@ -128,55 +202,84 @@ class Parser:
         left = self.parse(string, "operand", left.index)
         if left == Parser.FAIL:
             return Parser.FAIL
-        # sets index to right-most child if available
-        left.index = self.parse(string, "opt_space", self.__get_last_descendant(left).index).index
-        curr_index = left.index
-        while curr_index < len(string) and left != Parser.FAIL:
-            curr_index = self.parse(string, "opt_space", curr_index).index
-            parent = self.parse(string, "mul_div_operator", curr_index)
+        left.index = self.parse(string, "opt_space", left.index).index
+        while left.index < len(string) and left != Parser.FAIL:
+            left.index = self.parse(string, "opt_space", left.index).index
+            parent = self.parse(string, "mul_div_operator", left.index)
             if parent != Parser.FAIL:
-                curr_index = self.parse(string, "opt_space", parent.index).index
-                right = self.parse(string, "operand", curr_index)
+                parent.index = self.parse(string, "opt_space", parent.index).index
+                right = self.parse(string, "operand", parent.index)
                 if right != Parser.FAIL:
                     parent.add_child(left)
                     parent.add_child(right)
-                    left = parent
                     if right.index < len(string):
-                        right.index = self.parse(string, "opt_space", self.__get_last_descendant(right).index).index
-                    curr_index = right.index
+                        right.index = self.parse(string, "opt_space", right.index).index
+                    parent.index = right.index
+                    left = parent
             else:
                 break
         return left
 
+    # = "*" | "\"
     def __parse_mul_div_operator(self, string, index):
         if index < len(string):
             if string[index] in ("*", "/"):
                 return parse.StatementParse(string[index], index + 1)
         return Parser.FAIL
 
+    # = parenthesized_expression | identifier | integer
     def __parse_operand(self, string, index):
-        parse = self.parse(string, "integer", index)
-        if parse != Parser.FAIL:
-            return parse
-        parse = self.parse(string, "parentheses", index)
-        if parse != Parser.FAIL:
-            return parse
+        for operand in ("parentheses", "identifier", "integer"):
+            parse = self.parse(string, operand, index)
+            if parse != Parser.FAIL:
+                return parse
         return Parser.FAIL
 
+    # = "(" opt_space expression opt_space ")"
     def __parse_parentheses(self, string, index):
         if string[index] != "(":
             return Parser.FAIL
         parse = self.parse(string, "add_sub_expression", index + 1)
         if parse == Parser.FAIL:
             return Parser.FAIL
-        last = self.__get_last_descendant(parse)
-        last.index = self.parse(string, "opt_space", last.index).index
-        if string[last.index] != ")":
+        parse.index = self.parse(string, "opt_space", parse.index).index
+        if string[parse.index] != ")":
             return Parser.FAIL
-        last.index += 1
-        parse.index = last.index
+        parse.index += 1
         return parse
 
+    # = identifier_first_char ( identifier_char )*
+    def __parse_identifier(self, string, index):
+        this_parse = self.parse(string, "identifier_first_char", index)
+        if this_parse == Parser.FAIL:
+            return Parser.FAIL
+        this_index = this_parse.index
+        while this_index < len(string):
+            this_parse = self.parse(string, "identifier_char", this_index)
+            if this_parse == Parser.FAIL:
+                break
+            this_index = this_parse.index
+        # check identifier is not keyword
+        identifier = string[index:this_index]
+        if identifier in ('print', 'var', 'if', 'else', 'while', 'func', 'ret', 'class', 'int', 'bool', 'string'):
+            return Parser.FAIL
+        parent = parse.StatementParse("lookup", this_index)
+        parent.add_child(parse.StatementParse(identifier, this_index))
+        return parent
+
+    # = ALPHA | "_"
+    def __parse_identifier_first_char(self, string, index):
+        if not string[index].isalpha() and string[index] != '_':
+            return Parser.FAIL
+        return parse.IntegerParse(0, index + 1)
+
+    # = ALNUM | "_"
+    def __parse_identifier_char(self, string, index):
+        if not string[index].isalnum() and string[index] != '_':
+            return Parser.FAIL
+        return parse.IntegerParse(0, index + 1)
+
+    # = (DIGIT) +
     def __parse_integer(self, string, index):
         parsed = ""
         while index < len(string) and string[index].isdigit():
@@ -187,6 +290,7 @@ class Parser:
             return Parser.FAIL
         return parse.IntegerParse(int(parsed), index)
 
+    # = (space)*
     def __parse_opt_space(self, string, index):
         this_parse = self.parse(string, "space", index)
         if this_parse != Parser.FAIL:
@@ -199,6 +303,7 @@ class Parser:
         else:
             return parse.IntegerParse(0, index)
 
+    # = (space)+
     def __parse_req_space(self, string, index):
         this_parse = self.parse(string, "space", index)
         if this_parse != Parser.FAIL:
@@ -209,8 +314,9 @@ class Parser:
                 this_parse = self.parse(string, "space", this_parse.index)
             return parse.IntegerParse(0, this_parse.index)
         else:
-            raise SyntaxError
+            return Parser.FAIL
 
+    # = comment | BLANK | NEWLINE
     def __parse_space(self, string, index):
         if index < len(string):
             this_parse = self.parse(string, "comment", index)
@@ -220,7 +326,7 @@ class Parser:
                 return parse.IntegerParse(0, index + 1)
         return Parser.FAIL
 
-    # = "#" (PRINT) * NEWLINE;
+    # = "#" (PRINT) * NEWLINE
     def __parse_comment(self, string, index):
         if string[index] == "#":
             index += 1
@@ -230,13 +336,4 @@ class Parser:
                 index += 1
         return Parser.FAIL
 
-    # returns right-most descendant of node, returns itself if no children
-    def __get_last_descendant(self, node):
-            last = node
-            while isinstance(last, parse.StatementParse):
-                if last.children:
-                    last = last.children[-1]
-                else:
-                    break
-            return last
 
