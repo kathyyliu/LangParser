@@ -10,52 +10,92 @@ class Parser:
     def parse(self, string, term, index=0):
         if index > len(string):
             return Parser.FAIL
-        elif term == "program":
-            return self.__parse_program(string, index)
-        elif term == "statement":
-            return self.__parse_statement(string, index)
-        elif term == "declaration_statement":
-            return self.__parse_declaration_statement(string, index)
-        elif term == "assignment_statement":
-            return self.__parse_assignment_statement(string, index)
-        elif term == "location":
-            return self.__parse_location(string, index)
-        elif term == "print_statement":
-            return self.__parse_print_statement(string, index)
-        elif term == "expression_statement":
-            return self.__parse_expression_statement(string, index)
-        elif term == "expression":
-            return self.__parse_expression(string, index)
-        elif term == "add_sub_expression":
-            return self.__parse_add_sub_expression(string, index)
-        elif term == "add_sub_operator":
-            return self.__parse_add_sub_operator(string, index)
-        elif term == "mul_div_expression":
-            return self.__parse_mul_div_expression(string, index)
-        elif term == "mul_div_operator":
-            return self.__parse_mul_div_operator(string, index)
-        elif term == "operand":
-            return self.__parse_operand(string, index)
-        elif term == "parentheses":
-            return self.__parse_parentheses(string, index)
-        elif term == "identifier":
-            return self.__parse_identifier(string, index)
-        elif term == "identifier_first_char":
-            return self.__parse_identifier_first_char(string, index)
-        elif term == "identifier_char":
-            return self.__parse_identifier_char(string, index)
-        elif term == "integer":
-            return self.__parse_integer(string, index)
-        elif term == "opt_space":
-            return self.__parse_opt_space(string, index)
-        elif term == "req_space":
-            return self.__parse_req_space(string, index)
-        elif term == "space":
-            return self.__parse_space(string, index)
-        elif term == "comment":
-            return self.__parse_comment(string, index)
-        else:
-            raise ValueError("invalid term")
+        methods = (self.__parse_program, self.__parse_statement, self.__parse_if_statement,
+                   self.__parse_if_else_statement, self.__parse_while_statement, self.__parse_declaration_statement,
+                   self.__parse_assignment_statement, self.__parse_location, self.__parse_print_statement,
+                   self.__parse_expression_statement, self.__parse_expression, self.__parse_or_expression,
+                   self.__parse_or_operator, self.__parse_and_expression, self.__parse_and_operator,
+                   self.__parse_optional_not_expression, self.__parse_not_expression, self.__parse_comp_expression,
+                   self.__parse_comp_operator, self.__parse_add_sub_expression, self.__parse_add_sub_operator,
+                   self.__parse_mul_div_expression, self.__parse_mul_div_operator, self.__parse_operand,
+                   self.__parse_parenthesized_expression, self.__parse_identifier, self.__parse_identifier_first_char,
+                   self.__parse_identifier_char, self.__parse_integer, self.__parse_opt_space, self.__parse_req_space,
+                   self.__parse_space, self.__parse_comment)
+        for method in methods:
+            if term == method.__name__[8:]:
+                return method(string, index)
+        raise ValueError("invalid term")
+
+        # if index > len(string):
+        #     return Parser.FAIL
+        # elif term == "program":
+        #     return self.__parse_program(string, index)
+        # elif term == "statement":
+        #     return self.__parse_statement(string, index)
+        # elif term == "if_statement":
+        #     return self.__parse_if_statement(string, index)
+        # elif term == "if_else_statement":
+        #     return self.__parse_if_else_statement(string, index)
+        # elif term == "while_statement":
+        #     return self.__parse_while_statement(string, index)
+        # elif term == "declaration_statement":
+        #     return self.__parse_declaration_statement(string, index)
+        # elif term == "assignment_statement":
+        #     return self.__parse_assignment_statement(string, index)
+        # elif term == "location":
+        #     return self.__parse_location(string, index)
+        # elif term == "print_statement":
+        #     return self.__parse_print_statement(string, index)
+        # elif term == "expression_statement":
+        #     return self.__parse_expression_statement(string, index)
+        # elif term == "expression":
+        #     return self.__parse_expression(string, index)
+        # elif term == "or_expression":
+        #     return self.__parse_or_expression(string, index)
+        # elif term == "or_operator":
+        #     return self.__parse_or_operator(string, index)
+        # elif term == "and_expression":
+        #     return self.__parse_and_expression(string, index)
+        # elif term == "and_operator":
+        #     return self.__parse_and_operator(string, index)
+        # elif term == "optional_not_expression":
+        #     return self.__parse_optional_not_expression(string, index)
+        # elif term == "not_expression":
+        #     return self.__parse_not_expression(string, index)
+        # elif term == "not_expression":
+        #     return self.__parse_comp_expression(string, index)
+        # elif term == "not_expression":
+        #     return self.__parse_comp_operator(string, index)
+        # elif term == "add_sub_expression":
+        #     return self.__parse_add_sub_expression(string, index)
+        # elif term == "add_sub_operator":
+        #     return self.__parse_add_sub_operator(string, index)
+        # elif term == "mul_div_expression":
+        #     return self.__parse_mul_div_expression(string, index)
+        # elif term == "mul_div_operator":
+        #     return self.__parse_mul_div_operator(string, index)
+        # elif term == "operand":
+        #     return self.__parse_operand(string, index)
+        # elif term == "parenthesized_expression":
+        #     return self.__parse_parenthesized_expression(string, index)
+        # elif term == "identifier":
+        #     return self.__parse_identifier(string, index)
+        # elif term == "identifier_first_char":
+        #     return self.__parse_identifier_first_char(string, index)
+        # elif term == "identifier_char":
+        #     return self.__parse_identifier_char(string, index)
+        # elif term == "integer":
+        #     return self.__parse_integer(string, index)
+        # elif term == "opt_space":
+        #     return self.__parse_opt_space(string, index)
+        # elif term == "req_space":
+        #     return self.__parse_req_space(string, index)
+        # elif term == "space":
+        #     return self.__parse_space(string, index)
+        # elif term == "comment":
+        #     return self.__parse_comment(string, index)
+        # else:
+        #     raise ValueError("invalid term")
 
     # = opt_space ( statement opt_space )*
     def __parse_program(self, string, index):
@@ -67,8 +107,8 @@ class Parser:
                 this_parse.index = self.parse(string, "opt_space", this_parse.index).index
             parent.add_child(this_parse)
         # did not parse whole program
-        if this_parse.index < len(string):
-            return None
+        if this_parse == Parser.FAIL:
+            return Parser.FAIL
         parent.index = this_parse.index
         return parent
 
@@ -79,6 +119,15 @@ class Parser:
             if parse != Parser.FAIL:
                 return parse
         return Parser.FAIL
+
+    def __parse_if_statement(self, string, index):
+        pass
+
+    def __parse_if_else_statement(self, string, index):
+        pass
+
+    def __parse_while_statement(self, string, index):
+        pass
 
     # = "var" req_space assignment_statement
     def __parse_declaration_statement(self, string, index):
@@ -165,6 +214,30 @@ class Parser:
     def __parse_expression(self, string, index):
        return self.parse(string, "add_sub_expression", index)
 
+    def __parse_or_expression(self, string, index):
+        pass
+
+    def __parse_or_operator(self, string, index):
+        pass
+
+    def __parse_and_expression(self, string, index):
+        pass
+
+    def __parse_and_operator(self, string, index):
+        pass
+
+    def __parse_optional_not_expression(self, string, index):
+        pass
+
+    def __parse_not_expression(self, string, index):
+        pass
+
+    def __parse_comp_expression(self, string, index):
+        pass
+
+    def __parse_comp_operator(self, string, index):
+        pass
+
     # = mul_div_expression (opt_space add_sub_operator opt_space mul_div_expression)*
     def __parse_add_sub_expression(self, string, index):
         left = self.parse(string, "opt_space", index)
@@ -229,14 +302,14 @@ class Parser:
 
     # = parenthesized_expression | identifier | integer
     def __parse_operand(self, string, index):
-        for operand in ("parentheses", "identifier", "integer"):
+        for operand in ("parenthesized_expression", "identifier", "integer"):
             parse = self.parse(string, operand, index)
             if parse != Parser.FAIL:
                 return parse
         return Parser.FAIL
 
     # = "(" opt_space expression opt_space ")"
-    def __parse_parentheses(self, string, index):
+    def __parse_parenthesized_expression(self, string, index):
         if string[index] != "(":
             return Parser.FAIL
         parse = self.parse(string, "add_sub_expression", index + 1)
@@ -335,5 +408,6 @@ class Parser:
                     return parse.StatementParse("comment", index + 1)
                 index += 1
         return Parser.FAIL
+
 
 

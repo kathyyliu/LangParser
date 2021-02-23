@@ -1,8 +1,8 @@
 class Interpreter:
-    output = ""
 
     def __init__(self):
-        pass
+        self.output = ""
+        self.curr_environment = Environment()
 
     def execute(self, node):
         try:
@@ -16,6 +16,10 @@ class Interpreter:
             self.__exec_print(node)
         elif node.name == "sequence":
             self.__exec_sequence(node)
+        elif node.name == "declare":
+            self.__exec_declare(node)
+        elif node.name == "assign":
+            self.__exec_assign(node)
         elif node.name == "if":
             self.__exec_if(node)
         elif node.name == "while":
@@ -27,7 +31,20 @@ class Interpreter:
         self.output += str(self.eval(node.children[0]))
 
     def __exec_sequence(self, node):
-        pass
+        self.curr_environment = self.curr_environment.add_node_after(Environment())
+        for child in node.children:
+            self.exec(child)
+        self.curr_environment = self.curr_environment.parent
+
+    def __exec_declare(self, node):
+        if node.children[0].name in self.curr_environment.map:
+            raise RuntimeError("variable already defined")
+        self.curr_environment.add_var(node.children[0].name, self.eval(node.children[1]))
+
+    def __exec_assign(self, node):
+        self.__eval_lookup(node.children[0])    # will raise error if not in curr_environment
+        identifier = node.children[0].children[0].name
+        self.curr_environment.map[identifier] = self.eval(node.children[1])
 
     def __exec_if(self, node):
         pass
@@ -36,7 +53,9 @@ class Interpreter:
         pass
 
     def eval(self, node):
-        if node.name == "+":
+        if node.name == "lookup":
+            return self.__eval_lookup(node)
+        elif node.name == "+":
             return self.__eval_plus(node)
         elif node.name == "-":
             return self.__eval_minus(node)
@@ -48,6 +67,15 @@ class Interpreter:
             return self.__eval_int(node)
         else:
             raise AssertionError("Unexpected term", node.name)
+
+    def __eval_lookup(self, node):
+        identifier = node.children[0].name
+        environment = self.curr_environment
+        while not identifier in environment.map:    # find correct environment
+            if not environment.parent:
+                raise RuntimeError("undefined variable")
+            environment = environment.parent
+        return environment.map[identifier]
 
     def __eval_plus(self, node):
         return self.eval(node.children[0]) + self.eval(node.children[1])
@@ -68,3 +96,20 @@ class Interpreter:
         return node.value
 
 
+class Environment:
+
+    def __init__(self):
+        self.map = {}
+        self.parent = None
+
+    def add_node_after(self, new_node):
+        new_node.parent = self
+        return new_node
+
+    def add_var(self, identifier, value):
+        if (identifier in self.map):
+            self.map[identifier] = value
+            return False
+        else:
+            self.map[identifier] = value
+            return True
