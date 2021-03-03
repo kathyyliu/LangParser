@@ -17,14 +17,16 @@ class Parser:
         if index > len(string):
             return Parser.FAIL
         methods = (self.__parse_program, self.__parse_statement, self.__parse_if_statement,
-                   self.__parse_if_else_statement, self.__parse_while_statement, self.__parse_declaration_statement,
-                   self.__parse_assignment_statement, self.__parse_location, self.__parse_print_statement,
-                   self.__parse_expression_statement, self.__parse_expression, self.__parse_or_expression,
-                   self.__parse_or_operator, self.__parse_and_expression, self.__parse_and_operator,
-                   self.__parse_optional_not_expression, self.__parse_not_expression, self.__parse_comp_expression,
-                   self.__parse_comp_operator, self.__parse_add_sub_expression, self.__parse_add_sub_operator,
-                   self.__parse_mul_div_expression, self.__parse_mul_div_operator, self.__parse_operand,
-                   self.__parse_parenthesized_expression, self.__parse_identifier, self.__parse_identifier_first_char,
+                   self.__parse_if_else_statement, self.__parse_while_statement, self.__parse_return_statement,
+                   self.__parse_declaration_statement, self.__parse_assignment_statement, self.__parse_location,
+                   self.__parse_print_statement, self.__parse_expression_statement, self.__parse_expression,
+                   self.__parse_or_expression, self.__parse_or_operator, self.__parse_and_expression,
+                   self.__parse_and_operator, self.__parse_optional_not_expression, self.__parse_not_expression,
+                   self.__parse_comp_expression, self.__parse_comp_operator, self.__parse_add_sub_expression,
+                   self.__parse_add_sub_operator, self.__parse_mul_div_expression, self.__parse_mul_div_operator,
+                   self.__parse_call_expression, self.__parse_function_call, self.__parse_arguments,
+                   self.__parse_operand, self.__parse_parenthesized_expression, self.__parse_function,
+                   self.__parse_parameters, self.__parse_identifier, self.__parse_identifier_first_char,
                    self.__parse_identifier_char, self.__parse_integer, self.__parse_opt_space, self.__parse_req_space,
                    self.__parse_space, self.__parse_comment)
         for method in methods:
@@ -58,7 +60,7 @@ class Parser:
     def __parse_if_statement(self, string, index):
         if index + 2 >= len(string):
             return Parser.FAIL
-        if string[index : index + 2] != "if": # TODO: change others?
+        if string[index: index + 2] != "if":  # TODO: change others?
             return Parser.FAIL
         left = self.__parse(string, "opt_space", index + 2)
         if string[left.index] != '(':
@@ -87,7 +89,7 @@ class Parser:
     def __parse_if_else_statement(self, string, index):
         if index + 2 >= len(string):
             return Parser.FAIL
-        if string[index : index + 2] != 'if':  # TODO: change others?
+        if string[index: index + 2] != 'if':  # TODO: change others?
             return Parser.FAIL
         left = self.__parse(string, "opt_space", index + 2)
         if string[left.index] != '(':
@@ -129,7 +131,7 @@ class Parser:
     def __parse_while_statement(self, string, index):
         if index + 5 >= len(string):
             return Parser.FAIL
-        if string[index : index + 5] != 'while':
+        if string[index: index + 5] != 'while':
             return Parser.FAIL
         left = self.__parse(string, "opt_space", index + 5)
         if string[left.index] != '(':
@@ -153,6 +155,9 @@ class Parser:
         parent.add_child(right)
         return parent
 
+    def __parse_return_statement(self, string, index):
+        pass
+
     # = "var" req_space assignment_statement
     def __parse_declaration_statement(self, string, index):
         # index out of bounds protection; shortest possible len(var x=0;) = 8
@@ -169,7 +174,7 @@ class Parser:
         if this_parse == Parser.FAIL:
             return Parser.FAIL
         # turn appropriate children of assign to children of declare node
-        parent.add_child(this_parse.children[0].children[0])    # child[0] is (varloc x), want x
+        parent.add_child(this_parse.children[0].children[0])  # child[0] is (varloc x), want x
         parent.add_child(this_parse.children[1])
         parent.index = parent.children[1].index
         return parent
@@ -237,7 +242,7 @@ class Parser:
 
     # = or_expression
     def __parse_expression(self, string, index):
-       return self.__parse(string, "or_expression", index)
+        return self.__parse(string, "or_expression", index)
 
     # = and_expression ( opt_space or_operator opt_space and_expression )*
     def __parse_or_expression(self, string, index):
@@ -271,7 +276,6 @@ class Parser:
             if string[index] != '|' or string[index + 1] != '|':
                 return Parser.FAIL
         return parse.StatementParse('||', index + 2)
-
 
     # = optional_not_expression (opt_space and_operator opt_space optional_not_expression ) *;
     def __parse_and_expression(self, string, index):
@@ -395,7 +399,6 @@ class Parser:
                 return Parser.FAIL
         return parse.StatementParse(string[index], index + 1)
 
-
     # = operand ( opt_space mul_div_operator opt_space operand )*
     def __parse_mul_div_expression(self, string, index):
         left = self.__parse(string, "opt_space", index)
@@ -429,6 +432,14 @@ class Parser:
                 return Parser.FAIL
         return parse.StatementParse(string[index], index + 1)
 
+    def __parse_call_expression(self, string, index):
+        pass
+
+    def __parse_function_call(self, string, index):
+        pass
+
+    def __parse_arguments(self, string, index):
+        pass
 
     # = parenthesized_expression | identifier | integer
     def __parse_operand(self, string, index):
@@ -452,6 +463,12 @@ class Parser:
             return Parser.FAIL
         parse.index += 1
         return parse
+
+    def __parse_function(self, string, index):
+        pass
+
+    def __parse_parameters(self, string, index):
+        pass
 
     # = identifier_first_char ( identifier_char )*
     def __parse_identifier(self, string, index):

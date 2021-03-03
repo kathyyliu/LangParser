@@ -90,14 +90,18 @@ def test():
     # tests.append(("var num1 = 144; num1 = 12; print num1;", "12"))
     # tests.append(("print 4/2/0/2;", "runtime error: divide by zero"))
     # tests.append(("b = (3*8) + 14;", "runtime error: undefined variable"))
-    tests.append(("var a = 1;                      #1\n"
-                "var b = a;              #1\n"
-                "var c = b + a;          #2\n"
-                "var d = c + b;          #3\n"
-                "var e = d + c;          #5\n"
-                "var f = e + d;          #8\n"
-                "var g = f + e;          #13\n"
-                "print g;", "13\n"))
+    # tests.append(("var a = 1;                      #1\n"
+    #             "var b = a;              #1\n"
+    #             "var c = b + a;          #2\n"
+    #             "var d = c + b;          #3\n"
+    #             "var e = d + c;          #5\n"
+    #             "var f = e + d;          #8\n"
+    #             "var g = f + e;          #13\n"
+    #             "print g;", "13\n"))
+    # branches tests
+    tests.append(("if (1) {print 1;}", "1\n"))
+    tests.append(("var x = 10; if (2* (1 + 0)) {print x;}", "10\n"))
+    tests.append(("if (2-2) {print 10;} else {var num = 1; print num;} \n", "1\n"))
 
     test_interpreter(tests)
 

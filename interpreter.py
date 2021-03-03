@@ -72,6 +72,20 @@ class Interpreter:
     def eval(self, node):
         if node.name == "lookup":
             return self.__eval_lookup(node)
+        elif node.name == "!":
+            return self.__eval_not(node)
+        elif node.name == "==":
+            return self.__eval_equal(node)
+        elif node.name == "!=":
+            return self.__eval_not_equal(node)
+        elif node.name == "<=":
+            return self.__eval_less_equal(node)
+        elif node.name == ">=":
+            return self.__eval_greater_equal(node)
+        elif node.name == "<":
+            return self.__eval_less(node)
+        elif node.name == "<":
+            return self.__eval_greater(node)
         elif node.name == "+":
             return self.__eval_plus(node)
         elif node.name == "-":
@@ -94,6 +108,27 @@ class Interpreter:
                 raise RuntimeError
             environment = environment.parent
         return environment.map[identifier]
+
+    def __eval_not(self, node):
+        return 1 if not self.eval(node.children[0]) else 0
+
+    def __eval_equal(self, node):
+        return 1 if self.eval(node.children[0]) == self.eval(node.children[1]) else 0
+
+    def __eval_not_equal(self, node):
+        return 1 if self.eval(node.children[0]) != self.eval(node.children[1]) else 0
+
+    def __eval_less_equal(self, node):
+        return 1 if self.eval(node.children[0]) <= self.eval(node.children[1]) else 0
+
+    def __eval_greater_equal(self, node):
+        return 1 if self.eval(node.children[0]) >= self.eval(node.children[1]) else 0
+
+    def __eval_less(self, node):
+        return 1 if self.eval(node.children[0]) < self.eval(node.children[1]) else 0
+
+    def __eval_greater(self, node):
+        return 1 if self.eval(node.children[0]) < self.eval(node.children[1]) else 0
 
     def __eval_plus(self, node):
         return self.eval(node.children[0]) + self.eval(node.children[1])
