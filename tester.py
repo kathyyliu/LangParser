@@ -12,7 +12,7 @@ def test_parse(parser, string, term, expected):
 def test_parse_tree(test_cases):
     my_parser = parser.Parser()
     for case in test_cases:
-        actual = str(my_parser.parse(case[0], "program"))
+        actual = str(my_parser.parse(case[0]))
         expected = case[1]
         assert actual == expected, 'S-expression for "{}"; expected {} but got {}'.format(
             case[0], expected, actual
@@ -23,7 +23,7 @@ def test_interpreter(test_cases):
     my_parser = parser.Parser()
     for case in test_cases:
         my_interpreter = interpreter.Interpreter()
-        node = my_parser.parse(case[0], "program")
+        node = my_parser.parse(case[0])
         actual = my_interpreter.execute(node)
         expected = case[1]
         assert actual == expected, 'Interpretation for "{}"; expected {} but got {}'.format(
@@ -61,6 +61,20 @@ def test():
     # tests.append(("var x = 0; # comment  \n x = 1;", "(sequence (declare x 0) (assign (varloc x) 1))"))
     # tests.append(("var x = 3*1;\nx = x + 1;", "(sequence (declare x (* 3 1)) (assign (varloc x) (+ (lookup x) 1)))"))
     # tests.append(("var _wh33= 90; print _wh33;", "(sequence (declare _wh33 90) (print (lookup _wh33)))"))
+    # tests.append(("print 1+ ();", "None"))
+    # tests.append(("var x = 5+5*2;", "(sequence (declare x (+ 5 (* 5 2))))"))
+    # branches tests
+    # tests.append(("if (1) {print 1;}", "(sequence (if 1 (sequence (print 1))))"))
+    # tests.append(("var x = 10; if (2* (1 + 0)) {print x;}", "(sequence (declare x 10) (if (* 2 (+ 1 0)) (sequence (print (lookup x)))))"))
+    # tests.append(("if (3-2) {print 10;} else {var num = 1;}\n", "(sequence (ifelse (- 3 2) (sequence (print 10)) (sequence (declare num 1))))"))
+    # # comparison tests
+    # tests.append(("1 == 1;", "(sequence (== 1 1))"))
+    # tests.append(("print 1 == 1;", "(sequence (print (== 1 1)))"))
+    # tests.append(("var x = 0; if (x != 1) { x = x + 1;} print x;", "(sequence (declare x 0) (if (!= (lookup x) 1) (sequence (assign (varloc x) (+ (lookup x) 1)))) (print (lookup x)))"))
+    # tests.append(("print 1 >= 2;", "(sequence (print (>= 1 2)))"))
+    # # loop tests
+    # tests.append(("var x = 1; while (x) {print x; x = 0;}", "(sequence (declare x 1) (while (lookup x) (sequence (print (lookup x)) (assign (varloc x) 0))))"))
+
 
     # test_parse_tree(tests)
 
@@ -71,9 +85,19 @@ def test():
     # tests.append(("print 1 + 2;", "3"))
     # tests.append(("print 1 * (( 1 + 2 ) - 3 )* (4 - 5);", "0"))
     # variable tests
-    tests.append(("var num1 = 144;", ""))
-    tests.append(("var num1 = 144; print num1;", "144"))
-    tests.append(("var num1 = 144; num1 = 12; print num1;", "12"))
+    # tests.append(("var num1 = 144;", ""))
+    # tests.append(("var num1 = 144; print num1;", "144"))
+    # tests.append(("var num1 = 144; num1 = 12; print num1;", "12"))
+    # tests.append(("print 4/2/0/2;", "runtime error: divide by zero"))
+    # tests.append(("b = (3*8) + 14;", "runtime error: undefined variable"))
+    tests.append(("var a = 1;                      #1\n"
+                "var b = a;              #1\n"
+                "var c = b + a;          #2\n"
+                "var d = c + b;          #3\n"
+                "var e = d + c;          #5\n"
+                "var f = e + d;          #8\n"
+                "var g = f + e;          #13\n"
+                "print g;", "13\n"))
 
     test_interpreter(tests)
 

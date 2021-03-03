@@ -7,9 +7,10 @@ class Interpreter:
     def execute(self, node):
         try:
             self.exec(node)
-            return self.output
         except RuntimeError:
             pass
+        finally:
+            return self.output
 
     def exec(self, node):
         if node.name == "print":
@@ -22,13 +23,15 @@ class Interpreter:
             self.__exec_assign(node)
         elif node.name == "if":
             self.__exec_if(node)
+        elif node.name == "ifelse":
+            self.__exec_ifelse(node)
         elif node.name == "while":
             self.__exec_while(node)
         else:
             self.eval(node)
 
     def __exec_print(self, node):
-        self.output += str(self.eval(node.children[0]))
+        self.output += str(self.eval(node.children[0])) + '\n'
 
     def __exec_sequence(self, node):
         self.curr_environment = self.curr_environment.add_node_after(Environment())
@@ -38,19 +41,33 @@ class Interpreter:
 
     def __exec_declare(self, node):
         if node.children[0].name in self.curr_environment.map:
-            raise RuntimeError("variable already defined")
+            self.output = "runtime error: variable already defined"
+            raise RuntimeError
         self.curr_environment.add_var(node.children[0].name, self.eval(node.children[1]))
 
     def __exec_assign(self, node):
-        self.__eval_lookup(node.children[0])    # will raise error if not in curr_environment
         identifier = node.children[0].children[0].name
-        self.curr_environment.map[identifier] = self.eval(node.children[1])
+        environment = self.curr_environment
+        while not identifier in environment.map:
+            if not environment.parent:
+                self.output = "runtime error: undefined variable"
+                raise RuntimeError
+            environment = environment.parent
+        environment.map[identifier] = self.eval(node.children[1])
 
     def __exec_if(self, node):
-        pass
+        if self.eval(node.children[0]):
+            self.exec(node.children[1])
+
+    def __exec_ifelse(self, node):
+        if self.eval(node.children[0]):
+            self.exec(node.children[1])
+        else:
+            self.exec(node.children[2])
 
     def __exec_while(self, node):
-        pass
+        while self.eval(node.children[0]):
+            self.exec(node.children[1])
 
     def eval(self, node):
         if node.name == "lookup":
@@ -71,9 +88,10 @@ class Interpreter:
     def __eval_lookup(self, node):
         identifier = node.children[0].name
         environment = self.curr_environment
-        while not identifier in environment.map:    # find correct environment
+        while not identifier in environment.map:  # find correct environment
             if not environment.parent:
-                raise RuntimeError("undefined variable")
+                self.output = "runtime error: undefined variable"
+                raise RuntimeError
             environment = environment.parent
         return environment.map[identifier]
 
@@ -89,8 +107,10 @@ class Interpreter:
     def __eval_div(self, node):
         divisor = self.eval(node.children[1])
         if divisor == 0:
-            raise RuntimeError("divide by zero")
-        return self.eval(node.children[0]) / divisor
+            self.output = "runtime error: divide by zero"
+            raise RuntimeError
+        else:
+            return self.eval(node.children[0]) // divisor
 
     def __eval_int(self, node):
         return node.value
