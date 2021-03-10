@@ -18,15 +18,23 @@ class Parse:
     def _s_expression(self, node, expression=''):
         if isinstance(node, StatementParse):
             if node.children:
-                expression += '('
-        elif not expression:  # lone IntegerParse
+                expression += '('+ node.name
+                for child in node.children:
+                    expression += ' '
+                    expression = self._s_expression(child, expression)
+                expression += ')'
+            else:
+                if node.name in ("sequence", "parameters", "arguments"):
+                    expression += '(' + node.name + ')'
+                # identifier
+                else:
+                    expression += node.name
+        # lone IntegerParse
+        elif not expression:
             return '(' + node.name + ')'
-        expression += node.name
-        if isinstance(node, StatementParse) and node.children:
-            for child in node.children:
-                expression += ' '
-                expression = self._s_expression(child, expression)
-            expression += ')'
+        # IntegerParse
+        else:
+            expression += node.name
         return expression
 
 
@@ -43,8 +51,14 @@ class IntegerParse(Parse):
                 and self.index == other.index
         )
 
-    # def __str__(self):
-    #     return 'Parse(value={}, index{})'.format(self.value, self.index)
+
+class ClosureParse(Parse):
+
+    def __init__(self, name, index):
+        super().__init__(name, index)
+
+    def __eq__(self, other):
+        return (self is other)
 
 
 class StatementParse(Parse):
@@ -59,9 +73,6 @@ class StatementParse(Parse):
                 and self.name == other.name
                 and self.index == other.index
         )
-
-    # def __str__(self):
-    #      return 'Parse(value={}, index{})'.format(self.name, self.index)
 
     def add_child(self, parse):
         self.children.append(parse)

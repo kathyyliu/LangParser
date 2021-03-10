@@ -1,3 +1,5 @@
+import parse as parse
+
 class Interpreter:
 
     def __init__(self):
@@ -17,6 +19,8 @@ class Interpreter:
             self.__exec_print(node)
         elif node.name == "sequence":
             self.__exec_sequence(node)
+        elif node.name == "return":
+            self.__exec_return(node)
         elif node.name == "declare":
             self.__exec_declare(node)
         elif node.name == "assign":
@@ -31,13 +35,19 @@ class Interpreter:
             self.eval(node)
 
     def __exec_print(self, node):
-        self.output += str(self.eval(node.children[0])) + '\n'
+        if isinstance(node.children[0], parse.ClosureParse):
+            self.output += "closure\n"
+        else:
+            self.output += str(self.eval(node.children[0])) + '\n'
 
     def __exec_sequence(self, node):
         self.curr_environment = self.curr_environment.add_node_after(Environment())
         for child in node.children:
             self.exec(child)
         self.curr_environment = self.curr_environment.parent
+
+    def __exec_return(self, node):
+        pass
 
     def __exec_declare(self, node):
         if node.children[0].name in self.curr_environment.map:
@@ -70,8 +80,14 @@ class Interpreter:
             self.exec(node.children[1])
 
     def eval(self, node):
-        if node.name == "lookup":
+        if node.name == "function_call":
+            return self.__eval_function_call(node)
+        elif node.name == "lookup":
             return self.__eval_lookup(node)
+        elif node.name == "||":
+            return self.__eval_or(node)
+        elif node.name == "&&":
+            return self.__eval_and(node)
         elif node.name == "!":
             return self.__eval_not(node)
         elif node.name == "==":
@@ -84,7 +100,7 @@ class Interpreter:
             return self.__eval_greater_equal(node)
         elif node.name == "<":
             return self.__eval_less(node)
-        elif node.name == "<":
+        elif node.name == ">":
             return self.__eval_greater(node)
         elif node.name == "+":
             return self.__eval_plus(node)
@@ -99,6 +115,9 @@ class Interpreter:
         else:
             raise AssertionError("Unexpected term", node.name)
 
+    def __eval_function_call(self, node):
+        pass
+
     def __eval_lookup(self, node):
         identifier = node.children[0].name
         environment = self.curr_environment
@@ -108,6 +127,12 @@ class Interpreter:
                 raise RuntimeError
             environment = environment.parent
         return environment.map[identifier]
+
+    def __eval_or(self, node):
+        return 1 if self.eval(node.children[0]) or self.eval(node.children[1]) else 0
+
+    def __eval_and(self, node):
+        return 1 if self.eval(node.children[0]) and self.eval(node.children[1]) else 0
 
     def __eval_not(self, node):
         return 1 if not self.eval(node.children[0]) else 0
@@ -128,7 +153,7 @@ class Interpreter:
         return 1 if self.eval(node.children[0]) < self.eval(node.children[1]) else 0
 
     def __eval_greater(self, node):
-        return 1 if self.eval(node.children[0]) < self.eval(node.children[1]) else 0
+        return 1 if self.eval(node.children[0]) > self.eval(node.children[1]) else 0
 
     def __eval_plus(self, node):
         return self.eval(node.children[0]) + self.eval(node.children[1])
