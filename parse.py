@@ -58,7 +58,7 @@ class ClosureParse(Parse):
         super().__init__(name, index)
 
     def __eq__(self, other):
-        return (self is other)
+        return self is other
 
 
 class StatementParse(Parse):
