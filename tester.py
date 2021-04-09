@@ -66,6 +66,7 @@ def test():
     # tests.append(("print 4/2/0/2;", "runtime error: divide by zero"))
     # tests.append(("b = (3*8) + 14;", "runtime error: undefined variable"))
     # tests.append(("var b = 0 + 0;", ""))
+    # tests.append(("print 1-2-3 + 10/5/2;", "-3\n"))
     # tests.append(("# fibonacci\nvar a = 1;                      #1\n"
     #             "var b = a;              #1\n"
     #             "var c = b + a;          #2\n"
@@ -80,31 +81,34 @@ def test():
     # tests.append(("if (2-2) {print 10;} else {var num = 1; print num;} \n", "1\n"))
     # tests.append(("var a = 1; var b = 1; var c = 1 ; var d = 1 ; var e = 1 ; var f = 1 ;  \nif (a ==1 && b == 1 && c ==1 && d ==1  && e ==1 && f ==1){ print 1; }", "1\n"))
     # tests.append(("   if ((10 > 2) == 1){ print 1; }", "1\n"))
+    # tests.append(("var x = func() {}; x+1;", "runtime error: math operation on functions"))
     # functions tests
     # tests.append(("var myfunc = func() {print 1;}; myfunc();", "1\n"))
+    # tests.append(("var run_first = func() { print 42;};"
+    #               "nonexistant = run_first();", "42\nruntime error: undefined variable"))
     # tests.append(("var outer = func() {ret func() {};};\n"
     #               "var fn1 = outer();\nvar fn2 = outer();\n"
     #               "print fn1 == fn1;\n", "1\n"))
-    tests.append(("var pair = func(first, second) {ret func(f) {ret f(first, second);};}; "
-                  "var NULL = pair(0, 0);"
-                  "var first = func(pair) {ret pair(func(first, second) {ret first;});}; "
-                  "var second = func(pair) {ret pair(func(first, second) {ret second;});}; "
-                  "var range = func(start, end) {var _range = func(start, end, partial) {"
-                  "if (start == end) {ret partial;} "
-                  "else {ret _range(start, end - 1, pair(end - 1, partial));}}; "
-                  "ret _range(start, end, NULL);};"
-                  "var filter = func(list, fn) {var _filter = func(list, fn, result) {"
-                  "if (list == NULL) {ret result;} else {"
-                  "if (fn(first(list)) == 1) {ret _filter(second(list), fn, pair(first(list), result));} "
-                  "else {ret _filter(second(list), fn, result);}}}; "
-                  "ret _filter(list, fn, NULL);};"
-                  "var reduce = func(list, fn, result) {"
-                  "if (list == NULL) {ret result;} else {ret reduce(second(list), fn, fn(result, first(list)));}}; "
-                  "var mod = func(a, b) {ret a - (b * (a / b));};"
-                  "var euler1 = func(n) {ret reduce(filter(range(0, n),"
-                  "func(n) {if (mod(n, 3) == 0 || mod(n, 5) == 0) {ret 1;} else {ret 0;}}),"
-                  "func(a, b) {ret a + b;},0);}; "
-                  "print euler1(20);", "78\n"))
+    # tests.append(("var pair = func(first, second) {ret func(f) {ret f(first, second);};}; "
+    #               "var NULL = pair(0, 0);"
+    #               "var first = func(pair) {ret pair(func(first, second) {ret first;});}; "
+    #               "var second = func(pair) {ret pair(func(first, second) {ret second;});}; "
+    #               "var range = func(start, end) {var _range = func(start, end, partial) {"
+    #               "if (start == end) {ret partial;} "
+    #               "else {ret _range(start, end - 1, pair(end - 1, partial));}}; "
+    #               "ret _range(start, end, NULL);};"
+    #               "var filter = func(list, fn) {var _filter = func(list, fn, result) {"
+    #               "if (list == NULL) {ret result;} else {"
+    #               "if (fn(first(list)) == 1) {ret _filter(second(list), fn, pair(first(list), result));} "
+    #               "else {ret _filter(second(list), fn, result);}}}; "
+    #               "ret _filter(list, fn, NULL);};"
+    #               "var reduce = func(list, fn, result) {"
+    #               "if (list == NULL) {ret result;} else {ret reduce(second(list), fn, fn(result, first(list)));}}; "
+    #               "var mod = func(a, b) {ret a - (b * (a / b));};"
+    #               "var euler1 = func(n) {ret reduce(filter(range(0, n),"
+    #               "func(n) {if (mod(n, 3) == 0 || mod(n, 5) == 0) {ret 1;} else {ret 0;}}),"
+    #               "func(a, b) {ret a + b;},0);}; "
+    #               "print euler1(20);", "78\n"))
     # tests.append(("var pair = func(first, second) {ret func(f) {ret f(first, second);};}; "
     #               "var NULL = pair(0, 0);"
     #               "var first = func(pair) {ret pair(func(first, second) {ret first;});}; "

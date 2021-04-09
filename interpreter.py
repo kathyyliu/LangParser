@@ -61,7 +61,7 @@ class Interpreter:
         else:
             value = self.eval(node.children[1])
         if node.children[0].name in self.curr_environment.map:
-            self.output = "runtime error: variable already defined"
+            self.output += "runtime error: variable already defined"
             raise RuntimeError
         self.curr_environment.add_var(node.children[0].name, value)
 
@@ -71,7 +71,7 @@ class Interpreter:
         environment = self.curr_environment
         while not identifier in environment.map:
             if not environment.parent:
-                self.output = "runtime error: undefined variable"
+                self.output += "runtime error: undefined variable"
                 raise RuntimeError
             environment = environment.parent
         environment.map[identifier] = value
@@ -109,43 +109,22 @@ class Interpreter:
             return self.__eval_function_call(node)
         elif node.name == "lookup":
             return self.__eval_lookup(node)
-        elif node.name == "||":
-            return self.__eval_or(node)
-        elif node.name == "&&":
-            return self.__eval_and(node)
-        elif node.name == "!":
-            return self.__eval_not(node)
-        elif node.name == "==":
-            return self.__eval_equal(node)
-        elif node.name == "!=":
-            return self.__eval_not_equal(node)
+        if node.name in ("||", "&&", "!", "==", "!=", "<=", ">=", "<", ">"):
+            return self.__eval_comp(node)
+        elif node.name in ("+", "-", "*", "/"):
+            return self.__eval_math(node)
         elif node.name.isdigit():
             return self.__eval_int(node)
-        elif node.name == "<=":
-            return self.__eval_less_equal(node)
-        elif node.name == ">=":
-            return self.__eval_greater_equal(node)
-        elif node.name == "<":
-            return self.__eval_less(node)
-        elif node.name == ">":
-            return self.__eval_greater(node)
-        elif node.name == "+":
-            return self.__eval_plus(node)
-        elif node.name == "-":
-            return self.__eval_minus(node)
-        elif node.name == "*":
-            return self.__eval_mult(node)
-        elif node.name == "/":
-            return self.__eval_div(node)
-        else:
-            raise AssertionError("Unexpected term", node.name)
 
     # (call (lookup func) (arguments 1 2))
     def __eval_function_call(self, node):
-        closure = self.eval(node.children[0])
-        if not isinstance(closure, Closure):
-            self.output += "runtime error: calling a non-function"
-            raise RuntimeError
+        if node.children[0].name == "function":
+            closure = Closure(node.children[0], self.curr_environment)
+        else:
+            closure = self.eval(node.children[0])
+            if not isinstance(closure, Closure):
+                self.output += "runtime error: calling a non-function"
+                raise RuntimeError
         num_args = len(node.children[1].children)
         if num_args != len(closure.parse.children[0].children):
             self.output += "runtime error: argument mismatch"
@@ -162,7 +141,11 @@ class Interpreter:
         new_environment.parent = closure.environment
         self.curr_environment = new_environment
         for i in range(len(arguments)):                     # add all args to new env
-            self.curr_environment.add_var(closure.parse.children[0].children[i].name, arguments[i])
+            var_name = closure.parse.children[0].children[i].name
+            if var_name in self.curr_environment.map:
+                self.output += "runtime error: duplicate parameter"
+                raise RuntimeError
+            self.curr_environment.add_var(var_name, arguments[i])
         self.num_func_calls += 1
         self.exec(closure.parse.children[1])                # execute body of func
         if self.return_value:
@@ -179,54 +162,43 @@ class Interpreter:
         environment = self.curr_environment
         while not identifier in environment.map:  # find correct environment
             if not environment.parent:
-                self.output = "runtime error: undefined variable"
+                self.output += "runtime error: undefined variable"
                 raise RuntimeError
             environment = environment.parent
         return environment.map[identifier]
 
-    def __eval_or(self, node):
-        return 1 if self.eval(node.children[0]) or self.eval(node.children[1]) else 0
-
-    def __eval_and(self, node):
-        return 1 if self.eval(node.children[0]) and self.eval(node.children[1]) else 0
-
-    def __eval_not(self, node):
-        return 1 if not self.eval(node.children[0]) else 0
-
-    def __eval_equal(self, node):
-        return 1 if self.eval(node.children[0]) == self.eval(node.children[1]) else 0
-
-    def __eval_not_equal(self, node):
-        return 1 if self.eval(node.children[0]) != self.eval(node.children[1]) else 0
-
-    def __eval_less_equal(self, node):
-        return 1 if self.eval(node.children[0]) <= self.eval(node.children[1]) else 0
-
-    def __eval_greater_equal(self, node):
-        return 1 if self.eval(node.children[0]) >= self.eval(node.children[1]) else 0
-
-    def __eval_less(self, node):
-        return 1 if self.eval(node.children[0]) < self.eval(node.children[1]) else 0
-
-    def __eval_greater(self, node):
-        return 1 if self.eval(node.children[0]) > self.eval(node.children[1]) else 0
-
-    def __eval_plus(self, node):
-        return self.eval(node.children[0]) + self.eval(node.children[1])
-
-    def __eval_minus(self, node):
-        return self.eval(node.children[0]) - self.eval(node.children[1])
-
-    def __eval_mult(self, node):
-        return self.eval(node.children[0]) * self.eval(node.children[1])
-
-    def __eval_div(self, node):
-        divisor = self.eval(node.children[1])
-        if divisor == 0:
-            self.output = "runtime error: divide by zero"
+    def __eval_comp(self, node):
+        left = self.eval(node.children[0])
+        if node.name == '!':
+            return 1 if not left else 0
+        right = self.eval(node.children[1])
+        if (isinstance(left, Closure) or isinstance(right, Closure)) and node.name in ('<=', '>=', '<', '>'):
+            self.output += "runtime error: math operation on functions"
             raise RuntimeError
-        else:
-            return self.eval(node.children[0]) // divisor
+        operations = {
+            '||': lambda left, right : 1 if left or right else 0,
+            '&&': lambda left, right : 1 if left and right else 0,
+            '==': lambda left, right : 1 if left == right else 0,
+            '!=': lambda left, right : 1 if left != right else 0,
+            '<=': lambda left, right : 1 if left <= right else 0,
+            '>=': lambda left, right : 1 if left >= right else 0,
+            '<': lambda left, right : 1 if left < right else 0,
+            '>': lambda left, right : 1 if left > right else 0
+        }
+        return operations[node.name](left, right)
+
+    def __eval_math(self, node):
+        left = self.eval(node.children[0])
+        right = self.eval(node.children[1])
+        if isinstance(left, Closure) or isinstance(right, Closure):
+            self.output += "runtime error: math operation on functions"
+            raise RuntimeError
+        if node.name == '/':
+            if right == 0:
+                self.output += "runtime error: divide by zero"
+                raise RuntimeError
+            return left // right
+        return eval(str(left)+node.name+str(right))
 
     def __eval_int(self, node):
         return node.value
