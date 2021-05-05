@@ -49,6 +49,9 @@ def test():
     # tests.append(("var x = 1; while (x) {print x; x = 0;}", "(sequence (declare x 1) (while (lookup x) (sequence (print (lookup x)) (assign (varloc x) 0))))"))
     # function tests
     # tests.append(("var myfunc = func() {};", "(sequence (declare myfunc (function (parameters) (sequence))))"))
+    tests.append(("var func1 = func(){var func2 = func(){"
+                  "var func3 = func(){print 4;};ret func3;};ret func2;};"
+                  "func1()()();", "(sequence (declare myfunc (function (parameters) (sequence))))"))
 
 
     # test_parse_tree(tests)

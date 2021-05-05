@@ -44,7 +44,6 @@ class Parser:
                 break
             this_parse.index = self.__parse(string, "opt_space", this_parse.index).index
             parent.add_child(this_parse)
-            parent.index = this_parse.index
         return parent
 
     # = declaration | assignment | if_else | if | while | print | expression_statement
@@ -58,33 +57,23 @@ class Parser:
 
     # = "if" opt_space "(" opt_space expression opt_space ")" opt_space "{" opt_space program opt_space "}"
     def __parse_if_statement(self, string, index):
-        if index + 2 >= len(string):
-            return Parser.FAIL
-        if string[index: index + 2] != "if":
+        if index + 2 >= len(string) or string[index: index + 2] != "if":
             return Parser.FAIL
         left = self.__parse(string, "opt_space", index + 2)
-        if left.index >= len(string):
-            return Parser.FAIL
-        if string[left.index] != '(':
+        if left.index >= len(string) or string[left.index] != '(':
             return Parser.FAIL
         left.index = self.__parse(string, "opt_space", left.index + 1).index
         left = self.__parse(string, "expression", left.index)
         left.index = self.__parse(string, "opt_space", left.index).index
-        if left.index >= len(string):
-            return Parser.FAIL
-        if left == Parser.FAIL or string[left.index] != ')':
+        if left.index >= len(string) or left == Parser.FAIL or string[left.index] != ')':
             return Parser.FAIL
         right = self.__parse(string, "opt_space", left.index + 1)
-        if right.index >= len(string):
-            return Parser.FAIL
-        if string[right.index] != '{':
+        if right.index >= len(string) or string[right.index] != '{' :
             return Parser.FAIL
         right.index = self.__parse(string, "opt_space", right.index + 1).index
         right = self.__parse(string, "program", right.index)
         right.index = self.__parse(string, "opt_space", right.index).index
-        if right.index >= len(string):
-            return Parser.FAIL
-        if right == Parser.FAIL or string[right.index] != '}':
+        if right.index >= len(string) or right == Parser.FAIL or string[right.index] != '}':
             return Parser.FAIL
         right.index += 1
         parent = parse.StatementParse("if", right.index)
@@ -95,9 +84,7 @@ class Parser:
     # = "if" opt_space "(" opt_space expression opt_space ")" opt_space "{" opt_space program opt_space "}"
     # opt_space "else" opt_space "{" opt_space program opt_space "}"
     def __parse_if_else_statement(self, string, index):
-        if index + 2 >= len(string):
-            return Parser.FAIL
-        if string[index: index + 2] != 'if':
+        if index + 2 >= len(string) or string[index: index + 2] != 'if':
             return Parser.FAIL
         left = self.__parse(string, "opt_space", index + 2)
         if left.index >= len(string) or string[left.index] != '(':
@@ -105,38 +92,26 @@ class Parser:
         left.index = self.__parse(string, "opt_space", left.index + 1).index
         left = self.__parse(string, "expression", left.index)
         left.index = self.__parse(string, "opt_space", left.index).index
-        if left.index >= len(string):
-            return Parser.FAIL
-        if left == Parser.FAIL or string[left.index] != ')':
+        if left.index >= len(string) or left == Parser.FAIL or string[left.index] != ')':
             return Parser.FAIL
         right1 = self.__parse(string, "opt_space", left.index + 1)
-        if right1.index >= len(string):
-            return Parser.FAIL
-        if string[right1.index] != '{':
+        if right1.index >= len(string) or string[right1.index] != '{':
             return Parser.FAIL
         right1.index = self.__parse(string, "opt_space", right1.index + 1).index
         right1 = self.__parse(string, "program", right1.index)
         right1.index = self.__parse(string, "opt_space", right1.index).index
-        if right1.index >= len(string):
-            return Parser.FAIL
-        if right1 == Parser.FAIL or string[right1.index] != '}':
+        if right1.index >= len(string) or right1 == Parser.FAIL or string[right1.index] != '}':
             return Parser.FAIL
         right1.index = self.__parse(string, "opt_space", right1.index + 1).index
-        if right1.index + 4 >= len(string):
-            return Parser.FAIL
-        if string[right1.index:right1.index + 4] != 'else':
+        if right1.index + 4 >= len(string) or string[right1.index:right1.index + 4] != 'else':
             return Parser.FAIL
         right2 = self.__parse(string, "opt_space", right1.index + 4)
-        if right2.index >= len(string):
-            return Parser.FAIL
-        if string[right2.index] != '{':
+        if right2.index >= len(string) or string[right2.index] != '{':
             return Parser.FAIL
         right2.index = self.__parse(string, "opt_space", right2.index + 1).index
         right2 = self.__parse(string, "program", right2.index)
         right2.index = self.__parse(string, "opt_space", right2.index).index
-        if right2.index >= len(string):
-            return Parser.FAIL
-        if right2 == Parser.FAIL or string[right2.index] != '}':
+        if right2.index >= len(string) or right2 == Parser.FAIL or string[right2.index] != '}':
             return Parser.FAIL
         right2.index += 1
         parent = parse.StatementParse("ifelse", right2.index)
@@ -147,14 +122,10 @@ class Parser:
 
     # = "while" opt_space "(" opt_space expression opt_space ")" opt_space "{" opt_space program opt_space "}"
     def __parse_while_statement(self, string, index):
-        if index + 5 >= len(string):
-            return Parser.FAIL
-        if string[index: index + 5] != 'while':
+        if index + 5 >= len(string) or string[index: index + 5] != 'while':
             return Parser.FAIL
         left = self.__parse(string, "opt_space", index + 5)
-        if left.index >= len(string):
-            return Parser.FAIL
-        if string[left.index] != '(':
+        if left.index >= len(string) or string[left.index] != '(':
             return Parser.FAIL
         left.index = self.__parse(string, "opt_space", left.index + 1).index
         left = self.__parse(string, "expression", left.index)
@@ -164,16 +135,12 @@ class Parser:
         if left == Parser.FAIL or string[left.index] != ')':
             return Parser.FAIL
         right = self.__parse(string, "opt_space", left.index + 1)
-        if right.index >= len(string):
-            return Parser.FAIL
-        if string[right.index] != '{':
+        if right.index >= len(string) or string[right.index] != '{':
             return Parser.FAIL
         right.index = self.__parse(string, "opt_space", right.index + 1).index
         right = self.__parse(string, "program", right.index)
         right.index = self.__parse(string, "opt_space", right.index).index
-        if right.index >= len(string):
-            return Parser.FAIL
-        if right == Parser.FAIL or string[right.index] != '}':
+        if right.index >= len(string) or right == Parser.FAIL or string[right.index] != '}':
             return Parser.FAIL
         right.index += 1
         parent = parse.StatementParse("while", right.index)
@@ -183,9 +150,7 @@ class Parser:
 
     # = "ret" req_space expression opt_space ";"
     def __parse_return_statement(self, string, index):
-        if index + 3 >= len(string):
-            return Parser.FAIL
-        if string[index : index + 3] != 'ret':
+        if index + 3 >= len(string) or string[index : index + 3] != 'ret':
             return Parser.FAIL
         child = self.__parse(string, "req_space", index + 3)
         if child == Parser.FAIL:
@@ -194,33 +159,26 @@ class Parser:
         if child == Parser.FAIL:
             return Parser.FAIL
         child.index = self.__parse(string, "opt_space", child.index).index
-        if child.index >= len(string):
+        if child.index >= len(string) or string[child.index] != ";":
             return Parser.FAIL
-        if string[child.index] == ";":
-            child.index += 1
-            parent = parse.StatementParse("return", child.index)
-            parent.add_child(child)
-            return parent
+        child.index += 1
+        parent = parse.StatementParse("return", child.index)
+        parent.add_child(child)
+        return parent
 
     # = "var" req_space assignment_statement
     def __parse_declaration_statement(self, string, index):
-        # index out of bounds protection; shortest possible len(var x=0;) = 8
-        if len(string[index:]) < 8:
+        if index + 3 >= len(string) or string[index: index + 3] != 'var':
             return Parser.FAIL
-        for i in range(3):
-            if string[index + i] != "var"[i]:
-                return Parser.FAIL
-        parent = parse.StatementParse("declare", index + 3)
-        this_parse = self.__parse(string, "req_space", parent.index)
-        if this_parse == Parser.FAIL:
+        child = self.__parse(string, "req_space", index + 3)
+        if child == Parser.FAIL:
             return Parser.FAIL
-        this_parse = self.__parse(string, "assignment_statement", this_parse.index)
-        if this_parse == Parser.FAIL:
+        child = self.__parse(string, "assignment_statement", child.index)
+        if child == Parser.FAIL:
             return Parser.FAIL
-        # turn appropriate children of assign to children of declare node
-        parent.add_child(this_parse.children[0].children[0])  # child[0] is (varloc x), want x
-        parent.add_child(this_parse.children[1])
-        parent.index = parent.children[1].index
+        parent = parse.StatementParse("declare", child.index)
+        parent.add_child(child.children[0].children[0])  # child[0] is (varloc x), want x
+        parent.add_child(child.children[1])
         return parent
 
     # = location opt_space "=" opt_space expression opt_space ";"
@@ -232,15 +190,12 @@ class Parser:
         left.index = self.__parse(string, "opt_space", left.children[0].index).index
         if left.index >= len(string) or string[left.index] != '=':
             return Parser.FAIL
-        left.index += 1
-        left.index = self.__parse(string, "opt_space", left.index).index
+        left.index = self.__parse(string, "opt_space", left.index + 1).index
         right = self.__parse(string, "expression", left.index)
         if right == Parser.FAIL:
             return Parser.FAIL
         right.index = self.__parse(string, "opt_space", right.index).index
-        if right.index >= len(string):
-            return Parser.FAIL
-        if string[right.index] != ";":
+        if right.index >= len(string) or string[right.index] != ";":
             return Parser.FAIL
         right.index += 1
         if isinstance(right, parse.StatementParse):
@@ -258,20 +213,16 @@ class Parser:
 
     # = "print" req_space expression opt_space ";"
     def __parse_print_statement(self, string, index):
-        if index + 5 >= len(string):
+        if index + 5 >= len(string) or string[index:index + 5] != 'print':
             return Parser.FAIL
-        if string[index:index + 5] != 'print':
-            return Parser.FAIL
-        parent = parse.StatementParse("print", index + 5)
-        this_parse = self.__parse(string, "req_space", parent.index)
+        this_parse = self.__parse(string, "req_space", index + 5)
         if this_parse == Parser.FAIL:
             return Parser.FAIL
         child = self.__parse(string, "expression", this_parse.index)
-        if child == Parser.FAIL or child.index >= len(string):
-            return Parser.FAIL
-        if string[child.index] != ';':
+        if child == Parser.FAIL or child.index >= len(string) or string[child.index] != ';':
             return Parser.FAIL
         child.index += 1
+        parent = parse.StatementParse("print", child.index)
         parent.add_child(child)
         return parent
 
@@ -281,13 +232,10 @@ class Parser:
         if this_parse == Parser.FAIL:
             return Parser.FAIL
         this_parse.index = self.__parse(string, "opt_space", this_parse.index).index
-        if this_parse.index >= len(string):
-            return Parser.FAIL
-        if string[this_parse.index] != ';':
+        if this_parse.index >= len(string) or string[this_parse.index] != ';':
             return Parser.FAIL
         this_parse.index += 1
         return this_parse
-
 
     # = or_expression
     def __parse_expression(self, string, index):
@@ -321,9 +269,7 @@ class Parser:
 
     # = "||"
     def __parse_or_operator(self, string, index):
-        if index + 2 > len(string):
-            return Parser.FAIL
-        if string[index] != '|' or string[index + 1] != '|':
+        if index + 2 >= len(string) or string[index:index + 2] != '||':
             return Parser.FAIL
         return parse.StatementParse('||', index + 2)
 
@@ -355,9 +301,7 @@ class Parser:
 
     # = "&&"
     def __parse_and_operator(self, string, index):
-        if index + 2 > len(string):
-            return Parser.FAIL
-        if string[index] != '&' or string[index + 1] != '&':
+        if index + 2 >= len(string) or string[index:index + 2] != '&&':
             return Parser.FAIL
         return parse.StatementParse('&&', index + 2)
 
@@ -407,9 +351,8 @@ class Parser:
     def __parse_comp_operator(self, string, index):
         if index + 1 >= len(string):
             return Parser.FAIL
-        operator = string[index : index + 2]
-        if operator in ('==', '!=', '<=', '>='):
-            return parse.StatementParse(operator, index + 2)
+        if index + 2 < len(string) and string[index:index + 2] in ('==', '!=', '<=', '>='):
+            return parse.StatementParse(string[index:index + 2], index + 2)
         elif string[index] in ('<', '>'):
             return parse.StatementParse(string[index], index + 1)
         return Parser.FAIL
@@ -442,9 +385,7 @@ class Parser:
 
     # = "+" | "-"
     def __parse_add_sub_operator(self, string, index):
-        if index >= len(string):
-            return Parser.FAIL
-        if string[index] not in ("+", "-"):
+        if index >= len(string) or string[index] not in ("+", "-"):
             return Parser.FAIL
         return parse.StatementParse(string[index], index + 1)
 
@@ -476,9 +417,7 @@ class Parser:
 
     # = "*" | "\"
     def __parse_mul_div_operator(self, string, index):
-        if index >= len(string):
-            return Parser.FAIL
-        if string[index] not in ("*", "/"):
+        if index >= len(string) or string[index] not in ("*", "/"):
             return Parser.FAIL
         return parse.StatementParse(string[index], index + 1)
 
@@ -491,27 +430,21 @@ class Parser:
             left.index = self.__parse(string, "opt_space", left.index).index
             parent = parse.StatementParse("call", left.index)
             right = self.__parse(string, "function_call", left.index)
-            if right != Parser.FAIL:
-                parent.add_child(left)
-                parent.add_child(right)
-                parent.index = right.index
-                left = parent
-            else:
+            if right == Parser.FAIL:
                 break
+            parent.add_child(left)
+            parent.add_child(right)
+            left = parent
         return left
 
     # = "(" opt_space arguments opt_space ")"
     def __parse_function_call(self, string, index):
-        if index == len(string):
-            return Parser.FAIL
-        if string[index] != '(':
+        if index >= len(string) or string[index] != '(':
             return Parser.FAIL
         this_parse = self.__parse(string, "opt_space", index + 1)
         this_parse = self.__parse(string, "arguments", this_parse.index)
         this_parse.index = self.__parse(string, "opt_space", this_parse.index).index
-        if this_parse == Parser.FAIL or this_parse.index >= len(string):
-            return Parser.FAIL
-        if string[this_parse.index] != ')':
+        if this_parse == Parser.FAIL or this_parse.index >= len(string) or string[this_parse.index] != ')':
             return Parser.FAIL
         this_parse.index += 1
         return this_parse
@@ -519,16 +452,13 @@ class Parser:
     # = ( expression opt_space ( "," opt_space expression opt_space )* )?
     def __parse_arguments(self, string, index):
         parent = parse.StatementParse("arguments", index)
-        if index >= len(string):
+        if index >= len(string) or string[index] == ')':
             return Parser.FAIL
-        if string[index] == ')':
-            return parent
         child = self.__parse(string, "expression", index)
         if child == Parser.FAIL:
             return Parser.FAIL
         child.index = self.__parse(string, "opt_space", child.index).index
         parent.add_child(child)
-        parent.index = child.index
         while child.index < len(string):
             if string[child.index] != ',':
                 break
@@ -537,7 +467,6 @@ class Parser:
                 break
             child.index = self.__parse(string, "opt_space", child.index).index
             parent.add_child(child)
-            parent.index = child.index
         return parent
 
     # = parenthesized_expression | function | identifier | integer
@@ -550,51 +479,37 @@ class Parser:
 
     # = "(" opt_space expression opt_space ")"
     def __parse_parenthesized_expression(self, string, index):
-        if index >= len(string):
-            return Parser.FAIL
-        if string[index] != "(":
+        if index >= len(string)or string[index] != "(":
             return Parser.FAIL
         parse = self.__parse(string, "opt_space", index + 1)
         parse = self.__parse(string, "expression", parse.index)
         if parse == Parser.FAIL:
             return Parser.FAIL
         parse.index = self.__parse(string, "opt_space", parse.index).index
-        if parse.index >= len(string):
-            return Parser.FAIL
-        if string[parse.index] != ")":
+        if parse.index >= len(string) or string[parse.index] != ")":
             return Parser.FAIL
         parse.index += 1
         return parse
 
     # = "func" opt_space "(" opt_space parameters opt_space ")" opt_space "{" opt_space program opt_space "}"
     def __parse_function(self, string, index):
-        if index + 4 >= len(string):
-            return Parser.FAIL
-        if string[index: index + 4] != 'func':
+        if index + 4 >= len(string) or string[index: index + 4] != 'func':
             return Parser.FAIL
         left = self.__parse(string, "opt_space", index + 4)
-        if left.index >= len(string):
-            return Parser.FAIL
-        if string[left.index] != '(':
+        if left.index >= len(string) or string[left.index] != '(':
             return Parser.FAIL
         left.index = self.__parse(string, "opt_space", left.index + 1).index
         left = self.__parse(string, "parameters", left.index)
         left.index = self.__parse(string, "opt_space", left.index).index
-        if left.index >= len(string):
-            return Parser.FAIL
-        if left == Parser.FAIL or string[left.index] != ')':
+        if left.index >= len(string) or left == Parser.FAIL or string[left.index] != ')':
             return Parser.FAIL
         right = self.__parse(string, "opt_space", left.index + 1)
-        if right.index >= len(string):
-            return Parser.FAIL
-        if string[right.index] != '{':
+        if right.index >= len(string) or string[right.index] != '{':
             return Parser.FAIL
         right.index = self.__parse(string, "opt_space", right.index + 1).index
         right = self.__parse(string, "program", right.index)
         right.index = self.__parse(string, "opt_space", right.index).index
-        if right.index >= len(string):
-            return Parser.FAIL
-        if right == Parser.FAIL or string[right.index] != '}':
+        if right.index >= len(string) or right == Parser.FAIL or string[right.index] != '}':
             return Parser.FAIL
         right.index += 1
         parent = parse.StatementParse("function", right.index)
@@ -607,7 +522,7 @@ class Parser:
         parent = parse.StatementParse("parameters", index)
         if index >= len(string):
             return Parser.FAIL
-        if string[index] == ')':
+        elif string[index] == ')':
             return parent
         child = self.__parse(string, "identifier", index)
         if child == Parser.FAIL:
@@ -648,17 +563,13 @@ class Parser:
 
     # = ALPHA | "_"
     def __parse_identifier_first_char(self, string, index):
-        if index >= len(string):
-            return Parser.FAIL
-        if not string[index].isalpha() and string[index] != '_':
+        if index >= len(string) or (not string[index].isalpha() and string[index] != '_'):
             return Parser.FAIL
         return parse.IntegerParse(0, index + 1)
 
     # = ALNUM | "_"
     def __parse_identifier_char(self, string, index):
-        if index >= len(string):
-            return Parser.FAIL
-        if not string[index].isalnum() and string[index] != '_':
+        if index >= len(string) or (not string[index].isalnum() and string[index] != '_'):
             return Parser.FAIL
         return parse.IntegerParse(0, index + 1)
 
@@ -681,7 +592,6 @@ class Parser:
         if this_parse == Parser.FAIL:
             return parse.IntegerParse(0, index)
         while this_parse.index < len(string):
-            # prevent this_parse from actually becoming Parser.FAIL # FIXME
             if self.__parse(string, "space", this_parse.index) == Parser.FAIL:
                 break
             this_parse = self.__parse(string, "space", this_parse.index)
@@ -708,11 +618,11 @@ class Parser:
 
     # = "#" (PRINT) * NEWLINE
     def __parse_comment(self, string, index):
-        if index != len(string):
-            if string[index] == "#":
-                index += 1
-                while index < len(string):
-                    if string[index] == '\n':
-                        return parse.IntegerParse(0, index + 1)
-                    index += 1
-        return Parser.FAIL
+        if index >= len(string) or string[index] != "#":
+            return Parser.FAIL
+        index += 1
+        while index < len(string):
+            if string[index] == '\n':
+                return parse.IntegerParse(0, index + 1)
+            index += 1
+
