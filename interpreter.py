@@ -69,16 +69,25 @@ class Interpreter:
             self.return_value = self.eval(node.children[0])
 
     def __exec_declare(self, node):
-        if node.children[1].name == "function":
-            value = Closure(node.children[1], self.curr_environment)
-        elif node.children[1].name == "class":
-            value = Class(node.children[1], self.curr_environment)
+        if node.children[2].name == "function":
+            value = Closure(node.children[2], self.curr_environment)
+        elif node.children[2].name == "class":
+            value = Class(node.children[2], self.curr_environment)
         else:
-            value = self.eval(node.children[1])
-        if node.children[0].name in self.curr_environment.map:
+            value = self.eval(node.children[2])
+        if node.children[1].name in self.curr_environment.map:
             self.output += "runtime error: variable already defined"
             raise RuntimeError
-        self.curr_environment.add_var(node.children[0].name, value)
+        if not self.check_type(node.children[0], value):
+            self.output += "runtime error: type mismatch"
+            raise RuntimeError
+        self.curr_environment.add_var(node.children[1].name, node.children[0], value)
+
+    def check_type(self, type, value):
+        if (type.name == 'int' and not isinstance(value, int)) \
+                    or (type.name == 'func' and not isinstance(value, Closure)):
+            return False
+        return True
 
     def __exec_assign(self, node):
         if node.children[1].name == "function":
@@ -149,10 +158,18 @@ class Interpreter:
                 self.output += "runtime error: argument mismatch"
                 raise RuntimeError
         else:
+            if len(callable.parse.children) > 2:
+                params = callable.parse.children[1]
+                body = callable.parse.children[2]
+                typed = True
+            else:
+                params = callable.parse.children[0]
+                body = callable.parse.children[1]
+                typed = False
             num_args = len(node.children[1].children)
             if callable.environment.is_object:
                 num_args += 1
-            if num_args != len(callable.parse.children[0].children):
+            if num_args != len(params.children):
                 self.output += "runtime error: argument mismatch"
                 raise RuntimeError
             arguments = []
@@ -172,19 +189,31 @@ class Interpreter:
         new_environment = Environment()  # push new env
         new_environment.parent = callable.environment
         self.curr_environment = new_environment
-        if not isinstance(callable, Class):
+        if isinstance(callable, Closure):
             for i in range(len(arguments)):  # add all args to new env
-                var_name = callable.parse.children[0].children[i].name
+                var_name = params.children[i].name
                 if var_name in self.curr_environment.map:
                     self.output += "runtime error: duplicate parameter"
                     raise RuntimeError
-                self.curr_environment.add_var(var_name, arguments[i])
+                if typed:
+                    if not self.check_type(callable.parse.children[0].children[i], arguments[i]):
+                        self.output += "runtime error: type mismatch"
+                        raise RuntimeError
+                    self.curr_environment.add_var(var_name, callable.parse.children[0].children[i], arguments[i])
+                else:
+                    self.curr_environment.add_var(var_name, parse.StatementParse("var", 0), arguments[i])
         self.num_func_calls += 1
         if isinstance(callable, Closure):  # execute body of func
-            self.exec(callable.parse.children[1])
+            self.exec(body)
             if self.return_value:
+                if typed and not self.check_type(callable.parse.children[0].children[-1], self.return_value):
+                    self.output += "runtime error: type mismatch"
+                    raise RuntimeError
                 result = self.return_value
             else:
+                if typed:
+                    self.output += "runtime error: type mismatch"
+                    raise RuntimeError
                 result = 0
         else:  # create object
             for child in callable.parse.children:
@@ -200,7 +229,7 @@ class Interpreter:
         identifier = node.children[1].name
         instance = self.eval(node.children[0])
         if node.name == "memloc":
-            instance = instance.environment.map[instance.name]
+            instance = instance.environment.map[instance.name][1]
         if not isinstance(instance, Environment) or not instance.is_object:
             self.output += "runtime error: member of non-object"
             raise RuntimeError
@@ -230,7 +259,7 @@ class Interpreter:
                 self.output += "runtime error: undefined variable"
                 raise RuntimeError
             environment = environment.parent
-        return environment.map[identifier]
+        return environment.map[identifier][1]
 
     def __eval_comp(self, node):
         left = self.eval(node.children[0])
@@ -296,8 +325,8 @@ class Environment:
         self.parent = None
         self.is_object = False
 
-    def add_var(self, identifier, value):
-        self.map[identifier] = value
+    def add_var(self, identifier, type, value):
+        self.map[identifier] = [type, value]
 
     def __eq__(self, other):
         return self is other

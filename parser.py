@@ -577,6 +577,7 @@ class Parser:
             index = type.index
         else:
             signatures.append(parse.StatementParse("var", left.index))
+            index = left.index
         right = self.__parse(string, "opt_space", index)
         if right.index >= len(string) or string[right.index] != '{':
             return Parser.FAIL
