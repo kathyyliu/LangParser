@@ -24,7 +24,7 @@ class Parse:
                     expression = self._s_expression(child, expression)
                 expression += ')'
             else:
-                if node.name in ("sequence", "parameters", "arguments"):
+                if node.name in ("sequence", "parameters", "arguments", "class"):
                     expression += '(' + node.name + ')'
                 # identifier
                 else:
