@@ -4,7 +4,6 @@ from pathlib import Path
 
 from parser import Parser
 from interpreter import Interpreter
-# from transforms import ConstantFoldingTransform # FIXME change this line to use your code if necessary
 
 
 def normalize_sexp(string):

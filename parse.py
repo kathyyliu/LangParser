@@ -66,6 +66,7 @@ class StatementParse(Parse):
     def __init__(self, name, index):
         super().__init__(name, index)
         self.children = []
+        self.typed = False
 
     def __eq__(self, other):
         return (

@@ -69,19 +69,27 @@ class Interpreter:
             self.return_value = self.eval(node.children[0])
 
     def __exec_declare(self, node):
-        if node.children[2].name == "function":
-            value = Closure(node.children[2], self.curr_environment)
-        elif node.children[2].name == "class":
-            value = Class(node.children[2], self.curr_environment)
+        if len(node.children) > 2:
+            type = node.children[0]
+            identifier = node.children[1]
+            value = node.children[2]
         else:
-            value = self.eval(node.children[2])
-        if node.children[1].name in self.curr_environment.map:
+            type = parse.StatementParse("var", 0)
+            identifier = node.children[0]
+            value = node.children[1]
+        if value.name == "function":
+            value = Closure(value, self.curr_environment)
+        elif value.name == "class":
+            value = Class(value, self.curr_environment)
+        else:
+            value = self.eval(value)
+        if identifier.name in self.curr_environment.map:
             self.output += "runtime error: variable already defined"
             raise RuntimeError
-        if not self.check_type(node.children[0], value):
+        if not self.check_type(type, value):
             self.output += "runtime error: type mismatch"
             raise RuntimeError
-        self.curr_environment.add_var(node.children[1].name, node.children[0], value)
+        self.curr_environment.add_var(identifier.name, type, value)
 
     def check_type(self, type, value):
         if (type.name == 'int' and not isinstance(value, int)) \
@@ -97,7 +105,10 @@ class Interpreter:
         else:
             value = self.eval(node.children[1])
         location = self.eval(node.children[0])
-        location.environment.map[location.name] = value
+        if not self.check_type(location.environment.map[location.name][0], value):
+            self.output += "runtime error: type mismatch"
+            raise RuntimeError
+        location.environment.map[location.name][1] = value
 
     def __exec_if(self, node):
         new_env = Environment()
@@ -211,10 +222,10 @@ class Interpreter:
                     raise RuntimeError
                 result = self.return_value
             else:
-                if typed:
+                result = 0
+                if typed and not self.check_type(callable.parse.children[0].children[-1], result):
                     self.output += "runtime error: type mismatch"
                     raise RuntimeError
-                result = 0
         else:  # create object
             for child in callable.parse.children:
                 self.exec(child)
@@ -239,7 +250,7 @@ class Interpreter:
         if node.name == "memloc":
             return Location(instance, identifier)
         else:
-            return instance.map[identifier]
+            return instance.map[identifier][1]
 
     def __eval_varloc(self, node):
         identifier = node.children[0].name

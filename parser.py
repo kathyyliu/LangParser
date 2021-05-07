@@ -177,7 +177,8 @@ class Parser:
             if right.children[0].name == "function" and right.name != "call":
                 left = parse.ClosureParse(left.name, left.index)
         parent = parse.StatementParse("declare", right.index)
-        parent.add_child(type)
+        if type.name != 'var':
+            parent.add_child(type)
         parent.add_child(left.children[0])
         parent.add_child(right)
         return parent
@@ -563,10 +564,12 @@ class Parser:
         if index + 4 >= len(string) or string[index: index + 4] != 'func':
             return Parser.FAIL
         left = self.__parse(string, "opt_space", index + 4)
+        parent = parse.StatementParse("function", left.index)
         if left.index >= len(string) or string[left.index] != '(':
             return Parser.FAIL
         left.index = self.__parse(string, "opt_space", left.index + 1).index
-        signatures, left = self.__parse(string, "parameters", left.index)
+        signatures, left, is_typed = self.__parse(string, "parameters", left.index)
+        parent.typed = is_typed
         left.index = self.__parse(string, "opt_space", left.index).index
         if left.index >= len(string) or left == Parser.FAIL or string[left.index] != ')':
             return Parser.FAIL
@@ -575,6 +578,7 @@ class Parser:
         if type != Parser.FAIL:
             signatures.append(type)
             index = type.index
+            parent.typed = True
         else:
             signatures.append(parse.StatementParse("var", left.index))
             index = left.index
@@ -587,8 +591,7 @@ class Parser:
         if right.index >= len(string) or right == Parser.FAIL or string[right.index] != '}':
             return Parser.FAIL
         right.index += 1
-        parent = parse.StatementParse("function", right.index)
-        if self.type:
+        if parent.typed:
             types = parse.StatementParse("signature", type.index)
             for sig in signatures:
                 types.add_child(sig)
@@ -601,14 +604,14 @@ class Parser:
     # = ( parameter opt_space ( "," opt_space parameter opt_space )* )?
     def parse_parameters(self, string, index):
         parent = parse.StatementParse("parameters", index)
-        if index >= len(string):
-            return Parser.FAIL
-        elif string[index] == ')':
-            return parent
         types = []
-        type, child = self.__parse(string, "parameter", index)
+        if index >= len(string):
+            return None, Parser.FAIL, None
+        elif string[index] == ')':
+            return types, parent, False
+        type, child, is_typed = self.__parse(string, "parameter", index)
         if child == Parser.FAIL:
-            return Parser.FAIL
+            return None, Parser.FAIL, None
         types.append(type)
         child.index = self.__parse(string, "opt_space", child.index).index
         parent.add_child(child.children[0])
@@ -617,28 +620,31 @@ class Parser:
             if string[child.index] != ',':
                 break
             child.index = self.__parse(string, "opt_space", child.index + 1).index
-            type, child = self.__parse(string, "parameter", child.index)
+            type, child, typed = self.__parse(string, "parameter", child.index)
             if child == Parser.FAIL:
                 break
+            if typed:
+                is_typed = True
             child.index = self.__parse(string, "opt_space", child.index).index
             types.append(type)
             parent.add_child(child.children[0])
             parent.index = child.index
-        return types, parent
+        return types, parent, is_typed
 
     # = ( type req_space )? identifier
     def parse_parameter(self, string, index):
         type = self.__parse(string, "type", index)
         if type != Parser.FAIL and self.__parse(string, "req_space", type.index) != Parser.FAIL:
-            self.type = True
+            is_typed = True
             type.index += 1
             index = type.index
         else:
+            is_typed = False
             type = parse.StatementParse("var", index)
         identifier = self.__parse(string, "identifier", index)
         if identifier == Parser.FAIL:
-            return Parser.FAIL
-        return type, identifier
+            return None, Parser.FAIL, None
+        return type, identifier, is_typed
 
     # = "->" opt_space type;
     def parse_return_type(self, string, index):
