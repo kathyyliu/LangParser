@@ -1,0 +1,3 @@
+# testing for proper variable assignment from a math expression
+var num = 1 + 2;
+print num;

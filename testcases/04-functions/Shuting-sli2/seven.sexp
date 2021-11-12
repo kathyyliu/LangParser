@@ -1,0 +1,1 @@
+(sequence (declare f (function (parameters n) (sequence (return (function (parameters) (sequence (assign (varloc n) 99) (return (function (parameters) (sequence (return (lookup n))))))))))) (print (call (call (call (lookup f) (arguments 10)) (arguments)) (arguments))))

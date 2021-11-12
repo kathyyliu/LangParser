@@ -1,0 +1,5 @@
+var adder = func(x) {
+    ret x;
+};
+
+print adder(1) + adder(2);

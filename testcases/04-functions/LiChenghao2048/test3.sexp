@@ -1,0 +1,1 @@
+(sequence (declare printer (function (parameters x) (sequence (print (lookup x))))) (call (lookup printer) (arguments 1)))

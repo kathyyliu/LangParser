@@ -1,0 +1,1 @@
+(sequence (declare _ (+ 8 2)) (print (lookup _)))

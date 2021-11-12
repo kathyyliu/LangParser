@@ -1,0 +1,7 @@
+#testing types with a basic function
+var x = 1;
+var y = 1;
+func add = func(a, b) -> int {
+    ret a + b;
+};
+print add(x, y);

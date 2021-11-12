@@ -1,0 +1,8 @@
+# making sure that a runtime error occurs when trying to call a class instance that contains only a function
+var Book = class{
+    var get_num_pages = func(){
+        ret 360;
+    };
+};
+var chaos = Book();
+print chaos();

@@ -1,0 +1,8 @@
+var foo = class{
+};
+
+if (foo){
+print 1;
+}
+
+# classes should be truthy in lang 

@@ -1,0 +1,14 @@
+# return terminate a function
+var b = 3;
+var a = func(){
+  if (b == 0){
+    ret 100;
+  }
+  b = b - 1;
+  print b;
+};
+
+a();
+a();
+a();
+print a();

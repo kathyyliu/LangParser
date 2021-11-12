@@ -1,0 +1,4 @@
+#Tests empty while and if bodies
+if (1) {}
+if (0) {}
+while (0) {}

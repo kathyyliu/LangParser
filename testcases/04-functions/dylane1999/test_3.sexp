@@ -1,0 +1,1 @@
+(sequence (declare func1 (function (parameters) (sequence (declare func2 (function (parameters) (sequence (declare func3 (function (parameters) (sequence (print 4)))) (return (lookup func3))))) (return (lookup func2))))) (call (call (call (lookup func1) (arguments)) (arguments)) (arguments)))

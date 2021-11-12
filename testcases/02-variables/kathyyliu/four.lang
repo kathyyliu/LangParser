@@ -1,0 +1,3 @@
+# unconventional, but grammar does not demand that statements must be seperated by a newline
+
+print 1;var     num = 2;print num   ;

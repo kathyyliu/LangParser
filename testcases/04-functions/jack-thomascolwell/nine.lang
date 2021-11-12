@@ -1,0 +1,11 @@
+#Tests that returning inside a function inside a function only returns the current function
+var i = func() {
+ret 1;
+print 2;
+};
+var o = func() {
+i();
+print 3;
+};
+
+o();

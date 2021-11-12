@@ -1,0 +1,4 @@
+#Tests putting a nonexpression inside a condition. This should give an error
+if (print 1;) {
+  print 2;
+}

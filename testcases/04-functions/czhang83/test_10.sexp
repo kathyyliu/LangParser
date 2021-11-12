@@ -1,0 +1,1 @@
+(sequence (declare a (function (parameters) (sequence))) (if (lookup a) (sequence (print 1))) (if (call (lookup a) (arguments)) (sequence (print 11))) (if (|| (lookup a) 0) (sequence (print 2))) (if (|| (call (lookup a) (arguments)) 0) (sequence (print 12))) (if (! (lookup a)) (sequence (print 13))) (if (! (call (lookup a) (arguments))) (sequence (print 3))))

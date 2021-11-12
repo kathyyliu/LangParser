@@ -1,0 +1,8 @@
+# looking for expected behaviour
+# a is a variable that stores a function that prints itself
+# i will take no questions
+var a = func () {print a;};
+a;
+a();
+print a;
+print a();

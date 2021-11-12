@@ -1,0 +1,1 @@
+(sequence (declare outer (function (parameters) (sequence (declare printer (function (parameters n) (sequence (return (function (parameters) (sequence (print (lookup n)))))))) (return (lookup printer))))) (call (call (call (lookup outer) (arguments)) (arguments 42)) (arguments)))

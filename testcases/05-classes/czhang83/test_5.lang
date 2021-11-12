@@ -1,0 +1,9 @@
+# an empty class
+
+var A = class {
+
+};
+
+var object = A();
+print A;
+print object;

@@ -1,0 +1,8 @@
+var outer = func() {
+    var inner = func() {
+        print 0;
+    };
+    ret inner;
+};
+
+var foo = outer();  # does not print 0 because inner/foo never called

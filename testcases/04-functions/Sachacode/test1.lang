@@ -1,0 +1,5 @@
+#testing basic function with no arguments
+var printTen = func() {
+    print 10;
+};
+printTen();

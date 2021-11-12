@@ -1,0 +1,12 @@
+# test modifying values of member variables
+var Test = class {
+    var num = 0;
+};
+
+var object = Test();
+
+print object.num;
+
+object.num = 10;
+
+print object.num;

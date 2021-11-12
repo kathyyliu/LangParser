@@ -1,0 +1,6 @@
+#testing divide by zero inside a class
+var A = class {
+    var b = 0/0;
+};
+var c = A();
+print c.b;

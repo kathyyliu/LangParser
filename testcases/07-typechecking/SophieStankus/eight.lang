@@ -1,0 +1,8 @@
+# inner and outer typing
+func x = func() -> func {
+  func y = func() -> int {
+    ret 1;
+  };
+  ret y;
+};
+x()();

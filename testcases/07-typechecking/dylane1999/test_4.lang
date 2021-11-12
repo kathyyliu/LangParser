@@ -1,0 +1,4 @@
+func foo = func(int x,y,z) {
+};
+
+# test that a typed param will make other params and return var type

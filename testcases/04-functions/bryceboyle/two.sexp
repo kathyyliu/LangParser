@@ -1,0 +1,1 @@
+(sequence (declare num 6) (print (call (lookup num) (arguments))))

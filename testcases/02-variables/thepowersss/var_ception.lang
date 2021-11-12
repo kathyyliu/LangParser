@@ -1,0 +1,6 @@
+# just a standard variable test
+var b = 0;
+var c = b;
+var d = b;
+c = c + 1;
+print b; print c; print d;

@@ -1,0 +1,6 @@
+# test basic printer function, taking arguments
+var printer = func(x) {
+	print x;
+};
+
+printer(32);

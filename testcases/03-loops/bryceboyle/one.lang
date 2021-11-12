@@ -1,0 +1,10 @@
+# testing to make sure the value of 'a' isn't reset after exiting the inner while loop
+
+var a = 2;
+while (a < 10){
+    while (a < 7){
+        a = a + 1;
+    }
+    a = a + 1;
+    print a;
+}

@@ -1,0 +1,2 @@
+# tests to see if variables can be used to assign themselves new values
+var num = 3; num = num + 1; print num;

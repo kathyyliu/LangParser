@@ -1,0 +1,3 @@
+# Tests that a type mismatch error can be thrown during assignment
+int x = 1;
+x = func() {};

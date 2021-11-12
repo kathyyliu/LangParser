@@ -1,0 +1,11 @@
+var Outer = class{
+	var Inner = class {
+		var bound = func(this){
+			print 1;
+		};
+	};
+};
+
+var x = Outer().Inner();
+var y = x.bound;
+y();

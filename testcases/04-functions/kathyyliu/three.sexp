@@ -1,0 +1,1 @@
+(sequence (declare myfunc (function (parameters) (sequence))))

@@ -1,0 +1,42 @@
+# test class functionality using functions
+var Rational = func() {
+	var num = 0;
+	var denom = 0;
+	
+	var constructor = func(new_num, new_denom) {
+		set_num(new_num);
+		set_denom(new_denom);
+		ret this;
+	};
+	
+	var get_num = func() {
+		ret num;
+	};
+	
+	var get_denom = func() {
+		ret denom;
+	};
+	
+	var set_num = func(new_num) {
+		num = new_num;
+	};
+	
+	var set_denom = func(new_denom) {
+		denom = new_denom;
+	};
+	
+	var this = func(i) {
+		if (i == 0) { ret constructor; }
+		if (i == 1) { ret get_num; }
+		if (i == 2) { ret get_denom; }
+		if (i == 3) { ret set_num; }
+		if (i == 4) { ret set_denom; }
+	};
+	
+	ret this;
+};
+
+var x = Rational();
+x(0)(1, 2)(0)(3, 4)(3)(4);
+print x(1)();
+print x(2)();

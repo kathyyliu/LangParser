@@ -1,0 +1,3 @@
+# tests your parses against 	 tabs
+var	tabs	=	2	;
+print	tabs;	

@@ -1,0 +1,1 @@
+(sequence (declare x 1) (declare y 674) (if (|| (== (lookup x) 1) (== (lookup y) 2)) (sequence (assign (varloc x) (* (lookup x) 6)))) (print (lookup x)))

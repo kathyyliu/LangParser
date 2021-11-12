@@ -1,0 +1,2 @@
+# Tests if/else and some environment stuff
+var a = 0; var c = 0; if(a){var b = 0; c= b ;} else {var b = 1; c= b ;} if(a != c){print 123;}

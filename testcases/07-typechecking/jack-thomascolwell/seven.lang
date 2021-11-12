@@ -1,0 +1,3 @@
+# Tests that var types can still be assigned to any type
+var x = 1;
+x = func() {};

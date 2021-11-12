@@ -1,0 +1,13 @@
+# tests return type mismatch
+
+var a = func(int x, func y) -> int{
+	if(x){
+		ret x;
+	}
+	else{
+		ret y;
+	}
+};
+
+print a(1, a);
+print a(0, a);

@@ -1,0 +1,1 @@
+(sequence (declare b (lookup c)))

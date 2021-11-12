@@ -1,0 +1,4 @@
+var p = func(var){
+    print var;
+};
+p(3);

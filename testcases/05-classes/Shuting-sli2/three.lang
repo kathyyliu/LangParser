@@ -1,0 +1,7 @@
+# undefined member
+var a = class {
+    var there = 9;
+};
+
+var a1 = a();
+print a1.here;

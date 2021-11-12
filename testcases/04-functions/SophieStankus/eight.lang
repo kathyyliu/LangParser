@@ -1,0 +1,9 @@
+# nested functions
+var a = func() {
+  var b = func() {
+    print 1;
+  };
+  ret b;
+};
+
+a()();

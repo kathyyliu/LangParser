@@ -1,0 +1,8 @@
+var A = class{
+};
+
+if (A){
+	print 1;
+}
+
+# class is not 0, thus true

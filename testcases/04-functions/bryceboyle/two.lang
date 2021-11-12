@@ -1,0 +1,3 @@
+# making sure an integer variable cannot be called like a function
+var num = 6;
+print num();

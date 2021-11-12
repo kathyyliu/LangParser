@@ -1,0 +1,6 @@
+#testing for error when calling a memenr variable that does not exist
+var A = class {
+    var b = 0;
+};
+var c = A();
+print c.d;

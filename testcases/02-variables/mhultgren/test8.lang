@@ -1,0 +1,4 @@
+var pemdas = 30;
+var num = 12;
+pemdas = pemdas + pemdas - num;
+print pemdas;

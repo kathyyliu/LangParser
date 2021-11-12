@@ -1,0 +1,8 @@
+var Constants = class {
+    var pi = 314159;
+};
+
+var consts = Constants();
+print consts.pi;
+consts.e = 271828;
+print consts.e;

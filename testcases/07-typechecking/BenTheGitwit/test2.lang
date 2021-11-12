@@ -1,0 +1,9 @@
+# tests for function return types and differently typed variables of the same name using closures
+
+func a = func() -> int{
+	int a = 4;
+	ret a;
+};
+
+print a;
+print a();

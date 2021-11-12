@@ -1,0 +1,15 @@
+# tests for ability to regonize 'this' in a separate sequence
+var HowBigIsNumber = class{
+	var howbig = func(this, a){
+		if(a > 10){
+			ret this.verybig;
+		}
+		else{
+			ret this.notsobig;
+		}
+	};
+	var verybig = 1;
+	var notsobig = 0;
+};
+
+print HowBigIsNumber().howbig(11);

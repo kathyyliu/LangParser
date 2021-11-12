@@ -1,0 +1,4 @@
+# Tests accessing undefined member variables
+var Test = class {};
+var x = Test();
+print x.a;

@@ -1,0 +1,13 @@
+var third = func(num) {
+    ret num - 3;
+};
+
+var second = func(num) {
+    ret third(num) * 2;
+};
+
+var first = func(num) {
+    ret second(num) + 1;
+};
+
+print (first(5) == (((5 - 3) * 2) + 1));

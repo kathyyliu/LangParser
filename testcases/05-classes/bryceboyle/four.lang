@@ -1,0 +1,6 @@
+# making sure that the member is accessed even though the instance and member have the same name
+var Tree = class{
+    var leaves = 200;
+};
+var leaves = Tree();
+print leaves.leaves;

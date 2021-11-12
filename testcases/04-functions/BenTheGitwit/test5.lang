@@ -1,0 +1,8 @@
+#test to make sure while loops also break with returns
+func(a){
+while(a){
+	ret a;
+	print a;
+}
+print 13;
+}(1);

@@ -1,0 +1,10 @@
+var is_two = func(int a) -> int {
+    if (a == 2) {
+        ret 1;
+    }
+    else {
+        ret 0;
+    }
+};
+
+print is_two(2);

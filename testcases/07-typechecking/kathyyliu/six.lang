@@ -1,0 +1,3 @@
+# eval value before check type
+
+func x = 1/0;

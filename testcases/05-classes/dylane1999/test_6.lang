@@ -1,0 +1,7 @@
+var foo = class{
+var bar = 5;
+};
+
+
+# printing a class should print "class"
+print foo;

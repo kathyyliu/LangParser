@@ -1,0 +1,6 @@
+#testing giving error for trying to access the memebr of a non-object
+var A = func(n) {
+    var b = n;
+    print b;
+};
+print A.b;

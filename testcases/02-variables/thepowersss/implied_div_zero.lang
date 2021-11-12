@@ -1,0 +1,5 @@
+# test for / by 0 runtime error
+var a = 0;
+var b = 1;
+print a / b;
+print b / (b-b);

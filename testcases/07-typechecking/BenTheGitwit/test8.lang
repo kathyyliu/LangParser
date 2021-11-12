@@ -1,0 +1,7 @@
+#testing to make sure duplicate parameter is still catching duplicates of different types
+
+var a = func(int x, func x) {
+	print x+x;
+};
+
+a(7,a);

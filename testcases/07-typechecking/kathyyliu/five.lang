@@ -1,0 +1,7 @@
+# return type must match
+
+var myfunc = func() -> int {
+    ret func() {};
+};
+
+myfunc();

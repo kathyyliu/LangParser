@@ -1,0 +1,9 @@
+# newline and comments counts as space, so lines 4-8 should still count as an assignment
+
+var num = 0;
+num
+# comment 1
+# comment 2
+= 3
+;
+print num;

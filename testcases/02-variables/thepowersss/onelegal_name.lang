@@ -1,0 +1,4 @@
+# the first char is a 1, not an i
+# should be a fat error
+var 1llegal_name = 2;
+print 1llegal_name;

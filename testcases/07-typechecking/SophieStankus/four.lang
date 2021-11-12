@@ -1,0 +1,4 @@
+# checks typing functions
+func x = func(int y) -> int {
+  ret y;
+};

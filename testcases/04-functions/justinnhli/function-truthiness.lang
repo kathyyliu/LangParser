@@ -1,0 +1,27 @@
+var outer = func() {
+    ret func() {
+    };
+};
+
+var fn1 = outer();
+var fn2 = outer();
+
+print fn1 == fn1;
+print fn1 == fn2;
+print fn2 == fn2;
+print fn1 != fn2;
+
+print fn1;
+print !fn1;
+
+if (fn1) {
+    print 1;
+} else {
+    print 0;
+}
+
+if (!fn1) {
+    print 1;
+} else {
+    print 0;
+}

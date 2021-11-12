@@ -1,0 +1,12 @@
+# tests resetting member variable in a loop
+var C = class {
+    var value = 100;
+};
+
+var c1 = C();
+
+while (c1.value != 0){
+	c1.value = c1.value - 1;
+}
+
+print c1.value; #0

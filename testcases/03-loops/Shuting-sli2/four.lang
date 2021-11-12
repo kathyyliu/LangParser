@@ -1,0 +1,15 @@
+var a = 1;
+if (a){
+	var b = a;
+	if (b){
+		var c = a + b;
+		if (c){
+			var d = b + c;	
+			if (d){
+				print a+b+c+d;
+			}
+		}	
+	}
+}
+
+# Testing if variables declared in previous environments can be looked up and assigned correctly.

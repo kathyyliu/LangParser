@@ -1,0 +1,1 @@
+(sequence (declare A (class)) (declare x (call (lookup A) (arguments))) (declare y (call (lookup A) (arguments))) (declare z (lookup x)) (print (== (lookup x) (lookup y)))(print (== (lookup x) (lookup x))) (print (== (lookup z) (lookup x))))

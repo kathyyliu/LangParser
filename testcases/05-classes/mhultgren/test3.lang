@@ -1,0 +1,11 @@
+# test functions within classes, 'this' functionality
+var Test = class {
+    var num = 12;
+    var print_num_plus = func(this, add) {
+        print this.num + add;
+    };
+};
+
+var object = Test();
+
+object.print_num_plus(12);

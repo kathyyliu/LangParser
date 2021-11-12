@@ -1,0 +1,6 @@
+#testing error when naming a function with a used name
+var a = 0;
+var a = func(n) {
+    print n;
+};
+a(0);

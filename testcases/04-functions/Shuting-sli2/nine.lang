@@ -1,0 +1,18 @@
+# testing control flow inside function
+var a = func(x) {
+	if (x < 5) {
+			if (x < 3) {
+				ret 2*x;
+			} else {
+				ret x+1;
+			}
+		} else {
+			if (x > 8) {
+				ret x/5;
+			} else {
+				ret x-2;
+			}
+		}
+};
+print a(10); #should outputs 2
+

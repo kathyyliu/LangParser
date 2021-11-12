@@ -1,0 +1,2 @@
+# a lot of whitespace that should be ignored in evaluation
+print (      3         -          4               )*                                            2;

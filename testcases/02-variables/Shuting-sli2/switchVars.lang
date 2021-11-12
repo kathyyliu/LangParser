@@ -1,0 +1,16 @@
+# switch variables
+var a = 2;
+print a;	#2
+
+var b = 3;
+print b; #3 
+
+var temp = b;
+print temp; #3
+
+b = a;
+print b; #2
+
+a = temp;
+print a; #3
+print temp; #3

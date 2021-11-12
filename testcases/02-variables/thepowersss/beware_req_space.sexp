@@ -1,0 +1,1 @@
+(sequence (assign (varloc vara) 2) (lookup print5))

@@ -1,0 +1,6 @@
+# line 3 is a red herring
+# test that a in line 3 and line 4 are different
+var a = 0;
+var b = func(a) { 1/a; print 1/a;};
+print b;
+print b(1);

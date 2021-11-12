@@ -1,0 +1,6 @@
+# test typed function
+func test = func(int a) {
+    print a;
+};
+
+test(30);

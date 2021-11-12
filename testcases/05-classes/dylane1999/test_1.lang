@@ -1,0 +1,10 @@
+var foo = class{
+    var bar = func(){
+        print 27;
+    };
+};
+
+var x = foo();
+x.bar();
+
+# test for an arg mismatch when a memeber does not have this as a parameter

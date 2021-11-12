@@ -1,0 +1,10 @@
+# fibonacci
+var a = 1;			#1
+var b = a;			#1
+var c = b + a;		#2
+var d = c + b;   	#3
+var e = d + c;    	#5
+var f = e + d;		#8
+var g = f + e;		#13
+
+print g;

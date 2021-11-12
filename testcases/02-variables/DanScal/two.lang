@@ -1,0 +1,2 @@
+#printing an undefined variable
+print a;

@@ -1,0 +1,7 @@
+#testing enviornments with variable assignment
+var a = 0;
+if (1) {
+    print a;
+    var a = a + 1;
+    print a;
+}

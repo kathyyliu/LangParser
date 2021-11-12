@@ -1,0 +1,10 @@
+var foo = class{
+var bar = func(this){
+    ret this;
+};
+};
+
+var x = foo().bar();
+print x;
+
+# test for ability to chain call class methods, functioning of this, and print obj 

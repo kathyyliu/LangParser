@@ -1,0 +1,3 @@
+# test division of a large number
+# prints 54
+print 1728/32;

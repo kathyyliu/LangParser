@@ -1,0 +1,3 @@
+# Tests that all parameters must be typed (in IR) if one is
+var x = func(int a, b) {};
+print x;

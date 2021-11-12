@@ -1,0 +1,6 @@
+#testing returning a value from a function
+var addOne = func(n) {
+    ret n+1;
+};
+var b = addOne(0);
+print b;

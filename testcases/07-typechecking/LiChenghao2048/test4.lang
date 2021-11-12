@@ -1,0 +1,5 @@
+var x = func(int y) {
+	ret y+y;
+};
+
+print x(1+1);

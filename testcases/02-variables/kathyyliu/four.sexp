@@ -1,0 +1,1 @@
+(sequence (print 1) (declare num 2) (print (lookup num)))

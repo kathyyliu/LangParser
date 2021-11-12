@@ -1,0 +1,4 @@
+# modify variable
+var n = 3;
+n = 3*(5/2);	# 6
+print n*n;	#36

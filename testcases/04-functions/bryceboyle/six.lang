@@ -1,0 +1,13 @@
+# making sure that two closures aren't equal even if their contents are the same
+var add1 = func(n){
+    ret n + 1;
+};
+var add2 = func(n){
+    ret n + 1;
+};
+if (add1 == add2){
+    print 1;
+}
+else {
+    print 0;
+}

@@ -1,0 +1,9 @@
+var t = func(num){
+    print num;
+    num = num + 1;
+    var s = func(num){
+        print num;
+    };
+    s(num);
+};
+t(2);

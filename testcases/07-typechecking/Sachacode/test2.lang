@@ -1,0 +1,11 @@
+#testing functions that have and don't have a type
+var x = 1;
+var y = 1;
+func addTyped = func(a, b) -> int {
+    ret a + b;
+};
+var add = func(a, b) {
+    ret a + b;
+};
+print addTyped(x, y);
+print add(x, y);

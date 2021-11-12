@@ -1,0 +1,12 @@
+# test truthiness re: classes & objects
+var Test = class {
+    var num = 0;
+};
+
+var object = Test();
+
+if (object == Test) {
+    print 33;
+} else {
+    print 11;
+}

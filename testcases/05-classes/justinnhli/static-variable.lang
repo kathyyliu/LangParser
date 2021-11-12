@@ -1,0 +1,31 @@
+var Element = func() {
+
+    var counter = 1;
+
+    ret class {
+
+        var atomic_number = 0;
+
+        var constructor = func(this) {
+            this.atomic_number = counter;
+            counter = counter + 1;
+            ret this;
+        };
+
+    };
+
+}();
+
+var hydrogen = Element().constructor();
+var helium = Element().constructor();
+var lithium = Element().constructor();
+var beryllium = Element().constructor();
+var boron = Element().constructor();
+var carbon = Element().constructor();
+
+print hydrogen.atomic_number;
+print helium.atomic_number;
+print lithium.atomic_number;
+print beryllium.atomic_number;
+print boron.atomic_number;
+print carbon.atomic_number;

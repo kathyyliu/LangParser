@@ -1,0 +1,4 @@
+# multiple line statements
+var b = 0 + 0;
+b = (3*8) + 14;
+print 7;

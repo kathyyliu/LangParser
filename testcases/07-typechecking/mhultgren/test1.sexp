@@ -1,0 +1,1 @@
+(sequence (declare func a 30))

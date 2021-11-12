@@ -1,0 +1,4 @@
+var Cat = class {};
+
+var kitty = Cat();
+print kitty.meow <3;

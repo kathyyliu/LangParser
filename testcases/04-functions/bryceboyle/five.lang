@@ -1,0 +1,5 @@
+# making sure that printing a function prints 'closure' rather than the return value
+var three = func(){
+    ret 3;
+};
+print three;

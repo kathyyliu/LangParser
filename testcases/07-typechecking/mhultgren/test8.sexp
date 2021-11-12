@@ -1,0 +1,1 @@
+(sequence (declare test (function (signature func int func) (parameters program count) (sequence (declare i 0) (while (< (lookup i) (lookup count)) (sequence (assign (varloc i) (+ (lookup i) 1)) (call (lookup program) (arguments)))) (return (lookup program))))) (declare copy (call (lookup test) (arguments 11 10))))

@@ -18,15 +18,19 @@ Each of the features above were implemented using **test-driven development** us
 in the form of a `.lang` file containing the program, an accompanying `.sexp` file representing the expected output from parser,
 and a `.out` file with the expected program output. The testcases were pooled from all students in the course and includes consideration for edge cases.
 
+
 ### How to run
 run:
 
-`python3 main.py`
+`python3 main.py /path/to/langfile`
 
-This program will iterate through all the testcases, passing the `.lang` testcases through the parser and interpreter,
+to run with testcases:
+
+`python3 main.py ./testcases`
+
+`main.py` was written by the professor instructing the course, and will iterate through all the testcases, passing the `.lang` testcases through the parser and interpreter,
 and comparing the outputs to the corresponding `.sexp` and `.out` files. If the output does not match expected, the program will throw an error.
 
-note: `main.py` was written by the professor instructing the course.
 
 ### Lang grammar rules
 **program**                         = opt_space ( statement opt_space )*;

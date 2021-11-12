@@ -1,0 +1,16 @@
+# Tests making static variables with closures
+var Test = func() {
+var id = 10;
+ret class {
+  var a = func(this) {
+    print id;
+    id = id + 1;
+  };
+};
+}();
+
+var x = Test();
+var y = Test();
+x.a();
+x.a();
+y.a();

@@ -1,0 +1,6 @@
+if (3 * 2) {
+    print 1;
+}
+else {   # should not get to this code since if was true
+    print 0;
+}

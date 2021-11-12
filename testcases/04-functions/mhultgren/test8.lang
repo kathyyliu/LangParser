@@ -1,0 +1,12 @@
+var a = 1;
+
+var addTen = func(n) {
+    n = n + 10;
+    ret n;
+};
+
+addTen(a);
+
+a = addTen(a);
+
+print a;

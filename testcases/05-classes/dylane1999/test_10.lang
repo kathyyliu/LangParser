@@ -1,0 +1,8 @@
+var foo = class{
+var bar = 5;
+};
+
+foo.bar = 6;
+print foo.bar;
+
+# Can not access the members of the class "blueprint" should throw runtime error: member of non-object

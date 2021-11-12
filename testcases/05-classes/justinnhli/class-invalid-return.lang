@@ -1,0 +1,7 @@
+var Rational = class {
+    var numerator = 0;
+    var denominator = 1;
+    ret 42;
+};
+
+print Rational();

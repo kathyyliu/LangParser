@@ -1,0 +1,11 @@
+# pass in by reference
+var a = func(){};
+var b = func(c){
+  print c == a;
+};
+var c = func(){
+  var d = func(){};
+  print d == a;
+};
+b(a);
+c();

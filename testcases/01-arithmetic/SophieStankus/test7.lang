@@ -1,0 +1,3 @@
+# Checks for working parenthesis in parenthesis
+# prints 12
+print 6+(3*(4-2));

@@ -1,0 +1,13 @@
+# makes sure 'this' is the first parameter, not any parameter named 'this'
+
+var x = class{
+	var y = func(n, this){
+		print this;
+	};
+	var add = func(a, this, b){
+		print a+b;
+	};
+};
+
+x().y(7);
+x().add(2,6);

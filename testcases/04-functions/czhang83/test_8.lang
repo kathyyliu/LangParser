@@ -1,0 +1,16 @@
+# return inside a nested control flow
+
+var a = func(){
+  if (1){
+    if (1){
+      if (1){
+        ret 7;
+      }
+      ret 6;
+    }
+    ret 5;
+  }
+  ret 4;
+};
+
+print a();

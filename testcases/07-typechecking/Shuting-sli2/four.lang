@@ -1,0 +1,10 @@
+# IR should type the entire function even though only partial parameters are typed
+
+var outter = func(int a, b) -> func{
+	ret func(){
+		print a;
+		print b;
+	};
+};
+var b = 9;
+outter(2, b)();

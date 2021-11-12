@@ -1,0 +1,6 @@
+# testing reassigning a function to a variable
+var a = func() {
+  ret 1;
+};
+a = 2;
+print a;

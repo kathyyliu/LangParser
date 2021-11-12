@@ -1,0 +1,8 @@
+# default is var type
+
+var myfunc = func(var a, b) {
+    print 1;
+};
+
+var x = 1;
+myfunc(x, x);

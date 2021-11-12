@@ -1,0 +1,1 @@
+(sequence (declare a 1) (declare b 1) (declare c 1) (declare d 1) (declare e 1) (declare f 1) (if (&& (&& (&& (&& (&& (== (lookup a) 1) (== (lookup b) 1)) (== (lookup c) 1)) (== (lookup d) 1)) (== (lookup e) 1)) (== (lookup f) 1)) (sequence (print 1))))

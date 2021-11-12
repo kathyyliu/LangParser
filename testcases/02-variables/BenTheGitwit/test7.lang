@@ -1,0 +1,2 @@
+#makes sure 'self-declaration' isn't allowed (not sure this would ever be a problem)
+var num = num;

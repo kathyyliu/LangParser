@@ -1,0 +1,8 @@
+# declaring the same variable twice??
+# because of scope, this is fine
+if (1) {
+    var a = 0;
+    print a;
+}
+var a = 1;
+print a;

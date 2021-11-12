@@ -1,0 +1,1 @@
+(sequence (declare add1 (function (parameters n)(sequence (return (+ (lookup n) 1))))) (declare add2  (function (parameters n) (sequence (return (+ (lookup n) 1))))) (ifelse (== (lookup add1) (lookup add2)) (sequence (print 1)) (sequence (print 0))))

@@ -1,0 +1,36 @@
+# testing having multiple functions as parameter/arguments
+var F = func(n) {
+
+    var get_n = func() {
+        ret n;
+    };
+
+    var addition = func(other_b, other_c, other_d, other_e) {
+        ret F(
+            n + other_b(1)() + other_c(1)() + other_d(1)() + other_e(1)()
+        );
+    };
+
+    ret func(index) {
+        if (index == 1) {
+            ret get_n;
+        }
+
+        if (index == 2) {
+            ret addition;
+        }
+    };
+};
+
+var a = F(0);
+var b = F(1);
+var c = F(2);
+var d = F(3);
+var e = F(4);
+
+
+var f = a(2)(b, c, d, e);
+print f(1)();	# f.n = 0 + 1 + 2 + 3 + 4 = 10
+
+
+

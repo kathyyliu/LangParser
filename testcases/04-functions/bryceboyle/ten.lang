@@ -1,0 +1,7 @@
+var x = func(){
+    var sum = 1+2+3+4;
+    ret sum;
+    ret sum + 1;
+};
+
+print x();

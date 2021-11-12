@@ -1,0 +1,1 @@
+(sequence (declare A (class (declare b 1) (declare c (function (parameters this) (sequence (declare this 3)))))) (declare object (call (lookup A) (arguments))) (call (member (lookup object) c) (arguments)))

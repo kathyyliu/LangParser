@@ -1,0 +1,5 @@
+# wrong number arguments
+var a = func() {
+  print 1;
+};
+a(2);

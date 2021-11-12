@@ -1,0 +1,4 @@
+# var can be int or func
+
+var x = 1;
+x = func() {};

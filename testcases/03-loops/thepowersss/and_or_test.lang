@@ -1,0 +1,3 @@
+# testing only 'and' and 'or' tests
+# between 'and' and 'and', you will find 'or' or 'and'
+print 2 && (3 || 4) && (0 && 1);

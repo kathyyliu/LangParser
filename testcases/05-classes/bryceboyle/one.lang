@@ -1,0 +1,5 @@
+# making sure that a runtime error occurs because fn is not a class and value is not a member
+var fn = func(){
+    var value = 6;
+};
+print fn.value;

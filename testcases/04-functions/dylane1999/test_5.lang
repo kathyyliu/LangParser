@@ -1,0 +1,10 @@
+var a = 1; 
+var foo = func(){ 
+    var inner = func(){
+        print a;
+        }; 
+    ret inner; 
+    }; 
+foo()(); 
+
+# test for the ability to return a function from a function and call that function 

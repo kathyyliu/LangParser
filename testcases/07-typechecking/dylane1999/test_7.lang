@@ -1,0 +1,5 @@
+var foo = func(x) {
+    print 5; 
+};
+
+# check that there will be no signature for backwards compatibility

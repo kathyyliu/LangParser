@@ -1,0 +1,1 @@
+(sequence (ifelse (== (lookup x) 1) (sequence (print 1)) (sequence (print 0))))

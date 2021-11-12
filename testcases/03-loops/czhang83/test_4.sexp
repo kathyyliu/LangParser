@@ -1,0 +1,1 @@
+(sequence (declare b 3) (if (== (lookup b) 3) (sequence (print (lookup b)) (declare b 5) (if (== (lookup b) 5) (sequence (print (lookup b)))))))

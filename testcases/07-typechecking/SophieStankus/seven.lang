@@ -1,0 +1,4 @@
+# assignment type mismatch
+func x = func() {
+};
+int y = x;

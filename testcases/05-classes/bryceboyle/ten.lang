@@ -1,0 +1,5 @@
+var Yay = class{
+    var value = 2;
+};
+var fun_times = Yay();
+print fun_times * 2;

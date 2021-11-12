@@ -1,0 +1,8 @@
+# function equality
+var a = func(){};
+var b = func(){};
+var c = a;
+print a == b;
+print a == c;
+print b == c;
+print a() == b();

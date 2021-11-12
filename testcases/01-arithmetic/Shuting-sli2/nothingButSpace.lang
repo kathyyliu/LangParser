@@ -1,0 +1,2 @@
+print         ;
+# should fail when parsing only space

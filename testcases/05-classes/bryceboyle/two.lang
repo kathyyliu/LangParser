@@ -1,0 +1,8 @@
+# making sure that members are initialized and can be modified correctly
+var Cat = class{
+    var age = 0;
+};
+var rocky = Cat();
+print rocky.age;
+rocky.age = 10;
+print rocky.age;

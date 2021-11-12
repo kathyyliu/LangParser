@@ -1,0 +1,5 @@
+var a = func() {
+    ret 2;
+};
+
+print (a() == a()) == 1;

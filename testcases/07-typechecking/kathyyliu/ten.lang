@@ -1,0 +1,7 @@
+# if one typed, all typed (including return)
+
+func myfunc = func(int a) {
+    ret a;
+};
+
+myfunc(1);

@@ -1,0 +1,16 @@
+# Test of whitespace around multiple statements
+
+
+
+       print 1;
+
+
+
+print 2; print 3;
+
+
+
+
+
+
+    

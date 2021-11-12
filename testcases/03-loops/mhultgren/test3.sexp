@@ -1,0 +1,1 @@
+(sequence (declare num 0) (ifelse (lookup num) (sequence (print (lookup num))) (sequence (print 7))))

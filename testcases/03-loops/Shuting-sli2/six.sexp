@@ -1,0 +1,1 @@
+(sequence (declare a 0) (declare b 10) (ifelse (== (/ (+ (lookup a) (lookup b)) 2) 5) (sequence (print 5)) (sequence (print (/ (+ (lookup a) (lookup b)) 2)))))

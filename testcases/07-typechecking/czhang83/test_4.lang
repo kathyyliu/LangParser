@@ -1,0 +1,5 @@
+# var types include int and func
+var a = 4;
+print a;
+a = func(){};
+print a;

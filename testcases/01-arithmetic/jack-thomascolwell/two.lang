@@ -1,0 +1,2 @@
+# Simple test of all operations with parentheses but no whitespace
+print (1+(2+4)-(24/12)+1)*4;

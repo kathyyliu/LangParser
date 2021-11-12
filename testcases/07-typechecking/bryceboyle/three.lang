@@ -1,0 +1,4 @@
+# check that default type in s expression is 'var'
+func fun = func(time)->int{
+    ret 1;
+};

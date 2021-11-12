@@ -1,0 +1,5 @@
+# Tests scope of variables defined inside of if statements
+if (1) {
+var x = 2;
+}
+print x;

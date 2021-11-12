@@ -1,0 +1,1 @@
+(sequence (declare C (class (declare a 1) (declare b 99))) (declare c1 (call (lookup C) (arguments))) (declare c2 (call (lookup C) (arguments))) (ifelse (== (member (lookup c1) a) (member (lookup c2) a)) (sequence (print 1)) (sequence (print 0))) (ifelse (== (member (lookup c1) b) (member (lookup c2) b)) (sequence (print 1)) (sequence (print 0))))

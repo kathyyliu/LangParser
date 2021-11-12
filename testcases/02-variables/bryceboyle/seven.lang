@@ -1,0 +1,2 @@
+var cat = 6 * 7 + 3;
+print cat;

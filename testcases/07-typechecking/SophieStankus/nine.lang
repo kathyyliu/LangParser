@@ -1,0 +1,8 @@
+# inner int type mismatch 
+func x = func() -> func {
+  int y = func() -> int {
+    ret 1;
+  };
+  ret y;
+};
+x()();

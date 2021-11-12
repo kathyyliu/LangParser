@@ -1,0 +1,2 @@
+# tests to make sure no 'empty assignment' is allowed
+var  = 3; print ;

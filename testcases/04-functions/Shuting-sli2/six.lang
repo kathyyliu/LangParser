@@ -1,0 +1,13 @@
+# nested function
+var f = func(n) {
+    ret func() {
+	ret func() {
+            ret func() {
+  		    ret n;      
+    		};
+    	};     
+    };
+};
+
+print f(10)()()();
+

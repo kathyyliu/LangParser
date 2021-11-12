@@ -1,0 +1,1 @@
+(sequence (declare myfunc (function (parameters) (sequence (return 2)))) (print (== (== (call (lookup myfunc) (arguments)) (call (lookup myfunc) (arguments))) 1)))

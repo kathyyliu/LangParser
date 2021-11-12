@@ -1,0 +1,6 @@
+var x = func() {
+  print 1;
+};
+x(1);
+
+# argument mismatch

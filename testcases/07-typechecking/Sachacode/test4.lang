@@ -1,0 +1,7 @@
+#testing basic error when there is a mismatch of types
+var x = 1;
+var y = 1;
+func add = func(int a, int b) -> int {
+    ret a + b;
+};
+print add(x, y);

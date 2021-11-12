@@ -1,0 +1,2 @@
+#assigning before declaration
+b = 3 + 4;

@@ -1,0 +1,7 @@
+var num1 = 1;
+var num2 = num1;
+
+print num2;
+
+num1 = 0;
+print num2;

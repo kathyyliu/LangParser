@@ -1,0 +1,2 @@
+# Simple test of all operations no parentheses or whitespace
+print 1+2+4-24/12+1*4;

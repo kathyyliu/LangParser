@@ -1,0 +1,1 @@
+( sequence ( declare Outer ( class ( declare Inner ( class ( declare bound ( function ( parameters this ) ( sequence ( print 1 ) ) ) ) ) ) ) ) ( declare x ( call ( member ( call ( lookup Outer ) ( arguments ) ) Inner ) ( arguments ) ) ) ( declare y ( member ( lookup x ) bound ) ) ( call ( lookup y ) ( arguments ) ) )

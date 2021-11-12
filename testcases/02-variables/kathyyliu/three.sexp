@@ -1,0 +1,1 @@
+(sequence (declare num 33) (print (lookup num)) (assign (varloc num) (* (+ 9 1) 2)) (print (lookup num)))

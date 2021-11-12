@@ -1,0 +1,1 @@
+(sequence (declare b 0) (declare c (lookup b)) (declare d (lookup b)) (assign (varloc c) (+ (lookup c) 1)) (print (lookup b)) (print (lookup c)) (print (lookup d)))

@@ -1,0 +1,3 @@
+# declare a variable twice using different types
+int a = 4;
+func a = func(){};

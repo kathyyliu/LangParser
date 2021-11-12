@@ -1,0 +1,1 @@
+(sequence (declare num 30) (while (< (lookup num) 50) (sequence (ifelse (> (lookup num) 40) (sequence (assign (varloc num) (+ (lookup num) 2))) (sequence (assign (varloc num) (+ (lookup num) 4)))))))

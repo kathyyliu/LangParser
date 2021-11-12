@@ -1,0 +1,3 @@
+# tests runtime error: member of non-object
+var num = 1;
+print num.value;

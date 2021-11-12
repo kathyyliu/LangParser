@@ -1,0 +1,9 @@
+# check inner closure could access outer variables
+var a = 4;
+while (a <= 8){
+  print a;
+  a = a+1;
+  if (a == 6){
+    a = a+2;
+  }
+}

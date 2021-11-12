@@ -1,0 +1,1 @@
+(sequence (declare __a 3) (print (lookup __a)))

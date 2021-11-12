@@ -1,0 +1,5 @@
+#testing divide by zero being caught in a function
+var printNum = func(n) {
+    print n/0;
+};
+printNum(1);

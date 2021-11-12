@@ -1,0 +1,9 @@
+# variable overload using different types - given wrong types
+
+int a = 4;
+func b = func(){
+  func a = 2;
+  print a;
+};
+b();
+print a;

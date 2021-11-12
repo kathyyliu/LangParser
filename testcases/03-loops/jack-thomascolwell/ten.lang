@@ -1,0 +1,19 @@
+# Tests for whitespace within the conditions of if and while
+if
+
+
+    #test(1)
+    (1
+    #t)
+    )   {
+    print 1;
+    }
+
+      while     (
+
+
+      0    #)
+      ) {
+
+      print 2;#}
+      }

@@ -1,0 +1,3 @@
+var Cat = class {};
+
+print !Cat;

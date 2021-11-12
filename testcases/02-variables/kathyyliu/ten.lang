@@ -1,0 +1,25 @@
+# parentheses and spaces can be part of expressions
+
+var num = (((((((((
+    
+    
+    
+    
+    
+    
+    5
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+)))))))))
+    
+    
+    
+                                ;

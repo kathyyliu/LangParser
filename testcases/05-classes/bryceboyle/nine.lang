@@ -1,0 +1,18 @@
+var Abc = class{
+    var num = 0;
+};
+var swap = func(a, b){
+    var temp = 0;
+    temp = a.num;
+    a.num = b.num;
+    b.num = temp;
+};
+var one = Abc();
+one.num = 1;
+var two = Abc();
+two.num = 2;
+
+swap(one, two);
+print one.num;
+print two.num;
+

@@ -1,0 +1,4 @@
+# correct precedence is paren, muldiv, addsub, compare, not, and, or
+
+print 0 || 0 == (! 1) && 0+1;     # (0 || ((0 == (!1)) && (0+1))) is 1
+print 0 || 0 == ((! 1) && 0)+1;     # 0

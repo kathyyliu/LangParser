@@ -1,0 +1,4 @@
+# This tests the functionality of assigning variables to expressions involving those variables
+var a = 12;
+a = a - 2;
+print a;

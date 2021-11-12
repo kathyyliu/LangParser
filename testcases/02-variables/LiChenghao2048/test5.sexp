@@ -1,0 +1,1 @@
+(sequence (declare a (+ 1 (* 2 3))) (print (lookup a)) (assign (varloc a) (+ 2 (* 3 1))) (print (lookup a)))

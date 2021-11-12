@@ -1,0 +1,23 @@
+# should be able to handle any number of nested closures
+
+var outer = func() {
+    var mid1 = func() {
+        var mid2 = func() {
+            var x = 1;
+            var mid3 = func() {
+                var mid4 = func() {
+                    var inner = func() {
+                        print x;
+                    };
+                    ret inner;
+                };
+                ret mid4;
+            };
+            ret mid3;
+        };
+        ret mid2;
+    };
+    ret mid1;
+};
+
+outer()()()()()();  

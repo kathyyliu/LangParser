@@ -1,0 +1,2 @@
+#checking to make sure variable cannot be declared as a keyword
+var var = 10;

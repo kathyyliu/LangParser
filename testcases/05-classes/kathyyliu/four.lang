@@ -1,0 +1,13 @@
+# Class comparison
+
+var Cat = class {
+    var num_paws = 4;
+};
+
+var Dog = class {
+    var num_paws = 4;
+};
+
+print Cat == Dog;                           # 0
+print Cat == Cat;                           # 1
+print Cat().num_paws == Dog().num_paws;     # 1

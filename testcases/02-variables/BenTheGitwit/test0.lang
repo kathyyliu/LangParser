@@ -1,0 +1,2 @@
+# tests to make sure assignment is working
+var test = 2+3; test = 1; print test;

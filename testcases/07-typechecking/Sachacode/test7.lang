@@ -1,0 +1,7 @@
+#testing for a function but it typed incorrectly as an int
+var x = 1;
+var y = 1;
+int add = func(a, b) -> var {
+    ret a + b;
+};
+print add(x, y);

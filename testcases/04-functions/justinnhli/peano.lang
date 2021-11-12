@@ -1,0 +1,33 @@
+var ZERO = func() {};
+
+var succ = func(n) {
+    ret func() {
+        ret n;
+    };
+
+};
+
+var add = func(a, b) {
+    if (a == ZERO) {
+        ret b;
+    } else {
+        ret add(a(), succ(b));
+    }
+};
+
+var equals = func(a, b) {
+    if (a == ZERO && b == ZERO) {
+        ret 1;
+    }
+    if (a == ZERO || b == ZERO) {
+        ret 0;
+    }
+    ret equals(a(), b());
+};
+
+var ONE = succ(ZERO);
+var TWO = succ(ONE);
+var THREE = succ(TWO);
+
+
+print equals(add(ONE, TWO), THREE);

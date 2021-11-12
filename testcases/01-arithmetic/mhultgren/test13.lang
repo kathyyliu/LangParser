@@ -1,0 +1,1 @@
+print 1 / 2; # test for decimal division (i.e. rounding down to int)

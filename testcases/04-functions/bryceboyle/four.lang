@@ -1,0 +1,6 @@
+# making sure that environments are working correctly and that a cannot be accessed from outside of the function
+var c = 1;
+var fn = func(){
+    var a = 2;
+};
+print c + a;

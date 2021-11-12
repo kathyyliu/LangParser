@@ -1,0 +1,2 @@
+# mismatched parentheses, evaluation fails
+print 2 + (1 - (3/4);

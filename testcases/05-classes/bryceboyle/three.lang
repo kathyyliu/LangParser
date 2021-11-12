@@ -1,0 +1,7 @@
+# making sure a runtime error occurs if you try to access a member that doesn't exist
+var Llama = class{
+    var height = 0;
+    var weight = 0;
+};
+var bob = Llama();
+print bob.age;

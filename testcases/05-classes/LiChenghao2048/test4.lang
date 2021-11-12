@@ -1,0 +1,11 @@
+var A = class {};
+
+var x = A();
+var y = A();
+var z = x;
+
+print x == y;   # false
+print x == x;   # true
+print z == x;   # true 
+
+# object comparison

@@ -1,0 +1,11 @@
+# Tests setting a variable to a new instance
+var Test = class {
+  var a = 1;
+};
+
+var Inst = Test();
+print Inst.a;
+Inst.a = 10;
+print Inst.a;
+Inst = Test();
+print Inst.a;

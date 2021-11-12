@@ -1,0 +1,6 @@
+# making sure function parameters must be identifiers
+func(a, 1){
+	if(1 == 0){
+		print a;
+	}
+}(5,0);

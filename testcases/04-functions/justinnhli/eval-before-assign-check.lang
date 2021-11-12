@@ -1,0 +1,5 @@
+var run_first = func() {
+    print 42;
+};
+
+nonexistant = run_first();

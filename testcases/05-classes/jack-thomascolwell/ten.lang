@@ -1,0 +1,4 @@
+# Tests that the "this" parameter is required
+var Test = class {
+var a = function() {};
+};

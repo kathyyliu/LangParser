@@ -1,0 +1,7 @@
+# battle of errors 2: div by zero's revenge
+var x = func(a, b){
+ ret a/b;
+};
+var one = 1;
+var zero = 0;
+x(x(1,0));

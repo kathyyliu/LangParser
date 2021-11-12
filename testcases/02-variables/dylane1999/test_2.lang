@@ -1,0 +1,3 @@
+var 5variable = 323;
+
+# test for variable cannot start with a number

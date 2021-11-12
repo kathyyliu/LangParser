@@ -1,0 +1,1 @@
+(sequence (if 1 (sequence (declare y 2))) (print (+ 1 (lookup y))))

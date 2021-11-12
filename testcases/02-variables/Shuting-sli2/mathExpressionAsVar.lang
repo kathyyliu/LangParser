@@ -1,0 +1,3 @@
+# declare variable with math expression
+var math = (10 * (2+2)) / (7 - 3);	# 10
+print math+1;	# 11 

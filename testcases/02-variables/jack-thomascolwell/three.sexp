@@ -1,0 +1,1 @@
+(sequence (print (lookup a)))

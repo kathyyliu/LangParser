@@ -1,0 +1,11 @@
+# parameters with same name, different types
+
+var f = func(int a, int b, func a) {
+    ret a;
+};
+
+func argument = func(){
+	
+};
+
+f(1, 2, argument);

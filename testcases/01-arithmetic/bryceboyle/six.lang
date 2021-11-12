@@ -1,0 +1,2 @@
+# This tests having more than one optional space, and should print a divide by zero error.
+print (4 + 7 - 1)  / 0;

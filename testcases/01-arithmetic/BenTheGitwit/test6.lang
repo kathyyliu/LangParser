@@ -1,0 +1,2 @@
+# Tests operations with multiple digit numbers
+print 300 + 401 * 100 - 10100;

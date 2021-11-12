@@ -1,0 +1,25 @@
+#tests to make sure functions created outside classes don't have automatic 'this' parameters when called in an object;
+
+var indicate = func(this){
+	ret this;
+};
+
+var Lost = class{
+	var self = func(this){
+		ret indicate(this);
+	};
+	var shelf = func(this){
+		ret indicate();
+	};
+};
+
+var smallObject = Lost();
+
+if(smallObject == smallObject.self()){
+	print 1;
+}
+else{
+	print 0;
+}
+
+smallObject.shelf();

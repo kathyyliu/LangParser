@@ -1,0 +1,9 @@
+var x = 0;
+var myfunc = func() {
+    x = x + 1;
+    print x;
+};
+
+while (x < 3) {
+    myfunc();
+}

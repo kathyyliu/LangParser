@@ -1,0 +1,1 @@
+(sequence (declare myfunc (function (parameters a b c d e f g h i j k) (sequence (print 1)))) (call (lookup myfunc) (arguments 1 2 3 4 5 6 7 8 9 10 11)))

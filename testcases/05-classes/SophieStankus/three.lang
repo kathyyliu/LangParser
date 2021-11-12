@@ -1,0 +1,4 @@
+# creating class instance without ()
+var x = class {
+};
+var y = x;

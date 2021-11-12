@@ -1,0 +1,3 @@
+# tests basic division
+# prints 8
+print 32/2/2;

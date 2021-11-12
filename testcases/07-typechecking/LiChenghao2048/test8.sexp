@@ -1,0 +1,1 @@
+(sequence (declare func x (function (signature int func var var) (parameters a b c) (sequence))))

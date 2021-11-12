@@ -1,0 +1,8 @@
+#tests runtime error: member of non-object
+
+var f = func(n) {
+    var value = 1;
+};
+
+var v = f(3);
+print v.value;

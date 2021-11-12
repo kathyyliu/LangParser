@@ -1,0 +1,11 @@
+#testing enviornmnet
+var num = 2;
+if (1) {
+    var num = 0;
+    print num;
+}
+if (1) {
+    var num = 1;
+    print num;
+}
+print num;

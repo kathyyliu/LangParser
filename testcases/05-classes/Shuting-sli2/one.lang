@@ -1,0 +1,13 @@
+# tests setting member variables 
+var C = class {
+    var a = 10;
+    var b = 9;
+    var multiply = func(this) {
+        ret this.a * this.b;
+    };
+};
+
+var c1 = C();
+var c2 = C();
+c2.b = 2;
+print c1.multiply() + c2.multiply(); #110

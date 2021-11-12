@@ -1,0 +1,1 @@
+( sequence ( declare int a 5 ) ( assign ( varloc a ) 6 ) ( print ( lookup a ) ) ( assign ( varloc a ) ( function ( parameters ) ( sequence ) ) ) )

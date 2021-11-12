@@ -1,0 +1,2 @@
+# Tests whether empty parenthesis is parsed
+print 1+2+();

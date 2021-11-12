@@ -1,0 +1,9 @@
+# make sure the sexp is still right when functions and variables are untyped
+var computer = func (beep, boop){
+    print beep;
+    ret boop;
+};
+
+var i = 1;
+var j = 0;
+print computer(i, j);

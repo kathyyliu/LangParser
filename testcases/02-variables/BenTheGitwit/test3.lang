@@ -1,0 +1,2 @@
+# tests to make sure variables can be used in math expressions
+var num1 = 3; var num2 = 2; print num1 * num2;

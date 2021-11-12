@@ -1,0 +1,3 @@
+# tests basic subtraction
+# prints 0
+print 7-4-3;

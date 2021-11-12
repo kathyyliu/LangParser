@@ -1,0 +1,10 @@
+#Tests variable lookup within closures
+var a=12;
+var x = func() {
+print a;
+};
+if(1) {
+  var a=2;
+  x();
+  print a;
+}

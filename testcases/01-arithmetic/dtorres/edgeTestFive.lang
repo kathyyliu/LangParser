@@ -1,0 +1,2 @@
+# Testing to see if it does the left most paranthesis and then is able to catch that there is a division by 0
+print ((((4+4) - 8   )   +        4) *                       2) / 0;

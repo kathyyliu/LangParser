@@ -1,0 +1,2 @@
+# sets a var to an integer
+var x = 100;

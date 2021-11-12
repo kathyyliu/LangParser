@@ -1,0 +1,21 @@
+# class and object reference
+
+var A = class {
+  var b = 1;
+};
+var B = class {
+  var b = 1;
+};
+var object = A();
+
+var func1 = func(z){
+  print z == A;
+};
+var func2 = func(z){
+  print z == object;
+};
+
+func1(A);
+func1(B);
+func2(object);
+func2(A());

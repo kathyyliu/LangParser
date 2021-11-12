@@ -1,0 +1,8 @@
+#Tests that closures are considered truthy
+var x = func() {};
+if (x) {
+  print 12;
+}
+if (!x) {
+  print 10;
+}

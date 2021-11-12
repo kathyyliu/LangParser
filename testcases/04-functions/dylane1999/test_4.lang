@@ -1,0 +1,2 @@
+var x = 5; var printer = func(n){ print 10; func(){ print 5; }; }; printer(42);
+# test for the ability to have a function inside of another function

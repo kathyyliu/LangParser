@@ -1,0 +1,10 @@
+# test multiple parameters, using func return value in conditional statement
+var greaterThan = func(numOne, numTwo) {
+    ret numOne > numTwo;
+};
+
+if (greaterThan(32, 16)) {
+    print 32;
+} else {
+    print 16;
+}

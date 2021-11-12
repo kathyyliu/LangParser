@@ -1,0 +1,10 @@
+# Tests basic while loops
+while(0) {
+print 1;
+}
+
+var x = 0;
+while(x<3){
+print x;
+x = x+1;
+}

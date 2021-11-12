@@ -1,0 +1,7 @@
+# checking for a runtime error from trying to assign the function test to the integer 3
+func test = func()-> int{
+    ret 1;
+};
+
+test = 3;
+print test;

@@ -1,0 +1,5 @@
+# test math functions inside if statement,
+# as well as executing an if statement
+if (11 + 12 / 13) {
+    print 11;
+}

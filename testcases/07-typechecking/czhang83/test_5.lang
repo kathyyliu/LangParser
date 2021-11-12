@@ -1,0 +1,6 @@
+# untyped variables input into typed function
+var a = 4;
+var c = func(){};
+func b = func(int a, func b) -> int {ret 4;};
+
+print b(a, c);

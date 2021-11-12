@@ -1,0 +1,7 @@
+func foo = func() -> func {
+    ret 12;
+};
+
+foo();
+
+# test that an incorrect return type will trigger type mismatch error

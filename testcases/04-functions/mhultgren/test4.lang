@@ -1,0 +1,13 @@
+# test nested functions, calling returned function
+
+var outer = func() {
+    var printer = func(n) {
+        ret func() {
+            print n;
+        };
+    };
+    
+    ret printer;
+};
+
+outer()(42)();

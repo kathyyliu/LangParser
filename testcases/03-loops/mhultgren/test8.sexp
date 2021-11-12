@@ -1,0 +1,1 @@
+(sequence (declare num 300) (ifelse (+ 1 1) (sequence (ifelse (- 2 2) (sequence (print (lookup num))) (sequence (print 3)))) (sequence (print 0))))

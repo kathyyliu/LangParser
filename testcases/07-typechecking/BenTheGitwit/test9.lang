@@ -1,0 +1,7 @@
+# tests for proper signatures when parameters are explicitly typed as untyped
+
+var a = func(var b, var c){
+	print b+c;
+};
+
+a(9,0-10);

@@ -1,0 +1,1 @@
+(sequence (assign (varloc b) (+ (* 3 8) 14)))

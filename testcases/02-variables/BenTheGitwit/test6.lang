@@ -1,0 +1,2 @@
+# tests to make sure undeclared variable error is working, and that things are evaluating in order
+print num; var num = 0;

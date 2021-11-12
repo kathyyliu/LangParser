@@ -1,0 +1,7 @@
+#tests a function with typed parameters but not a typed return
+
+var a = func(int b) {
+	ret b*b;
+};
+
+print a(3-4);

@@ -1,0 +1,34 @@
+#testing typed function with excessive whitespace and comments
+var                                 x #heheheheheh
+
+
+
+
+= 
+                    1
+
+
+
+;
+
+
+
+                                                var #;);););)
+           y 
+            = 
+    1;
+
+
+func add =           
+            func(a, b) -> int { #whitespacewhitespacewhitespacewhitespacewhitespace
+            ret 
+            
+            
+            
+            a + b;
+                        };
+
+
+print add(x, y);
+
+#commentcommentcommentcommentcommentcommentcommentcommentcommentcomment

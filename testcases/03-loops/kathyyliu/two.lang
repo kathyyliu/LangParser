@@ -1,0 +1,10 @@
+# tests inner environment checked before outer
+
+var x = 3;
+if (x) {
+     print x;
+     var x = 0;
+     if (x) {       # should be false
+         print x;
+     }
+ }

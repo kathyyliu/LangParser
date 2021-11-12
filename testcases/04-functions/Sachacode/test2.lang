@@ -1,0 +1,9 @@
+#testing function calls in loops
+var printNum = func(n) {
+    print n;
+};
+var i = 0;
+while (i < 6) {
+    printNum(i);
+    i = i + 1;
+}

@@ -1,0 +1,3 @@
+# tests basic typing of variables
+int x = 1;
+print x;

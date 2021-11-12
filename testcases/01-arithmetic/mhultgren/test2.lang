@@ -1,0 +1,1 @@
+print 3+0+3+0+0+0; # test for superfluous zeros in addition

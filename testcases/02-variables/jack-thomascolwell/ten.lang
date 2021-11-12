@@ -1,0 +1,3 @@
+# This tests that keywords are not allowed to be variable names
+var while = 2;
+print while;

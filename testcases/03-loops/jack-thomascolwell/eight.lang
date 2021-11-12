@@ -1,0 +1,7 @@
+# Tests which variable is returned if variables in different scopes have the same name
+var x = 1;
+if (1) {
+var x = 2;
+print x;
+}
+print x;

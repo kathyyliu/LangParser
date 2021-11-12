@@ -1,0 +1,9 @@
+var age = 0;
+
+var Person = class {
+    var age = 1;        # var should not already be defined
+};
+
+var kathy = Person();
+print age;
+print kathy.age;

@@ -1,0 +1,2 @@
+print 4 -    (1 +2+3)- 5;
+# should be -7 instead of 3

@@ -1,0 +1,1 @@
+(sequence (declare func foo (function (signature int var) (parameters x) (sequence (declare func bar (function (parameters) (sequence))) (if (== (lookup x) 1) (sequence (return 1))) (return (lookup bar))))) (declare int x (call (lookup foo) (arguments 1))) (declare func y (call (lookup foo) (arguments 3))) (print (lookup x)) (print (lookup y)))

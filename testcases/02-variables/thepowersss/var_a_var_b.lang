@@ -1,0 +1,2 @@
+# declare is separate from assign
+var a = var b;

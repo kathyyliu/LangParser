@@ -1,0 +1,10 @@
+# Can make classes inside of functions
+
+var makePerson = func(n) {
+    ret class {
+        var age = n;
+    }();
+};
+
+var kathy = makePerson(19);
+print kathy.age;

@@ -1,0 +1,1 @@
+(sequence (declare x 2) (if 1 (sequence (if 1 (sequence (if 1 (sequence (if 1 (sequence (if 1 (sequence (if 1 (sequence (if 1 (sequence (if 1 (sequence (if 1 (sequence (if 1 (sequence (if 1 (sequence (if 1 (sequence (print (+ (lookup x) 2)))))))))))))))))))))))))))

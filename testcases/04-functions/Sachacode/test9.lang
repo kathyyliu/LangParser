@@ -1,0 +1,5 @@
+#testing for absurd amount of agruments
+var addNums = func(a, b, c, d, e, f, g, h, i, j) {
+    print a + b + c + d + e + f + g + h + i + j;
+};
+addNums(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);

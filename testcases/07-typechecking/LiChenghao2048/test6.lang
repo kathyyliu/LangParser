@@ -1,0 +1,5 @@
+var a = func(int x, var x) {
+	ret 1;
+};
+
+print a(1, 1);

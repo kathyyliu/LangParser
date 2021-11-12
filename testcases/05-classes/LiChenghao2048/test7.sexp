@@ -1,0 +1,1 @@
+(sequence (declare A (class)) (print (lookup A)))

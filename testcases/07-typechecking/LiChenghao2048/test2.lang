@@ -1,0 +1,5 @@
+var a = func(func x) -> int{
+	ret x;
+};
+
+print a(a);

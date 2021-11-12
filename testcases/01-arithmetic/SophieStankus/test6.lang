@@ -1,0 +1,3 @@
+# tests parenthesis with mixed equations and order of operations
+# prints 0
+print 2*(9-3)*(7-7);

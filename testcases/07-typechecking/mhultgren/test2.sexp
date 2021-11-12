@@ -1,0 +1,1 @@
+(sequence (declare a 30) (declare b (function (parameters a) (sequence (print (lookup a))))))

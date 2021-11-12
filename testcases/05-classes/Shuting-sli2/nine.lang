@@ -1,0 +1,10 @@
+# calling function inside a class
+var C = class {
+    var foo = func(this) {
+		ret 1;
+	};
+};
+
+var a = C();
+print a.foo();	#1
+

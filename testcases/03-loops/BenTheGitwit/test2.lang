@@ -1,0 +1,2 @@
+#Makes sure values other than 0 are true (but 0 is false)
+var a = 3; while(a){print a; a = a - 1;}

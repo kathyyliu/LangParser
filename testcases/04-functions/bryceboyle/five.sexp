@@ -1,0 +1,1 @@
+(sequence (declare three (function (parameters) (sequence (return 3))))(print (lookup three)))

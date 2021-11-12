@@ -1,0 +1,3 @@
+# RHS is evaluated before the LHS is checked
+var a = 1;
+var a = 1 / 0;

@@ -1,0 +1,1 @@
+(sequence (declare Car (class (declare wheel 4))) (print (member (call (lookup Car) (arguments)) wheel)))

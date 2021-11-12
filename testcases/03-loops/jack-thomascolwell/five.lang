@@ -1,0 +1,4 @@
+#Tests having no condition for an if statement. This should give an error
+if () {
+print 1;
+}

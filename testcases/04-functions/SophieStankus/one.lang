@@ -1,0 +1,5 @@
+# basic function
+var a = func() {
+  print 1;
+};
+a();

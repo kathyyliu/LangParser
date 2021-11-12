@@ -1,0 +1,2 @@
+#making sure variable name can't start with a number
+var 9hello = 100;

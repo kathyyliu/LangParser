@@ -1,0 +1,7 @@
+# test using variables in if statement
+
+var num = 0;
+
+if (num) {
+    print num;
+}

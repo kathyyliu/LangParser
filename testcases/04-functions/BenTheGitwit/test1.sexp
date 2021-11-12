@@ -1,0 +1,1 @@
+( sequence ( declare outer ( function ( parameters a ) ( sequence ( declare inner ( function ( parameters a ) ( sequence ( return ( lookup a ) ) ) ) ) ( return ( call ( lookup inner ) ( arguments ( lookup a ) ) ) ) ) ) ) ( while ( call ( lookup outer ) ( arguments 0 ) ) ( sequence ( print 5 ) ) ) ( print 2 ) )

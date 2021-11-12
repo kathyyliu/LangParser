@@ -1,0 +1,14 @@
+# general test for getting right environement in var lookups
+
+var x = 1;
+var outer = func() {
+    var x = 2;
+    var inner = func() {
+        print x;    # 2
+        x = 3;
+    };
+    ret inner;
+};
+
+outer()();
+print x;    

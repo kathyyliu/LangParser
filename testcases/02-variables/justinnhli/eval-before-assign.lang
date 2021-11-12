@@ -1,0 +1,2 @@
+# RHS is evaluated before the LHS is checked
+a = 1 / 0;

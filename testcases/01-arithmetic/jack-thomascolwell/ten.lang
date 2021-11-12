@@ -1,0 +1,2 @@
+# Test of an addition missing the previous operator. This fails at the plus sign.
+print 1 * ( + 2);

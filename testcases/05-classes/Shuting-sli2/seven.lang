@@ -1,0 +1,16 @@
+# use member variable as argument
+
+var C = class {
+    var value = 100;
+};
+
+  
+var run = func(n) {
+    n = n/2;
+    ret n;
+};
+
+var c1 = C();
+var result = run(c1.value);
+print result; #50
+

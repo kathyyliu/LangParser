@@ -1,0 +1,1 @@
+( sequence ( declare a ( function (signature int func var) ( parameters x x ) ( sequence ( print ( + ( lookup x ) ( lookup x ) ) ) ) ) ) ( call ( lookup a ) ( arguments 7 ( lookup a ) ) ) )

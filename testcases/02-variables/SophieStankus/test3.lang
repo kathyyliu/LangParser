@@ -1,0 +1,2 @@
+# tests for variable assignment with parenthesis
+var x = 5 * (3 + 1);

@@ -1,0 +1,1 @@
+(sequence (declare C (class (declare value 100))) (declare run (function (parameters n) (sequence (assign (varloc n) (/ (lookup n) 2)) (return (lookup n))))) (declare c1 (call (lookup C) (arguments))) (declare result (call (lookup run) (arguments (member (lookup c1) value)))) (print (lookup result)))

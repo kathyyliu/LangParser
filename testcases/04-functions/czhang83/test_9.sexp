@@ -1,0 +1,1 @@
+(sequence (declare b 3) (declare a (function (parameters) (sequence (print 7) (if (== (lookup b) 1) (sequence (print (lookup c)))) (assign (varloc b) (- (lookup b) 1))))) (call (lookup a) (arguments)) (call (lookup a) (arguments)) (call (lookup a) (arguments)))

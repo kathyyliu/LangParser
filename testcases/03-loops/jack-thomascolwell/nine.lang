@@ -1,0 +1,27 @@
+#Tests to make sure that nested environments are properly searched
+var x = 2;
+if (1) {
+  if (1) {
+    if (1) {
+      if (1) {
+        if (1) {
+          if (1) {
+            if (1) {
+              if (1) {
+                if (1) {
+                  if (1) {
+                    if (1) {
+                      if (1) {
+                        print x + 2;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

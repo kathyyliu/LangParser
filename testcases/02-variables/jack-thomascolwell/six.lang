@@ -1,0 +1,11 @@
+# This tests the ability of variables to change during a program
+var a = 12;
+print a;
+a = 10;
+print a;
+
+var b = 2;
+b = 10;
+print b;
+b = 9;
+print b;

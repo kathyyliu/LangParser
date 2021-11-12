@@ -1,0 +1,9 @@
+func foo = func(x,y,z) -> int {
+    ret x+y+z;
+};
+
+print foo(1,2,3);
+
+print foo(foo,2,3);
+
+# test that a return type will cast parameter as var and that var can be set to any type

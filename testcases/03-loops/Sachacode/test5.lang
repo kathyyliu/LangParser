@@ -1,0 +1,8 @@
+#testing enviornment with while loops
+var i = 1;
+while (i < 6) {
+    print i;
+    i = i + 1;
+    var i = 10;
+    print i;
+}

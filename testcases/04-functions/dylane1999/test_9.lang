@@ -1,0 +1,3 @@
+var sum = func(a,b){ var c = a + b; ret c; };  var foobar = sum(10,35); print foobar; 
+
+# using all parts of functions to create a simple sum of two numbers function

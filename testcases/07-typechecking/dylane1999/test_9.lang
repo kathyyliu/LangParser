@@ -1,0 +1,12 @@
+func foo = func() -> int {
+};
+
+foo();
+
+func bar = func() -> func {
+};
+
+bar();
+
+# check that first will be success as a func returns 0 as default, 
+# and the second will fail for the same reason 

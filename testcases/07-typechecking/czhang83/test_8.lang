@@ -1,0 +1,14 @@
+# return type constrains
+var a = func() -> int {
+  ret 3;
+};
+var b = func() -> func {
+  ret func(){};
+};
+print a();
+print b();
+
+var c = func() -> func {
+  ret 3;
+};
+print c();

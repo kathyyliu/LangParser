@@ -1,0 +1,11 @@
+var f = func(n) {
+    ret func(){
+	n = 99;
+	ret func(){
+		ret n;
+    	};
+    };
+};
+
+print f(10)()();
+

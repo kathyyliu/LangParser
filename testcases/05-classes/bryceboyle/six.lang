@@ -1,0 +1,4 @@
+var Parse = class{
+    var index = 0;
+    ret index;
+};

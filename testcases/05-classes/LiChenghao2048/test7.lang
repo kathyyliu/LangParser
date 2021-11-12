@@ -1,0 +1,6 @@
+var A = class{
+};
+
+print A;
+
+# print a class

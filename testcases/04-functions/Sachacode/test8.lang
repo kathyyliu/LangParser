@@ -1,0 +1,11 @@
+#testing correct scope for varibles inside a function
+var n = 100;
+print n;
+var printNum = func(n) {
+    print n;
+    if (n > 9) {
+        var n = 1;
+        print n;
+    }
+};
+printNum(10);

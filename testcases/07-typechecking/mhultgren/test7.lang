@@ -1,0 +1,15 @@
+var test = func(func program, int count) -> func {
+    var i=0;
+    while (i < count) {
+        i = i + 1;
+        program();
+    }
+    ret program;
+};
+
+var print_ten = func() {
+    print 10;
+};
+
+var copy = test(print_ten, 10);
+copy();

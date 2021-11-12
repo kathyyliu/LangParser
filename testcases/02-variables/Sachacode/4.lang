@@ -1,0 +1,4 @@
+# testing for assginning the value one variable to another
+var a = 0;
+var b = a;
+print b;

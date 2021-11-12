@@ -1,0 +1,5 @@
+# negation of a variable
+var a = 0;
+if (!a){
+  print a;
+}

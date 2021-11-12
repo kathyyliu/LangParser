@@ -1,0 +1,4 @@
+# making sure two variables can't have the same name even if they're different types
+int count = 21;
+var count = 12;
+print count;

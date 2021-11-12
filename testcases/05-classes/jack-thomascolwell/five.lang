@@ -1,0 +1,9 @@
+# Tests that redefining the class does not change existing instances
+var Test = class {
+  var a = 1;
+};
+var Inst = Test();
+Test = class {
+  var a = 10;
+};
+print Inst.a;

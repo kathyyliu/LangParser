@@ -1,0 +1,6 @@
+var Cat = class {
+    var meow = 1;
+};
+
+var myCat = Cat();
+var myCat.meow = 0;

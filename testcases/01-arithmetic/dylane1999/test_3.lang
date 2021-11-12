@@ -1,0 +1,2 @@
+print (0);
+# test to see if it will print the integer alone inside the parentheses

@@ -1,0 +1,9 @@
+# test if-else statement
+
+var num = 0;
+
+if (num) {
+    print num;
+} else {
+    print 7;
+}

@@ -1,0 +1,10 @@
+# finds the first positive integer with a 1 in the ones place that's divisible by 7
+var a = 1; 
+var done = 0; 
+while (! done){ 
+	if((a/7) * 7 == a){
+		print a; 
+		done = 1;
+	}
+	a = a + 10;
+}

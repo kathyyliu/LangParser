@@ -1,0 +1,1 @@
+(sequence (declare b 2) (print (lookup b)))

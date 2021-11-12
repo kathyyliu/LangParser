@@ -1,0 +1,17 @@
+ var Test = class {
+    var index = 0;
+    
+    var count_to_num = func(this, upper_bound) {
+        while (this.index < upper_bound) {
+            print this.index;
+            this.index = this.index + 1;
+        }
+        
+        this.index = 0;
+    };
+ };
+ 
+ var object = Test();
+ 
+ object.count_to_num(5);
+ object.count_to_num(5);

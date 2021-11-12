@@ -1,0 +1,1 @@
+(sequence (declare test (function (parameters) (sequence (declare b 2)))) (print (+ (call (lookup test) (arguments)) 3)))

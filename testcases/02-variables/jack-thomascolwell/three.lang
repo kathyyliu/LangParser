@@ -1,0 +1,2 @@
+# This tests looking up undefined variables
+print a;

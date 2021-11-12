@@ -1,0 +1,9 @@
+# Tests that member functions still know what "this" is even after being stored in a variable
+var Test = class {
+var b = 10;
+var a = func(this) { print this.b; };
+};
+
+var x = Test();
+var y = x.a;
+y();

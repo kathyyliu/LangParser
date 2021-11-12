@@ -1,0 +1,7 @@
+# This just tests basic function declarations and calls
+var x = func() {
+print 12;
+};
+
+x();
+x();

@@ -1,0 +1,2 @@
+# testing for variable assignment inside print statement
+print var num = 0;

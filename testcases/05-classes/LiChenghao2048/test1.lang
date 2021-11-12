@@ -1,0 +1,5 @@
+var Car = class {
+  var wheel = 4;
+};
+
+print Car().wheel;

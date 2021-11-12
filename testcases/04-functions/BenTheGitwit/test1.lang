@@ -1,0 +1,10 @@
+var outer = func(a){
+	var inner = func(a){
+		ret a;
+	};
+	ret inner(a);
+};
+while(outer(0)){
+	print 5;
+}
+print 2;

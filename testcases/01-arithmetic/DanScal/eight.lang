@@ -1,0 +1,2 @@
+#complex arithmetic with nested parenthesis
+print (  3 + (42 /2) * (1 +1));

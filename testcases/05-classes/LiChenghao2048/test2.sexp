@@ -1,0 +1,1 @@
+(sequence (declare x 0) (declare A (class (declare x 1))) (declare y (call (lookup A) (arguments))) (print (lookup x)) (print (member (lookup y) x)))

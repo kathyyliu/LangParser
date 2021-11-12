@@ -1,0 +1,1 @@
+( sequence ( declare num1 3 ) ( declare num2 ( lookup num1 ) ) ( print ( lookup num2 ) ) )

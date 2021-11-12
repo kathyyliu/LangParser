@@ -1,0 +1,1 @@
+( sequence ( declare x ( function ( parameters a ) ( sequence ) ) ) ( declare y 0 ) ( assign ( varloc z ) ( / ( lookup x ) ( lookup y ) ) ) )

@@ -1,0 +1,9 @@
+#testing basic ability to retive varible from a function and use it in something else
+var A = class {
+    var b = 0;
+};
+var c = A();
+while (c.b < 6) {
+    print c.b;
+    c.b = c.b + 1;
+}

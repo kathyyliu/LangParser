@@ -1,0 +1,6 @@
+# change var inside while
+var a = 1;
+while (a){
+  print a;
+  a = 0;
+}

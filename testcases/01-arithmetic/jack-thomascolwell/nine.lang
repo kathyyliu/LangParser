@@ -1,0 +1,4 @@
+# Test of commented out lines in the middle of statements
+print 1 +
+#2 * 4 +
+2;

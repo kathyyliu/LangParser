@@ -1,0 +1,7 @@
+# making sure you can't have duplicate variables, even of different types
+
+int a = 0;
+func a = func (){};
+var a = a;
+
+print a;

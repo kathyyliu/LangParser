@@ -1,0 +1,2 @@
+# testing for syntax error when trying to stack variable declarations
+var a = var b = 2;

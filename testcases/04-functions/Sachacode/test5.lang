@@ -1,0 +1,19 @@
+#testing funny spacing for a function
+var 
+
+
+
+printNum                    =                       func(n) 
+{
+    print n               ;
+}           ;
+
+
+
+
+
+printNum(   10      )
+
+
+
+;

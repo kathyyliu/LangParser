@@ -1,0 +1,12 @@
+var a = 1; 
+var foo = func(){ 
+    var inner = func(){
+        print a;
+        }; 
+    ret inner; 
+    };  
+var bar = foo(); 
+a =3; 
+bar();
+
+#test that the closure environment is being properly kept track of, not just a copy

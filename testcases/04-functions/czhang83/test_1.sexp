@@ -1,0 +1,1 @@
+(sequence (declare b 7) (declare a (function (parameters) (sequence (print (lookup b)) (declare b 9) (print (lookup b))))) (call (lookup a) (arguments)) (call (lookup a) (arguments)))

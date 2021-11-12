@@ -1,0 +1,5 @@
+# function in a function in a function
+var a = func(){print 5; ret 1;};
+var b = func(){print a();};
+var c = func(){print b();};
+print c();

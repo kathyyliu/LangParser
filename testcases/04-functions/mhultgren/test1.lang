@@ -1,0 +1,5 @@
+var returner = func() {
+    ret 32;
+};
+
+print returner();

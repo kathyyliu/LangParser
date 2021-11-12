@@ -1,0 +1,6 @@
+# test returning from function, as well as math operations on returned values
+var returner = func(x) {
+    ret x;
+};
+
+print returner(32) + returner(32);

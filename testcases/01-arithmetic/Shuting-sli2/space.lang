@@ -1,0 +1,2 @@
+print     0 * (   0 * 0 ) * 0    ; 
+# testing trailing space/space at the front/space at the end/space between paren and digit/space between digits

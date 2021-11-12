@@ -1,0 +1,5 @@
+var myfunc = func() {
+    ret 2;
+};
+
+print (myfunc() == myfunc()) == 1;

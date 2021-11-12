@@ -1,0 +1,5 @@
+# wrong grammar, if condition contains expression, not print statement
+
+if (print 1) {
+    print 1;
+}

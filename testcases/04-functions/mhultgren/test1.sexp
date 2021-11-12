@@ -1,0 +1,1 @@
+(sequence (declare returner (function (parameters) (sequence (return 32)))) (print (call (lookup returner) (arguments))))

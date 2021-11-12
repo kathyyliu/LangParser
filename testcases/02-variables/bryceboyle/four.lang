@@ -1,0 +1,4 @@
+# although this variable name contains a keyword, it should still be valid because it is not the keyword alone that is being used
+
+var else_1 = 1;
+print else_1;

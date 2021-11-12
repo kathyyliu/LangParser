@@ -1,0 +1,7 @@
+var Test = class {
+    var num = 0;
+};
+
+var object = Test();
+
+print object + 3;

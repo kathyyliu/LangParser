@@ -1,0 +1,3 @@
+# Tests calling non-functions
+var x = 0;
+x();

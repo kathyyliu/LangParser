@@ -1,0 +1,3 @@
+# statements after ret should be parsed, but ignored in output
+var a = func(){print 1; ret 2; print 3;};
+print a();

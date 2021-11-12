@@ -1,0 +1,12 @@
+#testing for proper comment use
+var A = class {
+    #hello
+    var b = 0;
+    #hi
+};
+#hehe
+var c = A();
+#aha
+print c.b;
+#comments kept giving me lots of trouble
+#that's why I made this test case :(

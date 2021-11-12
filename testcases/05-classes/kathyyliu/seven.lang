@@ -1,0 +1,21 @@
+# can pass objects as arguments
+
+var eatsFish = func(pet) {
+    if (pet.meow) {
+        ret 1;
+    }
+    else {
+        ret 0;
+    }
+};
+
+var Cat = class {
+    var meow = 1;
+};
+
+var Dog = class {
+    var meow = 0;
+};
+
+print eatsFish(Cat());
+print eatsFish(Dog());

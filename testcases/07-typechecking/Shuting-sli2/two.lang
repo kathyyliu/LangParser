@@ -1,0 +1,6 @@
+#function ret type mismatch signature ret type
+var outter = func() -> int{
+	ret func(){
+	};
+};
+outter()();

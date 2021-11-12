@@ -1,0 +1,1 @@
+(sequence (declare a 0) (if (! (lookup a)) (sequence (print (lookup a)))))

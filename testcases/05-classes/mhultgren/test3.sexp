@@ -1,0 +1,1 @@
+(sequence (declare Test (class (declare num 12) (declare print_num_plus (function (parameters this add) (sequence (print (+ (member (lookup this) num) (lookup add)))))))) (declare object (call (lookup Test) (arguments))) (call (member (lookup object) print_num_plus) (arguments 12)))

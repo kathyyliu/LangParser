@@ -1,0 +1,10 @@
+# return value of a recursive function call
+var b = 3;
+var a = func(){
+  b = b - 1;
+  print b;
+  if (b != 0){
+    a();
+  }
+};
+print a();

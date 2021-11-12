@@ -1,0 +1,9 @@
+# each function call creates an unused closure
+var b = 7;
+var a = func(){
+  print b;
+  var b = 9;
+  print b;
+};
+a();
+a();

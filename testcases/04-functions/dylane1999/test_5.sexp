@@ -1,0 +1,1 @@
+(sequence (declare a 1) (declare foo (function (parameters) (sequence (declare inner (function (parameters) (sequence (print (lookup a))))) (return (lookup inner))))) (call (call (lookup foo) (arguments)) (arguments)))

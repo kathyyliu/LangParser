@@ -1,0 +1,2 @@
+# type mismatch when assigning int to non-int type variable
+func val = 1 + 2 + 3 + 4;

@@ -1,0 +1,3 @@
+var test = 3;
+var num = 11;
+print test + num; # test math using variable values

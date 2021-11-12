@@ -1,0 +1,5 @@
+# variable as a boolean
+var b = 0;
+if (b){
+  print 3;
+}

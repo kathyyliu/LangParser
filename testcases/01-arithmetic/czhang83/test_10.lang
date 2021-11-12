@@ -1,0 +1,6 @@
+# many comments and newlines
+print 1*2+3-3;
+# comment after
+# newlines
+
+# comment

@@ -1,0 +1,102 @@
+var pair = func(first, second) {
+    ret func(f) {
+        ret f(first, second);
+    };
+};
+
+var NULL = pair(pair, pair);
+
+var first = func(pair) {
+    ret pair(func(first, second) {
+        ret first;
+    });
+};
+
+var second = func(pair) {
+    ret pair(func(first, second) {
+        ret second;
+    });
+};
+
+var range = func(end) {
+    var _range = func(end, partial) {
+        if (end == 0) {
+            ret partial;
+        } else {
+            ret _range(end - 1, pair(end - 1, partial));
+        }
+    };
+    ret _range(end, NULL);
+};
+
+var reverse = func(list) {
+    var _reverse = func(list, result) {
+        if (list == NULL) {
+            ret result;
+        } else {
+            ret _reverse(second(list), pair(first(list), result));
+        }
+    };
+    ret _reverse(list, NULL);
+};
+
+var map = func(list, fn) {
+    var _map = func(list, fn, result) {
+        if (list == NULL) {
+            ret result;
+        } else {
+            ret _map(second(list), fn, pair(fn(first(list)), result));
+        }
+    };
+    ret reverse(_map(list, fn, NULL));
+};
+
+var filter = func(list, fn) {
+    var _filter = func(list, fn, result) {
+        if (list == NULL) {
+            ret result;
+        }
+        if (fn(first(list)) == 1) {
+            ret _filter(second(list), fn, pair(first(list), result));
+        } else {
+            ret _filter(second(list), fn, result);
+        }
+    };
+    ret reverse(_filter(list, fn, NULL));
+};
+
+var reduce = func(list, fn, result) {
+    if (list == NULL) {
+        ret result;
+    } else {
+        ret reduce(second(list), fn, fn(result, first(list)));
+    }
+};
+
+var mod = func(a, b) {
+    ret a - (b * (a / b));
+};
+
+var euler_1 = func(n) {
+    ret reduce(
+        filter(
+            map(
+                range(n - 1),
+                func(n) {
+                    ret n + 1;
+                }
+            ),
+            func(n) {
+                ret (mod(n, 3) == 0 || mod(n, 5) == 0);
+            }
+        ),
+        func(a, b) {
+            ret a + b;
+        },
+        0
+    );
+};
+
+# solve Project Euler Problem #1 example using map-reduce
+# https://projecteuler.net/problem=1
+print euler_1(10);

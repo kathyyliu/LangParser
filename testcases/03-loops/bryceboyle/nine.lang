@@ -1,0 +1,5 @@
+w = 10;
+while (w > 0){
+    w = w - 1;
+    print w;
+}

@@ -1,0 +1,4 @@
+# printing an empty function with no return
+# should return closure
+var a = func () {};
+print a;

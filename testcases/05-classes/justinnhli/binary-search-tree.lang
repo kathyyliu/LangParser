@@ -1,0 +1,64 @@
+var BinarySearchTree = class {
+    
+    var Node = class {
+        var value = 0;
+        var left = 0;
+        var right = 0;
+        var constructor = func(this, value) {
+            this.value = value;
+            ret this;
+        };
+    };
+
+    var root = 0;
+
+    var constructor = func(this) {
+        ret this;
+    };
+
+    var add = func(this, value) {
+        root = recur_add(root, value);
+    };
+
+    var recur_add = func(this, node, value) {
+        if (node == 0) {
+            ret Node().constructor(value);
+        }
+        if (value <= node.value) {
+            node.left = this.recur_add(node.left, value);
+            ret node;
+        }
+        if (value > node.value) {
+            node.right = recur_add(node.right, value);
+            ret node;
+        }
+    };
+
+    var in_order_print = func(this) {
+        recur_in_order_print(root);
+    };
+
+    var recur_in_order_print = func(this, node) {
+        if (node != 0) {
+            recur_in_order_print(node.left);
+            print node.value;
+            recur_in_order_print(node.right);
+        }
+    };
+
+};
+
+var tree = BinarySearchTree().constructor();
+
+tree.add(9);
+tree.add(7);
+tree.add(0);
+tree.add(1);
+tree.add(3);
+tree.add(2);
+tree.add(6);
+tree.add(8);
+tree.add(4);
+tree.add(5);
+
+tree.in_order_print();

@@ -1,0 +1,1 @@
+( sequence ( declare num ( lookup num ) ) )

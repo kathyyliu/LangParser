@@ -1,0 +1,6 @@
+# short-circuiting
+# won't evaluate the second one
+var b = 1;
+if (b || c){
+  print 3;
+}

@@ -1,0 +1,4 @@
+#testing that variables still cannot have the same name despite being different types
+int a = 0;
+var a = 1;
+print a;

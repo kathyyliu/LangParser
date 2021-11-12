@@ -1,0 +1,18 @@
+# assign a function to different variables
+var func1 = func(){};
+func a = func1;
+var b = func1;
+
+print a;
+print b;
+print a == b;
+
+b = a;
+print a;
+print b;
+print a == b;
+
+a = b;
+print a;
+print b;
+print a == b;

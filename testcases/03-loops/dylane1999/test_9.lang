@@ -1,0 +1,8 @@
+var x = 1;
+var y = 674;
+if(x==1 || y == 2){
+    x = x *6; 
+} 
+print x;
+
+# test if statement with a || containing one false value and one true value

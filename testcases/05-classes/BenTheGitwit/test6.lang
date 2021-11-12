@@ -1,0 +1,24 @@
+# Testing variable assignment
+
+var ThreeFunctions = class{
+	var num = 1;
+	var fakechange = func(this, n){
+		var num = n;
+	};
+	var realchange = func(this, n){
+		num = n;
+	};
+	var realchange2 = func(this, n){
+		this.num = n;
+	};
+};
+
+var x = ThreeFunctions();
+x.fakechange(2);
+print x.num;
+x.realchange(3);
+print x.num;
+x.realchange2(4);
+print x.num;
+x.num = 5;
+print x.num;

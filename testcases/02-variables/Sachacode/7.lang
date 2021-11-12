@@ -1,0 +1,9 @@
+# testing for compatibility with edge-case style spacing
+var
+num
+=
+0
+;
+print
+num
+;

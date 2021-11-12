@@ -1,0 +1,2 @@
+var num = 3;
+var num = 20; # test error for variable defined more than once

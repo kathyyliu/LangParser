@@ -1,0 +1,2 @@
+print (5*5)+3+5;
+# testing for addition and multiplication expressions in one statement

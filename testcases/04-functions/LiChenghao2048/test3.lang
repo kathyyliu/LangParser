@@ -1,0 +1,7 @@
+var printer = func(x) {
+	print x;
+};
+
+printer(1);
+
+# basic function

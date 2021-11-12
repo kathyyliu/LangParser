@@ -1,0 +1,8 @@
+var retClass = func(n) {
+    ret class {
+        var num = n;
+    }();
+};
+
+var a = retClass(1);
+print a.num;

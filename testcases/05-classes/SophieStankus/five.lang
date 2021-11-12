@@ -1,0 +1,8 @@
+# checks for syntax error without 'this'
+var x = class {
+  var y = func() {
+  };
+};
+
+var z = x();
+z.y();

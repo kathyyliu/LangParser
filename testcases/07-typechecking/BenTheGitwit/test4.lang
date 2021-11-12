@@ -1,0 +1,7 @@
+#tests a function with return type that doesn't return;
+
+var a = func(int b) -> int{
+	print b;
+};
+
+a(0-1);

@@ -1,0 +1,6 @@
+# making sure that time is reassigned correctly and that two different values are printed
+
+var time = 60;
+print time;
+time = 59;
+print time;

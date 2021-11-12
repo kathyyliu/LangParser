@@ -1,0 +1,2 @@
+#testing declaration by zero in a variable assignment
+var a = 10; a = 10/2/0;

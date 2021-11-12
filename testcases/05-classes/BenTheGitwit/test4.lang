@@ -1,0 +1,6 @@
+var x = class{};
+var y = class{};
+
+if(x <= y){
+print 1;
+}

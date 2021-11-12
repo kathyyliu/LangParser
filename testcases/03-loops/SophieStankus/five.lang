@@ -1,0 +1,5 @@
+# tests wrong if statement 
+var x = 100;
+if (x == 200) {
+  print x;
+ }

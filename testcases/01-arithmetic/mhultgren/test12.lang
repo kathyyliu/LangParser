@@ -1,0 +1,1 @@
+print 2 / (11 - 11); # test dividing by zero

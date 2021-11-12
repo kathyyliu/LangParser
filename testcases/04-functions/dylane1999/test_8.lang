@@ -1,0 +1,12 @@
+var a = 1; 
+var foo = func(){ 
+    var a = 2; 
+    var inner = func(){
+        print a;
+        }; 
+    ret inner; };  
+var bar = foo(); 
+a =3; 
+bar();
+
+# check that 2 will print as the a is declared in the inner, meaning that the reassignment to 3 will not affect the a in the closure env. 

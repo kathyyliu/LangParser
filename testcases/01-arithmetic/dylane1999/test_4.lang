@@ -1,0 +1,2 @@
+print 3++
+# 3 with two +'s to test for syntax error

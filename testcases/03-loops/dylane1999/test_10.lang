@@ -1,0 +1,5 @@
+if (){
+    print 5
+}
+
+# test for no condition in if 

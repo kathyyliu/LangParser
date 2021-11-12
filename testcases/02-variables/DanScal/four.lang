@@ -1,0 +1,2 @@
+#checking assignment using already defined variable
+var a = 2 + 3; var b = a + 2; print b;

@@ -1,0 +1,4 @@
+# testing empty parameter + empty argument + immediate calling
+var foo = func() {
+	print 1;
+}();

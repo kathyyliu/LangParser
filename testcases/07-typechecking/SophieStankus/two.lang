@@ -1,0 +1,3 @@
+# tests combination of typed and untyped variables
+int x = 1;
+var y = 2;

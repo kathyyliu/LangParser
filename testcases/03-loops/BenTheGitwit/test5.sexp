@@ -1,0 +1,1 @@
+( sequence ( declare a 0 ) ( declare c 0 ) ( ifelse ( lookup a ) ( sequence ( declare b 0 ) ( assign ( varloc c ) ( lookup b ) ) ) ( sequence ( declare b 1 ) ( assign ( varloc c ) ( lookup b ) ) ) ) ( if ( != ( lookup a ) ( lookup c ) ) ( sequence ( print 123 ) ) ) )

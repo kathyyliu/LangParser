@@ -1,0 +1,4 @@
+# Tests that typed returns must be of specified type
+func() -> func {
+ret 1;
+}();

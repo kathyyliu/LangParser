@@ -1,0 +1,1 @@
+(sequence (declare d 0) (lookup d) (lookup d))

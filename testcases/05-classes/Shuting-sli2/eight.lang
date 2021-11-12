@@ -1,0 +1,22 @@
+# use member variables as conditions
+
+var C = class {
+    var a = 1;
+    var b = 99;
+};
+
+var c1 = C();
+var c2 = C();
+
+if (c1.a == c2.a){
+	print 1;
+} else {
+	print 0;
+}
+
+if (c1.b == c2.b){
+	print 1;
+} else {
+	print 0;
+}
+

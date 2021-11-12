@@ -1,0 +1,2 @@
+# tests to make sure variables are values, not parses
+var test = 2/0; test = 2; print test;

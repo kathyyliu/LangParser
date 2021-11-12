@@ -1,0 +1,1 @@
+(sequence (declare a (+ 2 2)) (declare b (- 2 2)) (declare c (* 3 6)) (declare d (/ 6 2)))

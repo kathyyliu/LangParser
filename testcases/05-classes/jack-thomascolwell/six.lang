@@ -1,0 +1,4 @@
+# Test that declaring a class with more than declaration statements should throw a syntax error
+var Test = class {
+print 1;
+};

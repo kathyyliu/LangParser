@@ -1,0 +1,17 @@
+#testing enviornments within enviornments
+var a = 0;
+if (1) {
+    print a;
+    var a = 1;
+    print a;
+    if (1) {
+        print a;
+        var a = 2;
+        print a;
+        if (1) {
+            print a;
+            var a = 3;
+            print a;
+        }
+    }
+}

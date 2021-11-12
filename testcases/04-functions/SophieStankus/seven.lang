@@ -1,0 +1,4 @@
+# tests empty function
+var a = func(){
+};
+a();

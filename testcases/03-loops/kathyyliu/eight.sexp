@@ -1,0 +1,1 @@
+(sequence (declare x 0) (while (! (lookup x)) (sequence (declare y 0) (while (< (lookup y) 3) (sequence (print (lookup y)) (assign (varloc y) (+ (lookup y) 1)))) (assign (varloc x) (lookup y)))))

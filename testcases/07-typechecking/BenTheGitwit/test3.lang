@@ -1,0 +1,13 @@
+#tests a function with one typed parameter and no typed return
+
+func a = func(x, int y) -> var {
+	if(!x){
+		ret y;
+	}
+	else{
+		ret x;
+	}
+};
+
+a = a(a, 1);
+print a(0, 3);

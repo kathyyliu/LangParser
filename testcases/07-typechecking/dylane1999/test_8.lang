@@ -1,0 +1,7 @@
+int foo = 1;
+func bar = func(){};
+foo = bar;
+
+
+
+# cannot set an int to a var that is typed as func

@@ -1,0 +1,10 @@
+var lessThan = func(numOne, numTwo) {
+    ret numOne < numTwo;
+};
+
+var i = 0;
+
+while (lessThan(i, 10)) {
+    print i;
+    i = i + 1;
+}

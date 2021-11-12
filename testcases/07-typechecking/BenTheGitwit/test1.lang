@@ -1,0 +1,3 @@
+# tests for type errors in the declaration statement
+
+func a = 3;

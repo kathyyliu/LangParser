@@ -1,0 +1,12 @@
+# putting a while in a if in a func (using tabs)
+var i = 0;
+var b = func () {
+	if (1) {
+		while ( i < 2 ) {
+			print i;
+			i = i + 1;
+		}
+	}
+};
+b();
+print i;

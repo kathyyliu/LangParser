@@ -1,0 +1,1 @@
+(sequence (declare int a 4) (assign (varloc a) (function (parameters) (sequence))))

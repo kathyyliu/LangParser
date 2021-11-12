@@ -1,0 +1,1 @@
+(sequence (declare int a 1) (declare int b 2) (declare int c 3) (declare int d 4) (declare int e (+ (+ (+ (lookup a) (lookup b)) (lookup c)) (lookup d))) (print (lookup e)))

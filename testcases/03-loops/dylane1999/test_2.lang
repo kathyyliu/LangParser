@@ -1,0 +1,17 @@
+var x = 1; 
+if (x == 1) {
+    if (x == 1) {
+        if (x == 1) {
+            if (x == 1) {
+                print x;
+            }
+    
+        }   
+    }
+}
+print x ;
+
+
+# test for a deeply nested if 
+
+

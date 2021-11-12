@@ -1,0 +1,19 @@
+func foo = func(int x) {
+    func bar = func(){};
+    if(x == 1){
+        ret 1;
+    }
+    ret bar;
+
+};
+
+int x = foo(1);
+func y = foo(3);
+
+print x;
+print y;
+
+
+
+# test that a typed param will make a var return, and that var typed returns can return any type 
+# also tests that correct values are returned with declare types

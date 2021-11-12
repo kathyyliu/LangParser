@@ -1,0 +1,2 @@
+# tests for addition expression in variable assignment
+var x = 100 + 1;

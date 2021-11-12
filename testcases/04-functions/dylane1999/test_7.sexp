@@ -1,0 +1,1 @@
+(sequence (declare a 1) (declare foo (function (parameters) (sequence (declare inner (function (parameters) (sequence (print (lookup a))))) (return (lookup inner))))) (declare bar (call (lookup foo) (arguments))) (assign (varloc a) 3) (call (lookup bar) (arguments)))

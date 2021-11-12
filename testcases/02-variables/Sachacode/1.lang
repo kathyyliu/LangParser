@@ -1,0 +1,4 @@
+# testing assigning a variable, changing the vairable, then printing it
+var num = 10;
+num = 20;
+print num;

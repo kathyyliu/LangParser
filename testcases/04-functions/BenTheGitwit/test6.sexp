@@ -1,0 +1,1 @@
+( sequence ( declare x ( function ( parameters a x ) ( sequence ( declare x ( call ( function ( parameters a a ) ( sequence ( return ( + ( lookup a ) ( lookup a ) ) ) ) ) ( arguments ( lookup x ) ) ) ) ) ) ) ( return ( call ( lookup x ) ( arguments ( lookup x ) ( lookup x ) ) ) ) )

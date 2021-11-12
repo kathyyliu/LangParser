@@ -1,0 +1,5 @@
+# test empty if 
+var x = 1;
+if () {
+  print x;
+}

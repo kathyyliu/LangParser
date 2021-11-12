@@ -1,0 +1,13 @@
+# y redefines itself to a function with no parameters, but this doesn't mess up the nested calls
+
+var x = func(){
+	ret x;
+};
+
+var y = func(z){
+	y = z;
+	ret z;
+};
+
+print y(y(x));
+print y(x);

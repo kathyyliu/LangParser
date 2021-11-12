@@ -1,0 +1,1 @@
+(sequence (declare Test (class (declare num 0))) (declare object (call (lookup Test) (arguments))) (ifelse (== (lookup object) (lookup Test)) (sequence (print 33)) (sequence (print 11))))

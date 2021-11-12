@@ -1,0 +1,7 @@
+# math operation on objects
+var C = class {
+};
+
+var c1 = C();
+var c2 = C();
+print c1 + c2;

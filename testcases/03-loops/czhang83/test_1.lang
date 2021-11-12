@@ -1,0 +1,4 @@
+# check boolean value int representation
+if (1){
+  print 3;
+}

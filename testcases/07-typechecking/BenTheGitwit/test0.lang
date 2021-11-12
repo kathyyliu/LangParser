@@ -1,0 +1,6 @@
+#Testing assignment
+
+int a = 5;
+a = 6;
+print a;
+a = func(){};

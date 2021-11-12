@@ -1,0 +1,36 @@
+
+# able to type all para/ret when only part of the parameters are typed 
+
+var F = func(int n) {
+
+    var get_n = func() -> int{
+        ret n;
+    };
+
+    var addition = func(func other_b, other_c, func other_d, other_e) -> func{
+        ret F(
+            n + other_b(1)() + other_c(1)() + other_d(1)() + other_e(1)()
+        );
+    };
+
+    ret func(int index){
+        if (index == 1) {
+            ret get_n;
+        }
+
+        if (index == 2) {
+            ret addition;
+        }
+    };
+};
+
+func a = F(0);
+func b = F(1);
+func c = F(2);
+func d = F(3);
+func e = F(4);
+
+
+func f = a(2)(b, c, d, e);
+print f(1)();	# f.n = 0 + 1 + 2 + 3 + 4 = 10
+

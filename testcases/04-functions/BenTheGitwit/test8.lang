@@ -1,0 +1,13 @@
+# punishing improper closures with an infinite loop
+var x = func(){
+	ret y;
+};
+
+var y = 1;
+
+while(x()){
+	y = 0;
+	var y = 1;
+}
+
+print 3;

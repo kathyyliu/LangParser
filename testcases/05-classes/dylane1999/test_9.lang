@@ -1,0 +1,9 @@
+var foo = class{
+var bar = 5;
+};
+
+var x = foo();
+
+print x.bar==foo;
+
+# a class instance is not the same as a class "blueprint"

@@ -1,0 +1,17 @@
+var x = 10;
+if (x < 5) {
+			if (x < 3) {
+				print 2*x;
+			} else {
+				print x+1;
+			}
+		} else {
+			if (x > 8) {
+				print x/5;
+			} else {
+				print x-2;
+			}
+		}
+
+# branches within branches
+

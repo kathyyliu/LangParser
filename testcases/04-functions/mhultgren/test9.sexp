@@ -1,0 +1,1 @@
+(sequence (declare test (function (parameters) (sequence (return (function (parameters n) (sequence (print (lookup n)) (return (lookup test)))))))) (call (call (call (call (lookup test) (arguments)) (arguments 55)) (arguments)) (arguments 66)))

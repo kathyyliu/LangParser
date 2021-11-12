@@ -1,0 +1,11 @@
+#testing scope with classes
+var b = 20;
+var A = class {
+    var printStuff = func(this) {
+        print b;
+        var b = 0;
+        print b;
+    };
+};
+var c = A();
+c.printStuff();

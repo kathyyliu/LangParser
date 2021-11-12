@@ -1,0 +1,1 @@
+(sequence (declare x 0) (declare myfunc (function (parameters) (sequence (assign (varloc x) (+ (lookup x) 1)) (print (lookup x))))) (while (< (lookup x) 3) (sequence (call (lookup myfunc) (arguments)))))

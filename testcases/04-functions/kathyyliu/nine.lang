@@ -1,0 +1,7 @@
+var myfunc = func() {
+    ret 1;
+};
+
+if (myfunc()) {     # functions can be called directly in if conditions
+    print 1;
+}

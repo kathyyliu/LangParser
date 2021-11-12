@@ -1,0 +1,2 @@
+# tests to make sure the whole program is being parsed rather than one line at a time
+var num = 3; num = num = num; print num;

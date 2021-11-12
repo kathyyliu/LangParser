@@ -1,0 +1,15 @@
+# test constructor functionality
+var Rational = class {
+	var num = 0;
+	var denom = 0;
+	var constructor = func(this, num, denom) {
+		this.num = num;
+		this.denom = denom;
+		ret this;
+	};
+};
+
+var half = Rational().constructor(1, 2);
+
+print half.num;
+print half.denom;

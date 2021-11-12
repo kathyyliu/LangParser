@@ -1,0 +1,6 @@
+int number1 = 1;
+var number2 = 2;
+func number3 = func()->int{
+    ret 3;
+};
+print number1 + number2 + number3();

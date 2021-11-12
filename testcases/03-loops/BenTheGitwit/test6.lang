@@ -1,0 +1,20 @@
+# Nested while loops, building the checkered 12 board
+var i = 0; 
+while(i < 10){ 
+	var j = 0; var c = 0; 
+	while(j < 10){ 
+		var a = 1; 
+		var b = 0; 
+		if((j+i)/2*2 == j+i){
+			a = 2;
+		}
+		while(b < j){
+			a = a*10;
+			b = b + 1;
+		} 
+		c = c + a; 
+		j = j +1;
+	} 
+	print c; 
+	i = i + 1;
+}

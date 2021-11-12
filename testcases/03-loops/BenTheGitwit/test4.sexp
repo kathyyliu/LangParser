@@ -1,0 +1,1 @@
+( sequence ( declare a 1 ) ( declare done 0 ) ( while ( ! ( lookup done ) ) ( sequence ( if ( == ( * ( / ( lookup a ) 7 ) 7 ) ( lookup a ) ) ( sequence ( print ( lookup a ) ) ( assign ( varloc done ) 1 ) ) ) ( assign ( varloc a ) ( + ( lookup a ) 10 ) ) ) ) )

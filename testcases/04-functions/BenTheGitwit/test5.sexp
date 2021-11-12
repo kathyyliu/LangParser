@@ -1,0 +1,1 @@
+( sequence ( call ( function ( parameters a ) ( sequence ( while ( lookup a ) ( sequence ( return ( lookup a ) ) ( print ( lookup a ) ) ) ) ( print 13 ) ) ) ( arguments 1 ) ) )

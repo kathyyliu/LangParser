@@ -1,0 +1,1 @@
+(sequence (declare sum (function (parameters a b) (sequence (declare c (+ (lookup a) (lookup b))) (return (lookup c))))) (declare foobar (call (lookup sum) (arguments 10 35))) (print (lookup foobar)))

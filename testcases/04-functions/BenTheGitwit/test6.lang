@@ -1,0 +1,9 @@
+#battle of errors 3 (who will come out on top??)
+
+var x = func(a, x){
+	var x = func(a,a){
+		ret a + a;
+	}(x);
+};
+
+ret x(x,x);

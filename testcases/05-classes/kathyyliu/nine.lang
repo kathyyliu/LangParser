@@ -1,0 +1,11 @@
+# class and object truthiness
+
+var Cat = class {};
+
+if (Cat) {
+    print 1;
+}
+
+if (Cat()) {
+    print 1;
+}

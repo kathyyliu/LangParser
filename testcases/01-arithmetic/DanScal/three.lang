@@ -1,0 +1,2 @@
+#simple multiplication
+print 10*10;

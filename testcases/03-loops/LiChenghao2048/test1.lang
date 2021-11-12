@@ -1,0 +1,9 @@
+var x = 1; 
+if (x == 1) {
+    var x = 2;
+    print x;
+}
+print x; 
+
+
+# look up x in different environments

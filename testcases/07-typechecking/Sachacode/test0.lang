@@ -1,0 +1,3 @@
+#testing for basic int type for a var
+int a = 0;
+print a;

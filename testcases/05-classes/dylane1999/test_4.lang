@@ -1,0 +1,8 @@
+var foo = class{
+};
+
+var bar = foo();
+
+if (bar){
+print 1;
+}

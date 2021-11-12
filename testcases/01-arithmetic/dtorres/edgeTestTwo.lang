@@ -1,0 +1,2 @@
+# Testing to see if it will calculate both of the paranthesis first and then it will see there is a division by zero
+print ((2 + 2) / (2 - 2));

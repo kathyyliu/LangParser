@@ -1,0 +1,15 @@
+# the 'b' in 'a' refers to the outer 'b'
+
+var a = func(){
+	b = a;
+	print b;
+};
+
+var b = func(){
+	var b = 1;
+	a();
+	print b;
+};
+
+b();
+b();

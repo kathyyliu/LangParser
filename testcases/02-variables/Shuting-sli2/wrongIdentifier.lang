@@ -1,0 +1,2 @@
+var string = 0;
+print string;

@@ -1,0 +1,5 @@
+#testing a basic function in lang
+var printNum = func(n) {
+    print n;
+};
+printNum(10);

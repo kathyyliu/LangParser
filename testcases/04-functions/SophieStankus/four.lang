@@ -1,0 +1,8 @@
+# function that calls another function
+var a = func() {
+  print 1;
+};
+var b = func() {
+  a();
+};
+b();

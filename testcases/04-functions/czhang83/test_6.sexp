@@ -1,0 +1,1 @@
+(sequence (declare a (function (parameters) (sequence (if 1 (sequence (return 1)))))) (print (call (lookup a) (arguments))))

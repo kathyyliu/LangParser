@@ -1,0 +1,1 @@
+(sequence (declare tabs 2) (print (lookup tabs)))

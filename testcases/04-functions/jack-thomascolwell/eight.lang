@@ -1,0 +1,3 @@
+# Tests that the default return value of a function is zero
+var x = func() {};
+print x();

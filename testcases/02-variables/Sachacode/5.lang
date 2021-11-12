@@ -1,0 +1,4 @@
+# testing for the ablity to print an expression involving variables
+var a = 2;
+var b = 4;
+print a*b;

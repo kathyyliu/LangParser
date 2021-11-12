@@ -1,0 +1,1 @@
+(sequence (declare f (function (parameters n) (sequence (declare value 1)))) (declare v (call (lookup f) (arguments 3))) (print (member (lookup v) value)))

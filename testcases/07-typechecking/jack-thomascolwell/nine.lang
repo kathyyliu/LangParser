@@ -1,0 +1,2 @@
+# Tests that typed parameters must be of the specified return type
+func(func x)->var {}(1);

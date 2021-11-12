@@ -1,0 +1,2 @@
+#Tests whether parenthetical indexes properly account for optional spaces
+print 1+( 3/ 4 ) -1;

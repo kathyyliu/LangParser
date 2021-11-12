@@ -1,0 +1,1 @@
+(sequence (declare p (function (parameters) (sequence (declare z (function (parameters n) (sequence (print (+ (lookup n) 3)))))(return (lookup z))))) (call (call (lookup p) (arguments)) (arguments 5)))

@@ -1,0 +1,8 @@
+# this tests comments being counted as optioinal spaces, which include a new line at the end of each,
+# so even though the declaration statement is split across lines, (i think) it should still be valid.
+
+var counter# this is an optional space
+=# this is also an optional space
+0# here is one more optional space
+;
+print counter;

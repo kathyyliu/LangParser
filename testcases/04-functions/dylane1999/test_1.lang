@@ -1,0 +1,3 @@
+var x = 5; var printer = func(n){ print n+1; ret 5;}; x = printer(42); print x;
+
+# test for ability to parse function, assign to var, print inside function, setting a var equal to the return value of a function, and printing the return value 

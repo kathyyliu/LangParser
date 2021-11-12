@@ -1,0 +1,5 @@
+int foo = func(int x) {
+    print 5; 
+};
+
+# check that you cannot set a func as an int within a declare statement

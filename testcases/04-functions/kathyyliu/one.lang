@@ -1,0 +1,4 @@
+myfunc(1);
+var myfunc = func(num) {
+    ret num + 1;
+};

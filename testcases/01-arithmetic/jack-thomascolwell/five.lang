@@ -1,0 +1,3 @@
+# Test of multiple print statements in one program
+print 1;
+print 2;

@@ -1,0 +1,5 @@
+var A = class {
+};
+
+var b = A();
+print b;

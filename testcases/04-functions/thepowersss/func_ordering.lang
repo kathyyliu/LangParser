@@ -1,0 +1,8 @@
+# if print b; on line 5 was removed, this would be valid
+# testing to see if your functions execute in order and not just at the end
+var a = func (){print b;};
+print a;
+print b;
+var b = func (){print a;};
+print a;
+print b;

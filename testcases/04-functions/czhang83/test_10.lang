@@ -1,0 +1,21 @@
+# function in expressions
+var a = func(){};
+
+if (a){
+  print 1;
+}
+if (a()){
+  print 11;
+}
+if (a || 0){
+  print 2;
+}
+if (a() || 0){
+  print 12;
+}
+if (!a){
+  print 13;
+}
+if (!a()){
+  print 3;
+}

@@ -1,0 +1,2 @@
+# Tests double operation syntax error
+print 1 + + 1;

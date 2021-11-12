@@ -1,0 +1,11 @@
+var Test = class {
+    var num = 0;
+};
+
+var object = Test();
+
+if (object == object) {
+    print 33;
+} else {
+    print 11;
+}

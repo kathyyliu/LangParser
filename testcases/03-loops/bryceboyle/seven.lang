@@ -1,0 +1,6 @@
+# this is testing scope and making sure that b is not printed because the if statement is never entered
+var a = 0;
+if (a == 2){
+    var b = a;
+}
+print b;

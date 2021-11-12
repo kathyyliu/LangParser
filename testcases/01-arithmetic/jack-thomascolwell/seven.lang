@@ -1,0 +1,2 @@
+# Test with lots of zero terms being added and multiplied
+print (0 + 0 + 0 + 0*9/3 + 0) - 0*20 + 1;

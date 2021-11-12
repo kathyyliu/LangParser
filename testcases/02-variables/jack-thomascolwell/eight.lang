@@ -1,0 +1,15 @@
+# This tests what happens when whitespace is inside of assignments and declarations
+var
+b = 123
+
+;
+
+print b;
+
+b #testing comments = =
+= 1 -
+
+b#comment;
+;
+
+print b;

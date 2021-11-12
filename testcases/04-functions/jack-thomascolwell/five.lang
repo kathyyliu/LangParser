@@ -1,0 +1,3 @@
+#Tests adding non-functions where first argument is a function
+var x = func() {};
+x+1;

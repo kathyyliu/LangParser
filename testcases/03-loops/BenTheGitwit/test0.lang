@@ -1,0 +1,2 @@
+# prints the first 15 fibonacci numbers
+var a = 1; var b = 0; while(a < 500 || b < 500){print a; var c = a; a = a+b; b = c;}

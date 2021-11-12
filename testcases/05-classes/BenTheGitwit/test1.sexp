@@ -1,0 +1,1 @@
+( sequence ( declare x ( class ( declare y ( function ( parameters this this ) ( sequence ( print 1 ) ) ) ) ) ) ( call ( member ( call ( lookup x ) ( arguments ) ) y ) ( arguments 5 ) ) )

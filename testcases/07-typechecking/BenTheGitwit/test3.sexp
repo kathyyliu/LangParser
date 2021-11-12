@@ -1,0 +1,1 @@
+( sequence ( declare func a ( function (signature var int var) ( parameters x y ) ( sequence ( ifelse ( ! ( lookup x ) ) ( sequence ( return ( lookup y ) ) ) ( sequence ( return ( lookup x ) ) ) ) ) ) ) ( assign ( varloc a ) ( call ( lookup a ) ( arguments ( lookup a ) 1 ) ) ) ( print ( call ( lookup a ) ( arguments 0 3 ) ) ) )

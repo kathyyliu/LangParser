@@ -1,0 +1,2 @@
+# This is going to test if it is able to go to the furthest right paranthesis and then move from there outward.
+print (5 - (5 + (5 * (5 / 5))));

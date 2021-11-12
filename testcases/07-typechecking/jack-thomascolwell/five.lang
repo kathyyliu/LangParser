@@ -1,0 +1,2 @@
+# tests that type checking is done after evaluation
+int x = func() {ret 1;}();

@@ -1,0 +1,1 @@
+(sequence (declare fn 3) (assign (varloc fn) (function (parameters) (sequence (print 0)))) (call (lookup fn) (arguments)))

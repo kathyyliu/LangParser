@@ -1,0 +1,1 @@
+(sequence (declare int foo 1) (declare func bar (function (parameters) (sequence))) (assign (varloc foo) (lookup bar)))

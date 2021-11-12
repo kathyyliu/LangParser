@@ -1,0 +1,13 @@
+func foo = func(func x) -> int {
+    int return_val = x();
+    ret return_val;
+};
+
+func bar = func() -> int {
+    ret 27;
+};
+
+print foo(bar);
+
+
+# test multiple typechecking features inside of a function, and return values

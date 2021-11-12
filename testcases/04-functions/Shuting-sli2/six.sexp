@@ -1,0 +1,1 @@
+(sequence (declare f (function (parameters n) (sequence (return (function (parameters) (sequence (return (function (parameters) (sequence (return (function (parameters) (sequence (return (lookup n)))))))))))))) (print (call (call (call (call (lookup f) (arguments 10)) (arguments)) (arguments)) (arguments))))

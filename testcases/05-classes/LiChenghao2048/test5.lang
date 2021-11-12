@@ -1,0 +1,3 @@
+var A.b = 12
+
+print A.b

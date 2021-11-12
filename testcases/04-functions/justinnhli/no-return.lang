@@ -1,0 +1,5 @@
+var printer = func(n) {
+    print n;
+};
+
+print printer(1);

@@ -1,0 +1,15 @@
+# very normal program that a human would write
+# mostly for testing all three control structures, nested
+var i = 0;
+while (i < 5) {
+    if (i > 3) {
+        if ( i == 4 ) {
+            print 102;
+        }
+        print 100;
+    }
+    else {
+        print 2;
+    }
+    i = i + 1;
+}

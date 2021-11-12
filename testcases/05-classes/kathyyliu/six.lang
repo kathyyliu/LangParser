@@ -1,0 +1,17 @@
+# To-strings and overlapping identifiers
+
+var Fruit = class {
+    var Fruit = func(this) {
+        ret 1;
+    };
+};
+
+var myfunc = func() {
+    var Fruit = Fruit();    # before this line executes, "Fruit" is not in curr_env, so allowed
+    print Fruit;            
+};
+
+print Fruit;                # class
+myfunc();                   # obj
+print Fruit().Fruit;        # closure
+print Fruit().Fruit();      # 1

@@ -1,0 +1,2 @@
+# checks for variable with numerical start
+var 1num = 100;

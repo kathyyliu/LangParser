@@ -1,0 +1,5 @@
+# tests another syntax error with print in class
+var x = class {
+  print 3;
+};
+

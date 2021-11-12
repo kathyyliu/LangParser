@@ -1,0 +1,1 @@
+(sequence (declare outter (function (signature int var func) (parameters a b) (sequence (return (function (parameters) (sequence (print (lookup a)) (print (lookup b)))))))) (declare b 9) (call (call (lookup outter) (arguments 2 (lookup b))) (arguments)))

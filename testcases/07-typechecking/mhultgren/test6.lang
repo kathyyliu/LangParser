@@ -1,0 +1,6 @@
+# test function return typing (should throw error as returns 0)
+func test = func(int a, b) -> func {
+	print a;
+};
+
+test(11, 12);

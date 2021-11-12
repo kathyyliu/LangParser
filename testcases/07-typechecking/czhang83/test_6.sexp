@@ -1,0 +1,1 @@
+(sequence (declare int a 4) (declare func a (function (parameters) (sequence))))

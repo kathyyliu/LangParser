@@ -1,0 +1,1 @@
+(sequence (declare num 3) (print (lookup num)))

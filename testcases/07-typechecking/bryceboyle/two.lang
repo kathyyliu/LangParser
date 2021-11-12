@@ -1,0 +1,8 @@
+# making sure function parameter type matches what is passed in
+func two = func(func k)-> int {
+    print k;
+    ret 2;
+};
+
+int number = 3;
+print two(number);

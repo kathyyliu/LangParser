@@ -1,0 +1,2 @@
+# Tests basic typing of functions
+func x = func(int a, func b) -> var {};

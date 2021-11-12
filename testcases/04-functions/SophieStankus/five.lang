@@ -1,0 +1,6 @@
+# tests return values & reassignment
+var a = func() {
+  ret 1;
+};
+var b = a();
+print b;

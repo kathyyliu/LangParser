@@ -1,0 +1,7 @@
+#testing basic if-else functionality and variables in if statements
+var a = 1;
+if (a == 1) {
+    print 1;
+} else {
+    print 0;
+}

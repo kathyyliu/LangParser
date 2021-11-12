@@ -1,0 +1,22 @@
+#static variables test
+
+var Electricity = func(){
+	var static = 7;
+	ret class{
+		var touch = func(this){
+			ret static;
+		};
+		var rub = func(this){
+			static = static + 1;
+		};
+	};
+};
+
+var shock = Electricity();
+var doorknob = shock();
+print doorknob.touch();
+var carpet = shock();
+carpet.rub();
+carpet.rub();
+carpet.rub();
+print doorknob.touch();

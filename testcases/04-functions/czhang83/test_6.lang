@@ -1,0 +1,7 @@
+# return inside a control flow
+var a = func(){
+  if (1){
+    ret 1;
+  }
+};
+print a();

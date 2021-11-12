@@ -1,0 +1,4 @@
+#testing for math operations with values that are untyped and typed
+var a = 1;
+int b = 2;
+print a + b;

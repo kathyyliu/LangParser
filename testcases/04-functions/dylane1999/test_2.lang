@@ -1,0 +1,3 @@
+var x = 5; var printer = func(n){  }; x = printer(42); print x;
+
+# test that functions that have no return value will return zero

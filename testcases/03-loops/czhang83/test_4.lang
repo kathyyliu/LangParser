@@ -1,0 +1,9 @@
+# variable closure
+var b = 3;
+if (b == 3){
+  print b;
+  var b = 5;
+  if (b == 5){
+    print b;
+  }
+}

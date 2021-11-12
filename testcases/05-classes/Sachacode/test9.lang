@@ -1,0 +1,13 @@
+#testing for functions with the same name but one is in a class
+var b = func() {
+    print 20;
+};
+
+var A = class {
+    var b = func(this) {
+        print 10;
+    };
+};
+var c = A();
+c.b();
+b();

@@ -1,0 +1,2 @@
+#making sure declaration works with all math
+var a = 2 + 2; var b = 2 - 2; var c = 3 * 6; var d = 6/2;

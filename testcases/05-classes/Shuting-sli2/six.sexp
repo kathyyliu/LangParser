@@ -1,0 +1,1 @@
+(sequence (declare C (class (declare value 100))) (declare c1 (call (lookup C) (arguments))) (while (!= (member (lookup c1) value) 0) (sequence (assign (memloc (varloc c1) value) (- (member (lookup c1) value) 1)))) (print (member (lookup c1) value)))

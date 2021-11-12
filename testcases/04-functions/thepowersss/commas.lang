@@ -1,0 +1,4 @@
+# checking comma parses for parameters and arguments
+# please don't hate me
+var a = func(a, b,) {};
+print a(1, 2,);

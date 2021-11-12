@@ -1,0 +1,13 @@
+var my_class1 = class{
+    var num = 1;
+};
+var my_class2 = class{
+    var num = 1;
+};
+
+if (my_class1 == my_class2){
+    print 1;
+}
+else {
+    print 0;
+}

@@ -1,0 +1,9 @@
+#testing functions with if statements
+var printNum = func(n) {
+    print n;
+};
+if (1 > 0) {
+    printNum(1);
+} else {
+    printNum(0);
+}

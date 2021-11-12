@@ -1,0 +1,6 @@
+# tests basic if statement 
+var x = 10;
+if (x == 10) {
+  x = x + 1;
+}
+print x;

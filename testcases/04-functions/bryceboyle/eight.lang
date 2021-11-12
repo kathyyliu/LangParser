@@ -1,0 +1,7 @@
+var p = func(){
+    var z = func(n){
+        print n + 3;
+    };
+    ret z;
+};
+p()(5);

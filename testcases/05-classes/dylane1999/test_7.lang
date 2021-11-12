@@ -1,0 +1,10 @@
+var foo = class{
+var bar = 5;
+};
+
+var x = foo();
+var y = foo();
+
+print x==y;
+
+# two instances of a class are not the same should print 0

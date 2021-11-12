@@ -1,0 +1,1 @@
+(sequence (declare a 10) (assign (varloc a) (/ (/ 10 2) 0)))

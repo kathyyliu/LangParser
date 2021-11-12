@@ -1,0 +1,9 @@
+# compare variables with different types
+
+var a = 3;
+int b = 3;
+func c = func() -> int {ret 3;};
+
+print a == b;
+print a == c();
+print b == c();

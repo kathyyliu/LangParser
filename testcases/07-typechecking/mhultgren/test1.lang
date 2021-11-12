@@ -1,0 +1,2 @@
+# test type mismatch error
+func a = 30;

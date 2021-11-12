@@ -1,0 +1,5 @@
+# Test of programs consisting of only expressions
+3 + 4;
+5 + 4
+* 1;
+2;

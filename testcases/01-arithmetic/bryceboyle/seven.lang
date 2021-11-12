@@ -1,0 +1,2 @@
+# This is testing to make sure the parse stops at the double slash (syntax error) and doesn't print a divide by zero error or print the value 10.
+print (4 + 7 - 1)//(2-2);

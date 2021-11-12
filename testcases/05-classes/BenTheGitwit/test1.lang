@@ -1,0 +1,9 @@
+# tests that duplicate parameter is checking for 'this'
+
+var x = class{
+	var y = func(this, this){
+		print 1;
+	};
+};
+
+x().y(5);

@@ -1,0 +1,5 @@
+var foo.bar = 12
+
+print foo.bar
+
+# test for a syntax error on prototype like behavior

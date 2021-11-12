@@ -1,0 +1,7 @@
+# changing class member var out of class
+var x = class {
+  var y = 5;
+};
+var z = x();
+z.y = 4;
+print z.y;

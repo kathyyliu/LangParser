@@ -1,0 +1,3 @@
+# first assign the right type of value to a variable, then assign a wrong type
+int a = 4;
+a = func(){};

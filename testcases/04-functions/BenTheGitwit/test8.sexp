@@ -1,0 +1,1 @@
+( sequence ( declare x ( function ( parameters ) ( sequence ( return ( lookup y ) ) ) ) ) ( declare y 1 ) ( while ( call ( lookup x ) ( arguments ) ) ( sequence ( assign ( varloc y ) 0 ) ( declare y 1 ) ) ) ( print 3 ) )

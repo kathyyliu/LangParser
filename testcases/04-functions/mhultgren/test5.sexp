@@ -1,0 +1,1 @@
+(sequence (declare lessThan (function (parameters numOne numTwo) (sequence (return (< (lookup numOne) (lookup numTwo)))))) (declare i 0) (while (call (lookup lessThan) (arguments (lookup i) 10)) (sequence (print (lookup i)) (assign (varloc i) (+ (lookup i) 1)))))

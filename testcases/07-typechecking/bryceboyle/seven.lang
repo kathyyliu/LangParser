@@ -1,0 +1,8 @@
+func thingy = func(int num) -> int{
+    ret num;
+};
+
+int val = 17;
+if(val > 2){
+    print thingy(val);
+}

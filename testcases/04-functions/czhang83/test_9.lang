@@ -1,0 +1,13 @@
+# print in the right order when there's error
+var b = 3;
+var a = func(){
+  print 7;
+  if (b == 1){
+    print c;
+  }
+  b = b - 1;
+};
+
+a();
+a();
+a();

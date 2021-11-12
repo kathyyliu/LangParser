@@ -1,0 +1,2 @@
+#dealing with integers in parenthesis
+print (20) * (30 );

@@ -1,0 +1,4 @@
+# runtime error: argument mismatch when there are more parameters than arguments
+var mismatch = func(a, b, c, d, e) {
+  ret 1;
+}();

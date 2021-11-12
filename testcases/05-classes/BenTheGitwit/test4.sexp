@@ -1,0 +1,1 @@
+( sequence ( declare x ( class ) ) ( declare y ( class ) ) ( if ( <= ( lookup x ) ( lookup y ) ) ( sequence ( print 1 ) ) ) )

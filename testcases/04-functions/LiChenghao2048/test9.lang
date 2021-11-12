@@ -1,0 +1,4 @@
+var x = func() {};
+print x();
+
+# empty func returns 0

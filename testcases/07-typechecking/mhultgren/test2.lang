@@ -1,0 +1,6 @@
+# test backwards compatibility
+# var should not effect .sexp
+var a = 30;
+var b = func(a) {
+    print a;
+};

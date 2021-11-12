@@ -1,0 +1,1 @@
+(sequence (declare C (class (declare foo (function (parameters this) (sequence (return 1)))))) (declare a (call (lookup C) (arguments))) (print (call (member (lookup a) foo) (arguments))))

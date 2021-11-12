@@ -1,0 +1,11 @@
+func foo = func() -> func {
+    func bar = func() -> func {
+        ret 12;
+    };
+    
+    ret bar;
+};
+
+foo()();
+
+# test success on first type and fail on the nested function return type

@@ -1,0 +1,4 @@
+#testing for error inside an if statement's condition
+if (1/0) {
+    print 1;
+}

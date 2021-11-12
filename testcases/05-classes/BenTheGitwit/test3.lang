@@ -1,0 +1,9 @@
+# makes sure 'this' doesn't have to be 'this'
+
+var x = class{
+	var y = func(a){
+		print a;
+	};
+};
+
+x().y();

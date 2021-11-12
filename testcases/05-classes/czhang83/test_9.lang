@@ -1,0 +1,19 @@
+# return a class
+# could bahave as an inner class
+
+var A = class {
+  var b = 1;
+  var c = func(this){
+    ret class {
+      var getB = func(this){
+        ret b;
+      };
+    };
+  };
+};
+
+var object = A();
+var inner = object.c()();
+print inner.getB();
+object.b = 2;
+print inner.getB();

@@ -1,0 +1,2 @@
+# should give an undefined variable error
+var b = c;

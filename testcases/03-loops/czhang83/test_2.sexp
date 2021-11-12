@@ -1,0 +1,1 @@
+(sequence (declare a 4) (while (<= (lookup a) 8) (sequence (print (lookup a)) (assign (varloc a) (+ (lookup a) 1)) (if (== (lookup a) 6) (sequence (assign (varloc a) (+ (lookup a) 2)))))))

@@ -1,0 +1,7 @@
+# tests else statement 
+var x = 10;
+if (x == 20) {
+  print 20;
+} else {
+  print 10;
+}

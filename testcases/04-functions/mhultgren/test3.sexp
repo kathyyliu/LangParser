@@ -1,0 +1,1 @@
+(sequence (declare greaterThan (function (parameters numOne numTwo) (sequence (return (> (lookup numOne) (lookup numTwo)))))) (ifelse (call (lookup greaterThan) (arguments 32 16)) (sequence (print 32)) (sequence (print 16))))

@@ -1,0 +1,2 @@
+# checks for division by zero
+var x = 100/0;

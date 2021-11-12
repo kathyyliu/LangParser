@@ -1,0 +1,6 @@
+# undefined member var
+var x = class {
+  var y = 3;
+};
+var z = x();
+print z.a;

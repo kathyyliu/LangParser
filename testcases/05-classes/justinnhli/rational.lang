@@ -1,0 +1,27 @@
+var Rational = class {
+    var numerator = 0;
+    var denominator = 1;
+    var constructor = func(this, numer, denom) {
+        numerator = numer;
+        denominator = denom;
+        ret this;
+    };
+    var multiply = func(this, other) {
+        ret Rational().constructor(
+            this.numerator * other.numerator,
+            this.denominator * other.denominator
+        );
+    };
+};
+
+var main = func() {
+    var a = Rational();
+    a.numerator = 1;
+    a.denominator = 2;
+    var b = Rational().constructor(2, 1);
+    var c = a.multiply(b).multiply(b).multiply(b);
+    print c.numerator / c.denominator;
+    ret 0;
+};
+
+main();

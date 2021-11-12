@@ -1,0 +1,5 @@
+#testing error for multiple variables on same scope in an if statement
+if (1) {
+    var a = 0;
+    var a = 1;
+}

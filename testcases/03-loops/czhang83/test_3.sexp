@@ -1,0 +1,1 @@
+(sequence (declare b 1) (if (|| (lookup b) (lookup c)) (sequence (print 3))))

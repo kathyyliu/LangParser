@@ -1,0 +1,9 @@
+var a = 0;
+var b = 10;
+if ((a + b) / 2 == 5){
+	print 5;
+} else{
+	print (a + b) / 2;
+}
+
+# testing math expression and comparison in condition

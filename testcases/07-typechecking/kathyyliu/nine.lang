@@ -1,0 +1,7 @@
+# return type but no return 
+
+func myfunc = func() -> func {
+    print 123;
+};
+
+myfunc();

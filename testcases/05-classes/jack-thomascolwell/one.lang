@@ -1,0 +1,7 @@
+# test class instantiation
+var Test = class {
+  var a = 1;
+};
+
+var Inst = Test();
+print Inst.a;

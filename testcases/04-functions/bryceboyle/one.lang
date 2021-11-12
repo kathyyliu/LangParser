@@ -1,0 +1,6 @@
+# testing to make sure fn is reassigned properly and 0 is printed instead of throwing an error
+var fn = 3;
+fn = func(){
+    print 0;
+};
+fn();

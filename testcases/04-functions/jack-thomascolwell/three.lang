@@ -1,0 +1,5 @@
+# tests undefined variables inside of functions
+var x = func() {
+  print a;
+};
+x();

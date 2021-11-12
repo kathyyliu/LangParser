@@ -1,0 +1,2 @@
+# Tests that you cannot declare a variable with a type mismatch
+func x = 1;

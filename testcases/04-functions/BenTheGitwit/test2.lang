@@ -1,0 +1,7 @@
+#battle of errors
+
+var x = func(a){};
+
+var y = 0;
+
+z = x/y;

@@ -1,0 +1,9 @@
+var x = 0;
+
+var A = class {
+    var x = 1;
+};
+
+var y = A();
+print x;
+print y.x;

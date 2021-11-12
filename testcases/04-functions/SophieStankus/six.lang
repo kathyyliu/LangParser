@@ -1,0 +1,3 @@
+# calling a variable that isn't a function 
+var a = 10;
+a();

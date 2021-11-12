@@ -1,0 +1,8 @@
+# Tests calling member functions
+var Test = class {
+  var a = func(this) { print 12; };
+};
+
+var Inst = Test();
+print Inst.a;
+Inst.a();

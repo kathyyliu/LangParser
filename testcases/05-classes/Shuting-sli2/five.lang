@@ -1,0 +1,4 @@
+# tests class with non-declaration statement inside
+var  = class {
+    prints 2+2;
+};

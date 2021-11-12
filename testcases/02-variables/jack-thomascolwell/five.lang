@@ -1,0 +1,4 @@
+# This tests declaring a variable that is already declared
+var a = 1;
+var a = 12;
+print a;

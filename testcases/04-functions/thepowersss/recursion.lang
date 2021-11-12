@@ -1,0 +1,12 @@
+# simple useless recursive function
+# just does the same as a loop
+var a = func (b, c) {
+    if (b > c) {
+        b = b - 1;
+        print (b);
+        ret a(b,c);
+    } else {
+        ret 100;
+    }
+};
+print a(5, 1);

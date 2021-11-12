@@ -1,0 +1,4 @@
+print 1+1#hello
+;
+# should be able to parse this, taking a comment as space
+# gives 2

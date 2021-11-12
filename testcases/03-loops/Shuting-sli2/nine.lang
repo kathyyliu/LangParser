@@ -1,0 +1,7 @@
+var x = 100;
+while (x > 10){
+	x = x - 1;
+}
+print x;
+
+# a normal test case

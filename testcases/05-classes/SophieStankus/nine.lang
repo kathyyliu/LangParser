@@ -1,0 +1,9 @@
+# functions in classes
+var first = class {
+  var second = func(this){
+    ret 5;
+  };
+};
+
+var result = first().second();
+print result;

@@ -1,0 +1,3 @@
+# testing for correct error when a variable is not initalized
+var num = ;
+print num;

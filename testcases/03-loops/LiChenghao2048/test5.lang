@@ -1,0 +1,5 @@
+if (print 1+1;) {
+  print 1;
+}
+
+# non expression as condition

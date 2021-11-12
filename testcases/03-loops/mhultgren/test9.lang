@@ -1,0 +1,9 @@
+var num = 30;
+
+while (num < 50) {
+    if (num > 40) {
+        num = num + 2;
+    } else {
+        num = num + 4;
+    }
+}

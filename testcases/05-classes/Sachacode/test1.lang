@@ -1,0 +1,10 @@
+#testing class with a constructor
+var A = class {
+    var b = 0;
+    var constructor = func(this, num) {
+        b = num;
+    };
+};
+var c = A();
+c.constructor(5);
+print c.b;

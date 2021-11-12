@@ -1,0 +1,7 @@
+# making sure int can be the return type for something with no return, since 0 is the default
+func add_one = func(a)->int{
+    a = a + 1;
+};
+int bit = 0;
+add_one(bit);
+print bit;

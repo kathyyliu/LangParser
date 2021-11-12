@@ -1,0 +1,2 @@
+# Tests to make sure parenthesis are being closed properly
+print (3 - (4/2);

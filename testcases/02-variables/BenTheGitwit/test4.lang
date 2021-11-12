@@ -1,0 +1,2 @@
+#tests to make sure variables can be declared using other variables
+var num1 = 3; var num2 = num1; print num2;

@@ -1,0 +1,2 @@
+# Tests that right hand side is evaluated before types
+func x = 1/0;

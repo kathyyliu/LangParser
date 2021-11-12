@@ -1,0 +1,7 @@
+#basic class in lang
+var A = class {
+    var b = 0;
+};
+var c = A();
+c.b = 10;
+print c.b;

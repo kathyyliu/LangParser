@@ -1,0 +1,12 @@
+# test scope of functions / closures
+
+var a = 1;
+var outer = func() {
+    var a = 2;
+    var inner = func() {
+        print a;
+    };
+    ret inner;
+};
+
+outer()();

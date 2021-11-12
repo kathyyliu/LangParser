@@ -1,0 +1,13 @@
+# test nested if statements
+
+var num = 300;
+
+if (1 + 1) {
+    if (2 - 2) {
+        print num;
+    } else {
+        print 3;
+    }
+} else {
+    print 0;
+}

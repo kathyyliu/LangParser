@@ -1,0 +1,10 @@
+var Thing = class {
+    var n = 42;
+    var print_n = func(this) {
+        print this.n;
+    };
+};
+
+var thing = Thing();
+var bound = thing.print_n;
+bound();

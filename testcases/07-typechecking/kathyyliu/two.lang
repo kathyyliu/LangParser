@@ -1,0 +1,5 @@
+# type does not affect value
+
+var x = 1;
+int y = 1;
+print x == y;

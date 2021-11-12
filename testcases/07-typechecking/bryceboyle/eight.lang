@@ -1,0 +1,9 @@
+func outer = func(int value)->func{
+    func inner = func()->int{
+        print 4;
+    };
+    print value;
+    ret inner;
+};
+
+outer(2)();

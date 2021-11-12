@@ -1,0 +1,1 @@
+(sequence (declare count 0) (while (< (lookup count) 100) (sequence (print (lookup count)) (assign (varloc count) (+ (lookup count) 10)))))

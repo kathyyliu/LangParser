@@ -1,0 +1,3 @@
+# This tests basic declare and lookup functionality
+var a = 12;
+print a;

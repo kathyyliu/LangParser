@@ -1,0 +1,4 @@
+# you cannot call a variable
+# or you can but she'll hang up
+var a = 2;
+(a());

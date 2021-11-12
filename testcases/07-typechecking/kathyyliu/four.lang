@@ -1,0 +1,4 @@
+# type does not affect checking var name
+
+var x = 1;
+int x = 1;

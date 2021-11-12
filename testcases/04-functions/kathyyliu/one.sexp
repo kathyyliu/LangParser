@@ -1,0 +1,1 @@
+(sequence (call (lookup myfunc) (arguments 1)) (declare myfunc (function (parameters num) (sequence (return (+ (lookup num) 1))))))

@@ -1,0 +1,2 @@
+# Tests parenthesis on addition/multiplication/integers
+print (3)*(4-2)/(6/3);

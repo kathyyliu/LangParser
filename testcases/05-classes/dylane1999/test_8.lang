@@ -1,0 +1,10 @@
+var foo = class{
+var bar = 5;
+};
+
+var x = foo();
+var y = foo();
+
+print x.bar==y.bar;
+
+# two member variables should be equal at initialization

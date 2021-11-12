@@ -1,0 +1,4 @@
+# tests comparison operators 
+if ((200 > 100) == 1) {
+  print 0;
+}

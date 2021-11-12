@@ -1,0 +1,3 @@
+# checking for error when assignment to a variable that does not exist
+var a = b;
+print a;

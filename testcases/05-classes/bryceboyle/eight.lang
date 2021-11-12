@@ -1,0 +1,10 @@
+var Thing = class{
+    var count = 0;
+    var increase = func(this, n){
+        n = n + 1;
+    };
+};
+var thing1 = Thing();
+thing1.increase(thing1.count);
+var thing2 = Thing();
+print thing2.count;

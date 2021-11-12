@@ -1,0 +1,9 @@
+var x = 0;
+while (! x) {   # should loop once
+    var y = 0;
+    while (y < 3) {     # should loop 3 times
+        print y;
+        y = y + 1;
+    }
+    x = y;      # assign location from outer, value from inner that has also been reassigned by the loop
+}

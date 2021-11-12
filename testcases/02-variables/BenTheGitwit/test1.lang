@@ -1,0 +1,2 @@
+# tests to make sure you cannot declare the same variable twice
+var test = 2+3; var test = 1;
