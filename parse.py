@@ -14,7 +14,7 @@ class Parse:
     def __str__(self):
         return self._s_expression(self)
 
-    # str helper
+    # str helper: builds s-expression representing tree
     def _s_expression(self, node, expression=''):
         if isinstance(node, StatementParse):
             if node.children:

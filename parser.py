@@ -2,6 +2,16 @@ import parse as parse
 
 
 class Parser:
+    """
+    Lang parser - checks syntax of a Lang program while building a parse tree, an intermediate representation, to pass to interpreter
+    Code in program passed as string to toplevel method `parse`
+
+    Raises:
+        syntax error - if the parser failed to parse the complete program
+
+    Returns:
+        Parse: root of parse tree of Parse objects representing the Lang program, if the syntax is legal
+    """
     FAIL = parse.StatementParse("FAIL", -1)
 
     def __init__(self):
@@ -155,7 +165,7 @@ class Parser:
     def parse_declaration_statement(self, string, index):
         type = self.__parse(string, "type", index)
         if type == Parser.FAIL:
-            return Parser.FAIL
+            return Parser.FAIL 
         left = self.__parse(string, "req_space", type.index)
         if left == Parser.FAIL:
             return Parser.FAIL
